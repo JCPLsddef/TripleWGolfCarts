@@ -7,10 +7,16 @@ export function WhyChooseUs() {
   return (
     <section className="section-padding bg-bg-alt">
       <div className="container-default">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 max-w-3xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold text-text mb-4">
             {whyChooseUs.title}
           </h2>
+          <p className="text-lg text-text mb-4">
+            {whyChooseUs.description}
+          </p>
+          <p className="text-base text-primary font-medium">
+            {whyChooseUs.confirmation}
+          </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">

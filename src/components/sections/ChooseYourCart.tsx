@@ -1,7 +1,7 @@
 'use client';
 
 import { Check, Crown } from 'lucide-react';
-import { cartTypes, cartComparison } from '@/content/siteContent';
+import { cartTypes, cartComparison, perfectFor } from '@/content/siteContent';
 
 export function ChooseYourCart() {
   const scrollToForm = () => {
@@ -107,6 +107,18 @@ export function ChooseYourCart() {
             <div className="pt-4 border-t border-border text-center">
               <p className="text-primary font-medium text-sm">{cartComparison.helpText}</p>
             </div>
+          </div>
+        </div>
+
+        <div className="mt-12 text-center max-w-2xl mx-auto">
+          <h3 className="text-2xl font-bold text-text mb-6">{perfectFor.title}</h3>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {perfectFor.items.map((item, index) => (
+              <div key={index} className="flex items-center gap-3 text-left p-4 bg-white rounded-lg border border-border">
+                <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                <span className="text-text font-medium">{item}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

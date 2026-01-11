@@ -16,15 +16,30 @@ export function Hero() {
               {hero.scarcityBadge}
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-3">
               {hero.headline}
             </h1>
 
-            <p className="text-base text-blue-100 mb-4 leading-relaxed">
+            <p className="text-xl text-white mb-4 font-medium">
               {hero.subheadline}
             </p>
 
-            <p className="text-lg text-blue-100 mb-2 font-medium">
+            <p className="text-base text-blue-100 mb-4 leading-relaxed">
+              {hero.description}
+            </p>
+
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-success/20 border border-success/30 mb-4">
+              <span className="text-white text-sm">{hero.reassurance}</span>
+            </div>
+
+            <div className="flex items-center gap-2 text-sm text-blue-100 mb-4">
+              <svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+              </svg>
+              <span>{hero.socialProof}</span>
+            </div>
+
+            <p className="text-sm text-blue-100 mb-2 font-medium">
               {hero.offerLine}
             </p>
 

@@ -14,6 +14,9 @@ export function FinalCTA() {
   return (
     <section className="section-padding bg-bg-900">
       <div className="container-default text-center">
+        <p className="text-xl text-primary mb-3 font-semibold">
+          {finalCta.preheadline}
+        </p>
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
           {finalCta.headline}
         </h2>
@@ -38,7 +41,7 @@ export function FinalCTA() {
             onClick={scrollToForm}
             className="inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors shadow-lg"
           >
-            Get Exact Total
+            {finalCta.ctaText}
             <ArrowRight className="w-5 h-5" />
           </button>
           <a

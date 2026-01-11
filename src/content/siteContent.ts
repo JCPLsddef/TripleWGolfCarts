@@ -23,9 +23,12 @@ export const business = {
 };
 
 export const hero = {
-  headline: 'Nationwide Golf Cart Delivery & Full Setup Included',
-  subheadline: 'We deliver anywhere in the U.S. and handle everything from drop-off to pickup. Exact details are confirmed during your quote call.',
+  headline: 'Premium Golf Cart Rentals for Events',
+  subheadline: 'Delivered, Set Up & Ready Exactly When You Need Them',
+  description: 'Perfect for large venues, equestrian centers, golf courses, and events where getting from point A to point C matters.',
+  reassurance: 'We handle delivery, setup, and timing — you don\'t have to worry about a thing.',
   scarcityBadge: 'Limited fleet — weekends fill fast',
+  socialProof: 'Used for major events like the Great Southwest Equestrian Center shows',
   offerLine: 'Nationwide Delivery • Full Setup & Pickup • 4-Seaters Only • 3-Day Minimum',
   pricingAnchor: 'Standard from $300+ | Luxury from $450+ (3-day minimum)',
   benefits: [
@@ -33,28 +36,30 @@ export const hero = {
     'Clean, fully charged carts',
     `${business.rating}★ from ${business.reviewCount} Google reviews`,
   ],
-  ctaMicrocopy: 'No obligation. We confirm availability + exact total first.',
-  ctaText: 'Get Your Exact Quote',
+  ctaMicrocopy: 'We\'ll guide you and handle everything from delivery to setup.',
+  ctaText: 'See If Carts Are Available for Your Event',
 };
 
 export const whyChooseUs = {
-  title: 'Why Choose Triple W Rentals',
+  title: 'Delivery & Setup',
+  description: 'We deliver directly to your event location and fully set everything up. You don\'t lift a finger — we handle logistics, timing, and coordination.',
+  confirmation: 'You\'ll even receive a confirmation message before your event so you can relax knowing everything is on schedule.',
   features: [
     {
-      title: 'Nationwide Delivery & Full Setup',
-      description: 'We deliver anywhere in the U.S. and handle everything from setup to pickup. No hassle.',
+      title: 'Delivered & Set Up',
+      description: 'We bring carts directly to your event and handle all setup. You focus on your event.',
     },
     {
-      title: 'Clean & Fully Charged',
-      description: 'Every cart is inspected, cleaned, and arrives with a full battery.',
+      title: 'On-Time Guarantee',
+      description: 'Receive confirmation before your event. We coordinate timing perfectly.',
     },
     {
-      title: 'Fast & Responsive',
-      description: 'Real people answering your calls. Fast quotes, clear communication.',
+      title: 'Stress-Free Experience',
+      description: 'No logistics headaches. We handle delivery, setup, and pickup completely.',
     },
     {
-      title: 'Trusted by Hundreds',
-      description: `${business.reviewCount} Google reviews with ${business.rating}★ rating. We deliver on our promises.`,
+      title: 'Event-Ready Carts',
+      description: `Clean, fully charged, and ready exactly when you need them. ${business.reviewCount} events served.`,
     },
   ],
 };
@@ -70,30 +75,30 @@ export const cartTypes = [
     priceNote: '3-day minimum',
     features: [
       'Clean, traditional golf-course style',
-      'Designed for flat terrain (golf courses, paved paths, resorts)',
+      'Designed for flat terrain (golf courses, paved paths, event grounds)',
       'Lower ground clearance for a smoother, quieter ride',
       'Simple, elegant, and practical',
     ],
-    perfectFor: 'Comfort, simplicity, and a traditional golf cart experience.',
+    perfectFor: 'Comfort, simplicity, and reliable transportation for your event.',
     popular: false,
   },
   {
     id: 'luxury',
-    name: 'Lifted / Premium Golf Cart',
-    subtitle: 'Built for luxury, comfort & versatility',
+    name: 'Premium Lifted Golf Cart',
+    subtitle: 'Built for luxury, comfort & confidence',
     badge: 'Most Popular',
-    description: '4-seater lifted premium golf cart',
+    description: '4-seater premium lifted golf cart',
     image: 'https://static.wixstatic.com/media/62f926_e9d8f493c6d94bc3914ee436e5706070~mv2.jpeg',
     priceFrom: 'From $450+',
     priceNote: '3-day minimum',
     features: [
-      'Upgraded wheels & lifted suspension',
-      'Handles grass, gravel, dirt & uneven terrain with ease',
-      'Premium custom seats for maximum comfort',
-      'Higher ground clearance for better visibility & confidence',
-      'Aggressive, luxury look — stands out at any event',
+      'Upgraded wheels and lifted suspension',
+      'Handles large venues, grass, gravel, and uneven terrain with ease',
+      'Extremely luxurious and comfortable premium seats',
+      'Higher visibility and a bold, high-end look',
+      'Premium style that performs anywhere',
     ],
-    perfectFor: 'Premium comfort, luxury style, and the ability to go anywhere.',
+    perfectFor: 'Maximum comfort, premium style, and a cart that performs anywhere.',
     popular: true,
   },
 ];
@@ -101,8 +106,18 @@ export const cartTypes = [
 export const cartComparison = {
   title: 'Quick Comparison',
   standard: 'Smooth, simple, perfect for flat terrain',
-  premium: 'Luxury comfort, upgraded wheels, and built for any terrain',
+  premium: 'Luxurious, comfortable, and built for any environment',
   helpText: 'Not sure which one to choose? Tell us where you\'ll drive — we\'ll match you with the perfect cart.',
+};
+
+export const perfectFor = {
+  title: 'Perfect For',
+  items: [
+    'Large events & equestrian shows',
+    'Golf courses & tournaments',
+    'Weddings & outdoor venues',
+    'Any location where quick, comfortable transportation matters',
+  ],
 };
 
 export const useCases = {
@@ -274,12 +289,14 @@ export const faqs = [
 ];
 
 export const finalCta = {
-  headline: 'Comfortable, Clean, Stress-Free Mobility — Delivered to You',
+  preheadline: 'Planning an event with a large venue?',
+  headline: 'We\'ll Make Sure Your Golf Carts Are Delivered, Set Up, and Ready Right on Time',
   benefits: [
-    'Delivery + pickup handled',
-    'Responsive team available',
-    'Premium appearance',
-    'Simple, clear process',
+    'Delivery + setup handled',
+    'Event-ready carts',
+    'On-time guarantee',
+    'Stress-free experience',
   ],
+  ctaText: 'Check Availability for Your Event',
   disclaimer: 'Rates vary by dates and location. 3-day minimum rental.',
 };
