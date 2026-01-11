@@ -151,7 +151,7 @@ export function DateRangePicker({
                   day_disabled: "text-text-muted/30 cursor-not-allowed hover:bg-transparent line-through",
                   day_range_start: "!bg-primary !text-white rounded-lg",
                   day_range_end: "!bg-primary !text-white rounded-lg",
-                  day_range_middle: "!bg-primary/20 !text-text rounded-none hover:!bg-primary/30",
+                  day_range_middle: "!text-text rounded-none",
                   day_hidden: "invisible",
                 }}
               />
