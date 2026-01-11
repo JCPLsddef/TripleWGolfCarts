@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { DayPicker, DateRange } from 'react-day-picker';
 import { format } from 'date-fns';
 import { Calendar, X } from 'lucide-react';
@@ -27,14 +27,22 @@ export function DateRangePicker({
     to: endDate,
   });
 
+  // Sync with parent state
+  useEffect(() => {
+    setRange({
+      from: startDate,
+      to: endDate,
+    });
+  }, [startDate, endDate]);
+
   const handleSelect = (selectedRange: DateRange | undefined) => {
+    // PREMIUM UX: Never auto-close, stay open for visual feedback
     setRange(selectedRange);
     onDateChange(selectedRange?.from, selectedRange?.to);
-
-    // Auto-close when both dates are selected
-    if (selectedRange?.from && selectedRange?.to) {
-      setTimeout(() => setIsOpen(false), 300);
-    }
+    
+    // Calendar stays OPEN even when both dates selected
+    // User sees the full range visual feedback
+    // They can clear or adjust if needed
   };
 
   const handleClear = (e: React.MouseEvent) => {
@@ -46,15 +54,16 @@ export function DateRangePicker({
   const formatDateDisplay = () => {
     if (range?.from) {
       if (range.to) {
-        return `${format(range.from, 'MMM dd, yyyy')} - ${format(range.to, 'MMM dd, yyyy')}`;
+        return `${format(range.from, 'MMMM dd')} – ${format(range.to, 'MMMM dd, yyyy')}`;
       }
-      return format(range.from, 'MMM dd, yyyy');
+      return format(range.from, 'MMMM dd, yyyy');
     }
-    return 'Select dates';
+    return 'Select rental dates';
   };
 
   return (
     <div className="relative">
+      {/* READ-ONLY input - NO manual typing allowed */}
       <button
         type="button"
         onClick={() => !disabled && setIsOpen(!isOpen)}
@@ -80,20 +89,24 @@ export function DateRangePicker({
             type="button"
             onClick={handleClear}
             className="p-1 hover:bg-bg-alt rounded transition-colors"
+            aria-label="Clear dates"
           >
-            <X className="w-4 h-4 text-text-muted" />
+            <X className="w-4 h-4 text-text-muted hover:text-text" />
           </button>
         )}
       </button>
 
       {isOpen && !disabled && (
         <>
+          {/* Backdrop - clicking closes calendar */}
           <div
             className="fixed inset-0 z-40 bg-black/10"
             onClick={() => setIsOpen(false)}
           />
+          
+          {/* Calendar Modal - PREMIUM UX */}
           <div className="fixed inset-x-4 top-1/2 -translate-y-1/2 md:absolute md:inset-x-auto md:top-full md:left-0 md:right-0 md:translate-y-0 md:mt-2 bg-white rounded-2xl shadow-2xl border border-border z-50 overflow-hidden max-w-sm mx-auto md:max-w-md animate-in fade-in slide-in-from-top-2 duration-200">
-            <div className="p-4 md:p-6 pb-24 md:pb-6">
+            <div className="p-4 md:p-6">
               <DayPicker
                 mode="range"
                 selected={range}
@@ -115,18 +128,19 @@ export function DateRangePicker({
                   head_cell: "text-xs font-bold text-text-muted uppercase text-center flex items-center justify-center h-10",
                   row: "grid grid-cols-7 gap-0",
                   cell: "relative text-center p-0",
-                  day: "w-full h-11 md:h-12 flex items-center justify-center text-sm font-medium rounded-lg hover:bg-primary/10 transition-colors cursor-pointer",
+                  day: "w-full h-11 md:h-12 flex items-center justify-center text-sm font-medium rounded-lg hover:bg-primary/10 transition-all duration-150 cursor-pointer",
                   day_selected: "!bg-primary !text-white font-bold hover:!bg-primary-hover",
                   day_today: "font-bold text-primary ring-2 ring-primary/30 ring-inset",
                   day_outside: "text-text-muted/30 cursor-default hover:bg-transparent",
                   day_disabled: "text-text-muted/30 cursor-not-allowed hover:bg-transparent line-through",
-                  day_range_start: "!bg-primary !text-white rounded-r-none",
-                  day_range_end: "!bg-primary !text-white rounded-l-none",
+                  day_range_start: "!bg-primary !text-white rounded-lg",
+                  day_range_end: "!bg-primary !text-white rounded-lg",
                   day_range_middle: "!bg-primary/20 !text-text rounded-none hover:!bg-primary/30",
                   day_hidden: "invisible",
                 }}
               />
               
+              {/* Bottom Info Bar */}
               <div className="mt-4 pt-4 border-t border-border">
                 <div className="mb-3">
                   <label className="flex items-start gap-3 p-3 rounded-lg border-2 border-primary/20 bg-primary/5 cursor-pointer hover:border-primary/40 transition-colors">
@@ -141,8 +155,12 @@ export function DateRangePicker({
                     </span>
                   </label>
                 </div>
+                
+                {/* Dynamic helper text based on selection state */}
                 <p className="text-xs text-text-muted text-center">
-                  Select your rental start and end dates
+                  {!range?.from && 'Tap a date to start your rental'}
+                  {range?.from && !range?.to && 'Now tap your return date'}
+                  {range?.from && range?.to && 'Perfect! Your dates are selected'}
                 </p>
               </div>
             </div>
@@ -156,4 +174,3 @@ export function DateRangePicker({
     </div>
   );
 }
-
