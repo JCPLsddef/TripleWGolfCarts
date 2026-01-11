@@ -2,14 +2,9 @@
 
 import { Check, Crown } from 'lucide-react';
 import { cartTypes, cartComparison, perfectFor } from '@/content/siteContent';
+import { scrollToForm } from '@/lib/scroll';
 
 export function ChooseYourCart() {
-  const scrollToForm = () => {
-    const form = document.getElementById('quote-form');
-    if (form) {
-      form.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <section className="section-padding bg-white">

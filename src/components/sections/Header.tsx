@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Phone, Menu, X } from 'lucide-react';
 import { business } from '@/content/siteContent';
+import { scrollToForm } from '@/lib/scroll';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,9 +17,8 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToForm = (e: React.MouseEvent) => {
-    e.preventDefault();
-    document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth' });
+  const handleScrollToForm = (e: React.MouseEvent) => {
+    scrollToForm(e);
     setIsMobileMenuOpen(false);
   };
 
@@ -56,7 +56,7 @@ export function Header() {
 
           <div className="hidden lg:flex items-center gap-3">
             <button
-              onClick={scrollToForm}
+              onClick={handleScrollToForm}
               className="btn-primary"
             >
               Get Your Exact Quote
@@ -83,7 +83,7 @@ export function Header() {
         <div className="lg:hidden bg-white border-t border-border shadow-lg">
           <div className="container-default py-4 space-y-3">
             <button
-              onClick={scrollToForm}
+              onClick={handleScrollToForm}
               className="btn-primary w-full"
             >
               Get Your Exact Quote

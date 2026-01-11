@@ -2,14 +2,11 @@
 
 import { Phone, ArrowRight, Truck, Users, Sparkles, Check } from 'lucide-react';
 import { business, finalCta } from '@/content/siteContent';
+import { scrollToForm } from '@/lib/scroll';
 
 const icons = [Truck, Users, Sparkles, Check];
 
 export function FinalCTA() {
-  const scrollToForm = (e: React.MouseEvent) => {
-    e.preventDefault();
-    document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <section className="section-padding bg-bg-900">

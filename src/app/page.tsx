@@ -12,6 +12,7 @@ import { FAQ } from '@/components/sections/FAQ';
 import { FinalCTA } from '@/components/sections/FinalCTA';
 import { Footer } from '@/components/sections/Footer';
 import { MobileBottomBar } from '@/components/sections/MobileBottomBar';
+import { BackToTop } from '@/components/ui/BackToTop';
 
 export default function Home() {
   return (
@@ -32,6 +33,7 @@ export default function Home() {
       </main>
       <Footer />
       <MobileBottomBar />
+      <BackToTop />
     </>
   );
 }

@@ -25,7 +25,6 @@ export const business = {
 export const hero = {
   headline: 'Premium Golf Cart Rentals for Events',
   subheadline: 'Delivered, Set Up & Ready Exactly When You Need Them',
-  authorityLine: 'Used for large venues, equestrian centers, and high-traffic events.',
   description: 'Perfect for large venues, equestrian centers, golf courses, and events where getting from point A to point C matters.',
   reassurance: 'We handle delivery, setup, and timing — you don\'t have to worry about a thing.',
   scarcityBadge: 'Limited fleet — weekends fill fast',
