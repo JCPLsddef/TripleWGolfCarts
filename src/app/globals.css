@@ -83,39 +83,70 @@ body {
   }
 }
 
-/* Premium Calendar Styling - ENFORCED 7-COLUMN GRID */
+/* Premium Calendar Styling - Mobile-First Robust Grid */
 .rdp-custom {
   font-family: inherit;
   width: 100%;
   max-width: 100%;
-  overflow: hidden;
 }
 
-/* Force block display, prevent flex */
-.rdp-custom * {
-  box-sizing: border-box;
-}
-
-/* Ensure proper grid layout */
-.rdp-custom .rdp-months {
+/* Force table to use CSS Grid */
+.rdp-custom table {
   display: block !important;
-  width: 100%;
-}
-
-.rdp-custom .rdp-month {
-  display: block !important;
-  width: 100%;
-}
-
-.rdp-custom .rdp-table {
   width: 100% !important;
-  table-layout: fixed !important;
   border-collapse: collapse !important;
+}
+
+.rdp-custom thead,
+.rdp-custom tbody {
+  display: block !important;
+  width: 100% !important;
+}
+
+/* CRITICAL: Every <tr> becomes a 7-column CSS Grid */
+.rdp-custom tr {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  width: 100% !important;
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Every <th> and <td> is a flex container */
+.rdp-custom th,
+.rdp-custom td {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Weekday headers */
+.rdp-custom thead tr {
+  margin-bottom: 0.5rem !important;
+}
+
+.rdp-custom th {
+  height: 2.5rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  color: var(--muted) !important;
+}
+
+/* Date cells */
+.rdp-custom td {
+  aspect-ratio: 1 / 1 !important;
+  min-height: 44px !important;
 }
 
 /* Caption and navigation */
 .rdp-custom .rdp-caption {
-  display: flex !important;
+  display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -132,7 +163,7 @@ body {
 .rdp-custom .rdp-nav {
   position: absolute;
   inset: 0;
-  display: flex !important;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   pointer-events: none;
@@ -142,7 +173,7 @@ body {
   pointer-events: auto;
   width: 2.25rem;
   height: 2.25rem;
-  display: inline-flex !important;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 0.5rem;
@@ -159,64 +190,14 @@ body {
   cursor: not-allowed;
 }
 
-/* FORCE 7-COLUMN GRID - Weekday headers */
-.rdp-custom .rdp-head,
-.rdp-custom .rdp-head_row {
-  display: grid !important;
-  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
-  gap: 0 !important;
-  width: 100% !important;
-  margin: 0 0 0.5rem 0 !important;
-  padding: 0 !important;
-}
-
-.rdp-custom .rdp-head_cell {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  height: 2.5rem !important;
-  font-size: 0.75rem !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  color: var(--muted) !important;
-  text-align: center !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  min-width: 0 !important;
-  overflow: hidden !important;
-}
-
-/* FORCE 7-COLUMN GRID - Date rows */
-.rdp-custom .rdp-tbody {
-  display: block !important;
-  width: 100% !important;
-}
-
-.rdp-custom .rdp-row {
-  display: grid !important;
-  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
-  gap: 0 !important;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.rdp-custom .rdp-cell {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  position: relative !important;
-  padding: 0 !important;
-  margin: 0 !important;
+/* Date cells */
+.rdp-custom td {
   aspect-ratio: 1 / 1 !important;
   min-height: 44px !important;
-  width: 100% !important;
-  min-width: 0 !important;
-  overflow: hidden !important;
 }
 
-/* Day buttons */
-.rdp-custom .rdp-day {
+/* Day buttons - target actual button elements */
+.rdp-custom button {
   width: 100% !important;
   height: 100% !important;
   min-height: 44px !important;
@@ -226,173 +207,136 @@ body {
   font-size: 0.875rem !important;
   font-weight: 500 !important;
   color: var(--text) !important;
-  border-radius: 0.5rem !important;
-  transition: all 0.15s ease !important;
-  cursor: pointer !important;
-  border: none !important;
   background: transparent !important;
-  position: relative !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+  cursor: pointer !important;
+  transition: background-color 0.15s ease !important;
   padding: 0 !important;
   margin: 0 !important;
 }
 
-.rdp-custom .rdp-day:hover:not(.rdp-day_disabled):not(.rdp-day_outside) {
+.rdp-custom button:hover:not(:disabled):not([aria-disabled="true"]) {
   background-color: rgba(47, 91, 255, 0.1) !important;
 }
 
-.rdp-custom .rdp-day_selected {
+/* Day buttons - target actual button elements */
+.rdp-custom button {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  color: var(--text) !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+  cursor: pointer !important;
+  transition: background-color 0.15s ease !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.rdp-custom button:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: rgba(47, 91, 255, 0.1) !important;
+}
+
+/* Selected day */
+.rdp-custom .rdp-day_selected,
+.rdp-custom button[class*="day_selected"] {
   background-color: var(--primary) !important;
   color: white !important;
   font-weight: 700 !important;
 }
 
-.rdp-custom .rdp-day_selected:hover {
+.rdp-custom .rdp-day_selected:hover,
+.rdp-custom button[class*="day_selected"]:hover {
   background-color: var(--primary-hover) !important;
 }
 
-.rdp-custom .rdp-day_today:not(.rdp-day_selected) {
+/* Today */
+.rdp-custom .rdp-day_today:not(.rdp-day_selected),
+.rdp-custom button[class*="day_today"]:not([class*="day_selected"]) {
   font-weight: 700 !important;
   color: var(--primary) !important;
   box-shadow: inset 0 0 0 2px rgba(47, 91, 255, 0.3) !important;
 }
 
+/* Disabled */
+.rdp-custom button:disabled,
+.rdp-custom button[aria-disabled="true"],
 .rdp-custom .rdp-day_disabled {
   color: var(--muted) !important;
   opacity: 0.3 !important;
-  cursor: not-allowed !important;
+  cursor: default !important;
   text-decoration: line-through !important;
 }
 
+.rdp-custom button:disabled:hover,
+.rdp-custom button[aria-disabled="true"]:hover,
 .rdp-custom .rdp-day_disabled:hover {
   background-color: transparent !important;
 }
 
-.rdp-custom .rdp-day_outside {
+/* Outside month dates */
+.rdp-custom .rdp-day_outside,
+.rdp-custom button[class*="day_outside"] {
   color: var(--muted) !important;
   opacity: 0.3 !important;
-  cursor: default !important;
 }
 
-.rdp-custom .rdp-day_outside:hover {
+.rdp-custom .rdp-day_outside:hover,
+.rdp-custom button[class*="day_outside"]:hover {
   background-color: transparent !important;
 }
 
-/* Range styling */
-.rdp-custom .rdp-day_range_start {
+/* Range selection */
+.rdp-custom .rdp-day_range_start,
+.rdp-custom button[class*="day_range_start"] {
   background-color: var(--primary) !important;
   color: white !important;
   border-radius: 0.5rem 0 0 0.5rem !important;
 }
 
-.rdp-custom .rdp-day_range_end {
+.rdp-custom .rdp-day_range_end,
+.rdp-custom button[class*="day_range_end"] {
   background-color: var(--primary) !important;
   color: white !important;
   border-radius: 0 0.5rem 0.5rem 0 !important;
 }
 
-.rdp-custom .rdp-day_range_middle {
+.rdp-custom .rdp-day_range_middle,
+.rdp-custom button[class*="day_range_middle"] {
   background-color: rgba(47, 91, 255, 0.15) !important;
   color: var(--text) !important;
   border-radius: 0 !important;
 }
 
-.rdp-custom .rdp-day_range_middle:hover {
+.rdp-custom .rdp-day_range_middle:hover,
+.rdp-custom button[class*="day_range_middle"]:hover {
   background-color: rgba(47, 91, 255, 0.25) !important;
 }
 
-.rdp-custom .rdp-day_hidden {
+.rdp-custom .rdp-day_hidden,
+.rdp-custom button[class*="day_hidden"] {
   visibility: hidden !important;
 }
 
-/* Prevent ANY flex or other display modes */
-.rdp-custom .rdp-head_row > *,
-.rdp-custom .rdp-row > * {
-  flex: none !important;
-  flex-grow: 0 !important;
-  flex-shrink: 0 !important;
-  flex-basis: auto !important;
-}
-
-/* Mobile optimizations - NO grid override */
+/* Mobile - Font sizes ONLY (never touch grid!) */
 @media (max-width: 768px) {
-  .rdp-custom .rdp-day {
+  .rdp-custom button {
     font-size: 0.8125rem !important;
-    min-height: 44px !important;
   }
   
-  .rdp-custom .rdp-head_cell {
+  .rdp-custom th {
     font-size: 0.6875rem !important;
-    height: 2.5rem !important;
   }
   
   .rdp-custom .rdp-caption_label {
     font-size: 0.9375rem !important;
-  }
-  
-  /* RECONFIRM grid on mobile */
-  .rdp-custom .rdp-head_row,
-  .rdp-custom .rdp-row {
-    display: grid !important;
-    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
-  }
-  
-  .rdp-custom .rdp-cell {
-    aspect-ratio: 1 / 1 !important;
-    min-height: 44px !important;
-  }
-}
-
-.rdp-custom .rdp-day_outside {
-  color: var(--muted) !important;
-  opacity: 0.3 !important;
-  cursor: default !important;
-}
-
-.rdp-custom .rdp-day_outside:hover {
-  background-color: transparent !important;
-}
-
-/* Range styling */
-.rdp-custom .rdp-day_range_start {
-  background-color: var(--primary) !important;
-  color: white !important;
-  border-radius: 0.5rem 0 0 0.5rem;
-}
-
-.rdp-custom .rdp-day_range_end {
-  background-color: var(--primary) !important;
-  color: white !important;
-  border-radius: 0 0.5rem 0.5rem 0;
-}
-
-.rdp-custom .rdp-day_range_middle {
-  background-color: rgba(47, 91, 255, 0.15) !important;
-  color: var(--text) !important;
-  border-radius: 0;
-}
-
-.rdp-custom .rdp-day_range_middle:hover {
-  background-color: rgba(47, 91, 255, 0.25) !important;
-}
-
-.rdp-custom .rdp-day_hidden {
-  visibility: hidden;
-}
-
-/* Mobile optimizations */
-@media (max-width: 768px) {
-  .rdp-custom .rdp-day {
-    font-size: 0.8125rem;
-    min-height: 44px;
-  }
-  
-  .rdp-custom .rdp-head_cell {
-    font-size: 0.6875rem;
-    height: 2.5rem;
-  }
-  
-  .rdp-custom .rdp-caption_label {
-    font-size: 0.9375rem;
   }
 }
 
