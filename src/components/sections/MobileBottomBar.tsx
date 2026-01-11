@@ -36,19 +36,19 @@ export function MobileBottomBar() {
         isVisible ? 'translate-y-0' : 'translate-y-full'
       }`}
     >
-      <div className="grid grid-cols-2 gap-2 p-3">
+      <div className="grid grid-cols-2 gap-2 p-2">
         <button
           onClick={scrollToForm}
-          className="flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white py-3 px-4 rounded-lg font-semibold transition-colors"
+          className="flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white py-2.5 px-3 rounded-lg font-semibold transition-colors text-sm"
         >
-          <FileText className="w-5 h-5" />
+          <FileText className="w-4 h-4" />
           Check Availability
         </button>
         <a
           href={business.phoneLink}
-          className="flex items-center justify-center gap-2 bg-bg-900 hover:bg-bg-800 text-white py-3 px-4 rounded-lg font-semibold transition-colors"
+          className="flex items-center justify-center gap-2 bg-bg-900 hover:bg-bg-800 text-white py-2.5 px-3 rounded-lg font-semibold transition-colors text-sm"
         >
-          <Phone className="w-5 h-5" />
+          <Phone className="w-4 h-4" />
           Call Now
         </a>
       </div>

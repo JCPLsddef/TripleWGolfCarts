@@ -43,19 +43,8 @@ export function Hero() {
               {hero.offerLine}
             </p>
 
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/20 border border-primary/30 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/20 border border-primary/30 mb-8">
               <span className="text-white font-bold text-lg">{hero.pricingAnchor}</span>
-            </div>
-
-            <div className="space-y-3 mb-8">
-              {hero.benefits.map((benefit, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <div className="w-6 h-6 bg-success/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Check className="w-4 h-4 text-success" />
-                  </div>
-                  <span className="text-white/90">{benefit}</span>
-                </div>
-              ))}
             </div>
 
             <div className="space-y-3">

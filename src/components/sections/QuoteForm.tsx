@@ -28,6 +28,7 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
     preferred_contact_method: 'text',
     notes: '',
     honeypot: '',
+    understands_minimum: false,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -85,6 +86,10 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
       errors.phone = 'Valid phone number is required';
     }
 
+    if (!formData.understands_minimum) {
+      errors.understands_minimum = 'You must acknowledge the 3-day minimum';
+    }
+
     return errors;
   };
 
@@ -132,7 +137,7 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
         preferred_contact_method: formData.preferred_contact_method,
         best_time_to_call: 'asap',
         notes: formData.notes || (formData.datesFlexible ? 'Dates flexible/TBD' : undefined),
-        understands_minimum: true,
+        understands_minimum: formData.understands_minimum,
       });
 
       setIsSubmitted(true);
@@ -405,6 +410,24 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
               className="input-field resize-none"
               placeholder="Anything we should know?"
             />
+          </div>
+
+          <div>
+            <label className="flex items-start gap-3 cursor-pointer p-3 rounded-lg border border-border hover:bg-bg-alt transition-colors">
+              <input
+                type="checkbox"
+                name="understands_minimum"
+                checked={formData.understands_minimum}
+                onChange={handleChange}
+                className="w-5 h-5 mt-0.5 rounded border-border text-primary focus:ring-primary cursor-pointer"
+              />
+              <span className="text-sm text-text font-medium">
+                I understand that the minimum rental period is 3 days.
+              </span>
+            </label>
+            {validationErrors.understands_minimum && (
+              <p className="text-xs text-red-600 mt-2">{validationErrors.understands_minimum}</p>
+            )}
           </div>
 
           <div className="flex gap-3">

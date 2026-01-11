@@ -1,6 +1,6 @@
 /**
- * Smoothly scrolls to the quote form with proper offset for mobile
- * Desktop behavior remains unchanged (native scroll)
+ * Smoothly scrolls to the quote form with proper offset for mobile and desktop
+ * Ensures the form title is fully visible after scroll
  */
 export const scrollToForm = (e?: React.MouseEvent) => {
   if (e) {
@@ -10,23 +10,15 @@ export const scrollToForm = (e?: React.MouseEvent) => {
   const form = document.getElementById('quote-form');
   if (!form) return;
 
-  // Check if mobile (viewport width < 1024px which is Tailwind's lg breakpoint)
-  const isMobile = window.innerWidth < 1024;
-
-  if (isMobile) {
-    // Mobile: smooth scroll with offset
-    const offset = 80; // Offset so form title is visible
-    const elementPosition = form.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.scrollY - offset;
-    
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
-    });
-  } else {
-    // Desktop: native scroll
-    form.scrollIntoView({ behavior: 'smooth' });
-  }
+  // Use offset for both mobile and desktop to ensure form is fully visible
+  const offset = 100; // Offset to ensure form title is visible (accounts for header)
+  const elementPosition = form.getBoundingClientRect().top;
+  const offsetPosition = elementPosition + window.scrollY - offset;
+  
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: 'smooth'
+  });
 };
 
 /**

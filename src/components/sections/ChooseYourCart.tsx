@@ -78,7 +78,7 @@ export function ChooseYourCart() {
 
               <button
                 onClick={scrollToForm}
-                className={`w-full ${cart.popular ? 'btn-primary' : 'btn-secondary'}`}
+                className="w-full btn-primary"
               >
                 Get Your Exact Quote
               </button>
