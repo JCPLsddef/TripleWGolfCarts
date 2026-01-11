@@ -20,8 +20,12 @@ export function Hero() {
               {hero.headline}
             </h1>
 
-            <p className="text-xl text-white mb-4 font-medium">
+            <p className="text-xl text-white mb-2 font-medium">
               {hero.subheadline}
+            </p>
+
+            <p className="text-sm text-blue-100 mb-4 font-medium">
+              {hero.authorityLine}
             </p>
 
             <p className="text-base text-blue-100 mb-4 leading-relaxed">

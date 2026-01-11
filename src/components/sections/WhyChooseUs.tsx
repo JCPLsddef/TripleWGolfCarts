@@ -14,8 +14,11 @@ export function WhyChooseUs() {
           <p className="text-lg text-text mb-4">
             {whyChooseUs.description}
           </p>
-          <p className="text-base text-primary font-medium">
+          <p className="text-base text-primary font-medium mb-3">
             {whyChooseUs.confirmation}
+          </p>
+          <p className="text-sm text-text-muted italic">
+            {whyChooseUs.trustLine}
           </p>
         </div>
 

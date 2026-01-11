@@ -68,6 +68,12 @@ export function ChooseYourCart() {
                 ))}
               </ul>
 
+              {cart.emotionalLine && (
+                <div className="mb-4 p-3 bg-primary-soft/50 rounded-lg border border-primary/30">
+                  <p className="text-sm text-primary font-semibold">{cart.emotionalLine}</p>
+                </div>
+              )}
+
               {cart.perfectFor && (
                 <div className="mb-6 p-3 bg-primary-soft/30 rounded-lg border border-primary/20">
                   <p className="text-xs font-semibold text-primary mb-1">Perfect if you want:</p>

@@ -25,6 +25,7 @@ export const business = {
 export const hero = {
   headline: 'Premium Golf Cart Rentals for Events',
   subheadline: 'Delivered, Set Up & Ready Exactly When You Need Them',
+  authorityLine: 'Used for large venues, equestrian centers, and high-traffic events.',
   description: 'Perfect for large venues, equestrian centers, golf courses, and events where getting from point A to point C matters.',
   reassurance: 'We handle delivery, setup, and timing — you don\'t have to worry about a thing.',
   scarcityBadge: 'Limited fleet — weekends fill fast',
@@ -36,7 +37,7 @@ export const hero = {
     'Clean, fully charged carts',
     `${business.rating}★ from ${business.reviewCount} Google reviews`,
   ],
-  ctaMicrocopy: 'We\'ll guide you and handle everything from delivery to setup.',
+  ctaMicrocopy: 'We\'ll guide you and handle everything for your event.',
   ctaText: 'See If Carts Are Available for Your Event',
 };
 
@@ -44,6 +45,7 @@ export const whyChooseUs = {
   title: 'Delivery & Setup',
   description: 'We deliver directly to your event location and fully set everything up. You don\'t lift a finger — we handle logistics, timing, and coordination.',
   confirmation: 'You\'ll even receive a confirmation message before your event so you can relax knowing everything is on schedule.',
+  trustLine: 'We focus on timing, comfort, and flawless setup — so your event runs smoothly.',
   features: [
     {
       title: 'Delivered & Set Up',
@@ -98,6 +100,7 @@ export const cartTypes = [
       'Higher visibility and a bold, high-end look',
       'Premium style that performs anywhere',
     ],
+    emotionalLine: 'Designed for long days, large venues, and maximum comfort.',
     perfectFor: 'Maximum comfort, premium style, and a cart that performs anywhere.',
     popular: true,
   },
@@ -111,7 +114,7 @@ export const cartComparison = {
 };
 
 export const perfectFor = {
-  title: 'Perfect For',
+  title: 'Perfect for Events Where Distance & Timing Matter',
   items: [
     'Large events & equestrian shows',
     'Golf courses & tournaments',
