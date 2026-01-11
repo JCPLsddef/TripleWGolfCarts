@@ -121,7 +121,7 @@ export function DateRangePicker({
           />
           
           {/* Calendar Modal - PREMIUM UX */}
-          <div className="fixed inset-x-4 top-1/2 -translate-y-1/2 md:absolute md:inset-x-auto md:top-full md:left-0 md:right-0 md:translate-y-0 md:mt-2 bg-white rounded-2xl shadow-2xl border border-border z-50 overflow-hidden max-w-sm mx-auto md:max-w-md animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="absolute left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-border z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
             <div className="p-4 md:p-6">
               <DayPicker
                 mode="range"
