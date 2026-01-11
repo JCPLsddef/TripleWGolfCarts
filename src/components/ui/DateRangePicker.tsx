@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { DayPicker, DateRange } from 'react-day-picker';
-import { format } from 'date-fns';
-import { Calendar, X } from 'lucide-react';
+import { format, differenceInDays } from 'date-fns';
+import { Calendar, X, Check } from 'lucide-react';
 import 'react-day-picker/style.css';
 
 interface DateRangePickerProps {
@@ -26,6 +26,17 @@ export function DateRangePicker({
     from: startDate,
     to: endDate,
   });
+
+  // Calculate if 3-day minimum is met
+  const calculateRentalDays = (from: Date | undefined, to: Date | undefined): number => {
+    if (!from || !to) return 0;
+    // Add 1 because rental includes both start and end date
+    return differenceInDays(to, from) + 1;
+  };
+
+  const rentalDays = calculateRentalDays(range?.from, range?.to);
+  const isMinDaysMet = rentalDays >= 3;
+  const hasValidRange = range?.from && range?.to;
 
   // Sync with parent state
   useEffect(() => {
@@ -145,21 +156,72 @@ export function DateRangePicker({
                 }}
               />
               
-              {/* Bottom Info Bar */}
-              <div className="mt-4 pt-4 border-t border-border">
-                {/* Reminder about minimum rental */}
-                <div className="mb-3 p-3 rounded-lg bg-primary/5 border border-primary/20">
-                  <p className="text-xs text-text-muted text-center">
-                    ⚠️ Minimum rental period: 3 days
-                  </p>
-                </div>
-
+              {/* Bottom Info Bar - 3-Day Minimum Validation */}
+              <div className="mt-4 pt-4 border-t border-border space-y-3">
                 {/* Dynamic helper text based on selection state */}
-                <p className="text-xs text-text-muted text-center font-medium">
-                  {!range?.from && 'Tap a date to start your rental'}
-                  {range?.from && !range?.to && 'Now tap your return date'}
-                  {range?.from && range?.to && 'Perfect! Your dates are selected'}
-                </p>
+                {!range?.from && (
+                  <p className="text-sm text-text-muted text-center font-medium">
+                    Tap a date to start your rental
+                  </p>
+                )}
+
+                {range?.from && !range?.to && (
+                  <p className="text-sm text-text-muted text-center font-medium">
+                    Now tap your return date
+                  </p>
+                )}
+
+                {/* Validation UI when both dates selected */}
+                {hasValidRange && (
+                  <div className="space-y-3">
+                    {/* Days counter */}
+                    <div className="text-center">
+                      <p className="text-sm font-semibold text-text">
+                        {rentalDays} day{rentalDays !== 1 ? 's' : ''} selected
+                      </p>
+                    </div>
+
+                    {/* Warning for < 3 days */}
+                    {!isMinDaysMet && (
+                      <div className="p-3 rounded-lg bg-red-50 border border-red-200">
+                        <p className="text-xs text-red-700 text-center font-medium">
+                          ⚠️ Minimum rental period is 3 days
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Auto-enabled checkbox for >= 3 days */}
+                    <div
+                      className={`p-3 rounded-lg border-2 transition-all ${
+                        isMinDaysMet
+                          ? 'bg-success-soft border-success'
+                          : 'bg-gray-50 border-gray-300 opacity-60'
+                      }`}
+                    >
+                      <div className="flex items-start gap-3">
+                        {/* Checkbox - auto-controlled by validation */}
+                        <div
+                          className={`w-5 h-5 rounded flex items-center justify-center flex-shrink-0 mt-0.5 transition-all ${
+                            isMinDaysMet
+                              ? 'bg-success border-success'
+                              : 'bg-white border-2 border-gray-300'
+                          }`}
+                        >
+                          {isMinDaysMet && <Check className="w-3.5 h-3.5 text-white stroke-[3]" />}
+                        </div>
+
+                        {/* Label text */}
+                        <div className="flex-1">
+                          <p className={`text-xs font-medium ${isMinDaysMet ? 'text-success' : 'text-gray-600'}`}>
+                            {isMinDaysMet
+                              ? '✓ Minimum rental period of 3 days confirmed'
+                              : 'Minimum rental period is 3 days'}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
