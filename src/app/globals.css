@@ -214,7 +214,7 @@ body {
   color: var(--text) !important;
   background: transparent !important;
   border: none !important;
-  border-radius: 0.5rem !important;
+  /* border-radius handled by Tailwind classes in component */
   cursor: pointer !important;
   transition: all 0.2s ease !important;
   padding: 0 !important;
@@ -224,8 +224,8 @@ body {
   box-sizing: border-box !important;
 }
 
-/* Hover - subtle feedback */
-.rdp-custom button:hover:not(:disabled):not([aria-disabled="true"]) {
+/* Hover - subtle feedback (exclude range dates which handle their own hover) */
+.rdp-custom button:hover:not(:disabled):not([aria-disabled="true"]):not(.rdp-day_range_start):not(.rdp-day_range_end):not(.rdp-day_range_middle):not(.rdp-day_selected) {
   background-color: rgba(47, 91, 255, 0.08) !important;
   transform: scale(1.02) !important;
 }
@@ -313,26 +313,10 @@ body {
   line-height: 1;
 }
 
-/* Range MIDDLE - FULL-WIDTH translucent blue background */
-/* Apply background directly to BUTTON for 100% coverage */
-.rdp-custom .rdp-day_range_middle,
-.rdp-custom button.rdp-day_range_middle,
-.rdp-custom button[class*="rdp-day_range_middle"] {
-  background-color: rgba(47, 91, 255, 0.15) !important;
-  color: var(--text) !important;
+/* Range MIDDLE - handled by Tailwind classes in component */
+/* Just ensure no border-radius on middle range dates for seamless look */
+.rdp-custom .rdp-day_range_middle {
   border-radius: 0 !important;
-  font-weight: 500 !important;
-  width: 100% !important;
-  height: 100% !important;
-  /* Ensure button fills entire cell with no gaps */
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.rdp-custom .rdp-day_range_middle:hover,
-.rdp-custom button.rdp-day_range_middle:hover,
-.rdp-custom button[class*="rdp-day_range_middle"]:hover {
-  background-color: rgba(47, 91, 255, 0.25) !important;
 }
 
 /* Today indicator - ring around current date */
