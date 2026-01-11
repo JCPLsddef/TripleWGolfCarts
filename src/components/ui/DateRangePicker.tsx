@@ -52,12 +52,13 @@ export function DateRangePicker({
   };
 
   const formatDateDisplay = () => {
-    if (range?.from) {
-      if (range.to) {
-        return `${format(range.from, 'MMMM dd')} – ${format(range.to, 'MMMM dd, yyyy')}`;
-      }
-      return format(range.from, 'MMMM dd, yyyy');
+    // PREMIUM UX: Only show dates when BOTH are selected
+    // User taps first date → nothing shows yet (calendar stays open)
+    // User taps second date → full range displays: "January 13 – January 18, 2026"
+    if (range?.from && range?.to) {
+      return `${format(range.from, 'MMMM dd')} – ${format(range.to, 'MMMM dd, yyyy')}`;
     }
+    // Show placeholder if no dates or only start date selected
     return 'Select rental dates';
   };
 
@@ -80,7 +81,7 @@ export function DateRangePicker({
       >
         <div className="flex items-center gap-2">
           <Calendar className={`w-4 h-4 ${error ? 'text-red-500' : 'text-text-muted'}`} />
-          <span className={range?.from ? 'text-text font-medium' : 'text-text-muted'}>
+          <span className={range?.from && range?.to ? 'text-text font-medium' : 'text-text-muted'}>
             {formatDateDisplay()}
           </span>
         </div>
