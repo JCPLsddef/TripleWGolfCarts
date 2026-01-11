@@ -89,55 +89,62 @@ export function DateRangePicker({
       {isOpen && !disabled && (
         <>
           <div
-            className="fixed inset-0 z-40"
+            className="fixed inset-0 z-40 bg-black/10"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl border border-border z-50 p-4 animate-in fade-in slide-in-from-top-2 duration-200">
-            <DayPicker
-              mode="range"
-              selected={range}
-              onSelect={handleSelect}
-              disabled={{ before: new Date() }}
-              numberOfMonths={1}
-              className="premium-calendar"
-              classNames={{
-                months: "flex flex-col",
-                month: "space-y-4 w-full",
-                caption: "flex justify-center pt-1 relative items-center mb-4",
-                caption_label: "text-base font-bold text-text",
-                nav: "space-x-1 flex items-center",
-                nav_button: "h-8 w-8 bg-transparent hover:bg-bg-alt rounded-md transition-colors inline-flex items-center justify-center text-primary",
-                nav_button_previous: "absolute left-1",
-                nav_button_next: "absolute right-1",
-                table: "w-full border-collapse",
-                head_row: "grid grid-cols-7 gap-1 mb-2",
-                head_cell: "text-text-muted font-semibold text-xs uppercase text-center w-full flex items-center justify-center",
-                row: "grid grid-cols-7 gap-1 mt-1",
-                cell: "text-center text-sm relative [&:has([aria-selected])]:bg-primary/10 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-                day: "h-10 w-full p-0 font-medium hover:bg-primary/10 rounded-md transition-colors inline-flex items-center justify-center text-text",
-                day_selected: "bg-primary text-white hover:bg-primary hover:text-white focus:bg-primary focus:text-white font-bold",
-                day_today: "bg-bg-alt text-primary font-bold ring-1 ring-primary/30",
-                day_outside: "text-text-muted opacity-30",
-                day_disabled: "text-text-muted opacity-30 cursor-not-allowed hover:bg-transparent",
-                day_range_middle: "aria-selected:bg-primary/20 aria-selected:text-text",
-                day_hidden: "invisible",
-              }}
-            />
-            <div className="mt-4 pt-3 border-t border-border">
-              <p className="text-xs text-text-muted text-center mb-3">
-                Select start and end dates for your rental
-              </p>
-              <label className="flex items-start gap-3 p-3 rounded-lg border-2 border-primary/20 bg-primary/5 cursor-pointer hover:border-primary/40 transition-colors">
-                <input
-                  type="checkbox"
-                  checked={true}
-                  readOnly
-                  className="w-5 h-5 mt-0.5 rounded border-primary text-primary focus:ring-primary cursor-pointer pointer-events-none"
-                />
-                <span className="text-sm text-text font-medium flex-1">
-                  I agree to the rental duration minimum of 3 days
-                </span>
-              </label>
+          <div className="fixed inset-x-4 top-1/2 -translate-y-1/2 md:absolute md:inset-x-auto md:top-full md:left-0 md:right-0 md:translate-y-0 md:mt-2 bg-white rounded-2xl shadow-2xl border border-border z-50 overflow-hidden max-w-sm mx-auto md:max-w-md animate-in fade-in slide-in-from-top-2 duration-200">
+            <div className="p-4 md:p-6 pb-24 md:pb-6">
+              <DayPicker
+                mode="range"
+                selected={range}
+                onSelect={handleSelect}
+                disabled={{ before: new Date() }}
+                numberOfMonths={1}
+                className="rdp-custom"
+                classNames={{
+                  months: "w-full",
+                  month: "w-full space-y-4",
+                  caption: "flex items-center justify-center relative mb-4",
+                  caption_label: "text-base font-bold text-text",
+                  nav: "flex items-center gap-1",
+                  nav_button: "inline-flex items-center justify-center w-9 h-9 rounded-lg hover:bg-bg-alt transition-colors text-primary disabled:opacity-30 disabled:cursor-not-allowed",
+                  nav_button_previous: "absolute left-0",
+                  nav_button_next: "absolute right-0",
+                  table: "w-full border-collapse",
+                  head_row: "grid grid-cols-7 gap-0 mb-2",
+                  head_cell: "text-xs font-bold text-text-muted uppercase text-center flex items-center justify-center h-10",
+                  row: "grid grid-cols-7 gap-0",
+                  cell: "relative text-center p-0",
+                  day: "w-full h-11 md:h-12 flex items-center justify-center text-sm font-medium rounded-lg hover:bg-primary/10 transition-colors cursor-pointer",
+                  day_selected: "!bg-primary !text-white font-bold hover:!bg-primary-hover",
+                  day_today: "font-bold text-primary ring-2 ring-primary/30 ring-inset",
+                  day_outside: "text-text-muted/30 cursor-default hover:bg-transparent",
+                  day_disabled: "text-text-muted/30 cursor-not-allowed hover:bg-transparent line-through",
+                  day_range_start: "!bg-primary !text-white rounded-r-none",
+                  day_range_end: "!bg-primary !text-white rounded-l-none",
+                  day_range_middle: "!bg-primary/20 !text-text rounded-none hover:!bg-primary/30",
+                  day_hidden: "invisible",
+                }}
+              />
+              
+              <div className="mt-4 pt-4 border-t border-border">
+                <div className="mb-3">
+                  <label className="flex items-start gap-3 p-3 rounded-lg border-2 border-primary/20 bg-primary/5 cursor-pointer hover:border-primary/40 transition-colors">
+                    <input
+                      type="checkbox"
+                      checked={true}
+                      readOnly
+                      className="w-5 h-5 mt-0.5 rounded border-primary text-primary focus:ring-primary cursor-pointer pointer-events-none flex-shrink-0"
+                    />
+                    <span className="text-sm text-text font-medium flex-1">
+                      I understand the minimum rental period is 3 days
+                    </span>
+                  </label>
+                </div>
+                <p className="text-xs text-text-muted text-center">
+                  Select your rental start and end dates
+                </p>
+              </div>
             </div>
           </div>
         </>
@@ -149,3 +156,4 @@ export function DateRangePicker({
     </div>
   );
 }
+
