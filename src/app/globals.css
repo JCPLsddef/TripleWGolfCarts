@@ -211,8 +211,7 @@ body {
   justify-content: center !important;
   font-size: 0.875rem !important;
   font-weight: 500 !important;
-  color: var(--text) !important;
-  background: transparent !important;
+  /* color and background handled by Tailwind classes in component */
   border: none !important;
   /* border-radius handled by Tailwind classes in component */
   cursor: pointer !important;
@@ -237,28 +236,20 @@ body {
 }
 
 /* Selected day - START & END dates */
+/* Colors and backgrounds handled by Tailwind - only apply shadows and positioning */
 .rdp-custom .rdp-day_selected,
 .rdp-custom button[class*="day_selected"] {
-  background-color: var(--primary) !important;
-  color: white !important;
-  font-weight: 700 !important;
   box-shadow: 0 2px 8px rgba(47, 91, 255, 0.25) !important;
 }
 
 .rdp-custom .rdp-day_selected:hover,
 .rdp-custom button[class*="day_selected"]:hover {
-  background-color: var(--primary-hover) !important;
   box-shadow: 0 4px 12px rgba(47, 91, 255, 0.35) !important;
 }
 
-/* Range START - full rounded with checkmark */
+/* Range START - positioning for checkmark */
 .rdp-custom .rdp-day_range_start,
 .rdp-custom button[class*="day_range_start"] {
-  background-color: var(--primary) !important;
-  color: white !important;
-  border-radius: 0.5rem !important;
-  font-weight: 700 !important;
-  box-shadow: 0 2px 8px rgba(47, 91, 255, 0.25) !important;
   position: relative !important;
 }
 
@@ -282,14 +273,9 @@ body {
   line-height: 1;
 }
 
-/* Range END - full rounded with checkmark */
+/* Range END - positioning for checkmark */
 .rdp-custom .rdp-day_range_end,
 .rdp-custom button[class*="day_range_end"] {
-  background-color: var(--primary) !important;
-  color: white !important;
-  border-radius: 0.5rem !important;
-  font-weight: 700 !important;
-  box-shadow: 0 2px 8px rgba(47, 91, 255, 0.25) !important;
   position: relative !important;
 }
 
@@ -319,22 +305,17 @@ body {
   border-radius: 0 !important;
 }
 
-/* Today indicator - ring around current date */
+/* Today indicator - ring only (color/font-weight handled by Tailwind) */
 .rdp-custom .rdp-day_today:not(.rdp-day_selected),
 .rdp-custom button[class*="day_today"]:not([class*="day_selected"]) {
-  font-weight: 700 !important;
-  color: var(--primary) !important;
   box-shadow: inset 0 0 0 2px rgba(47, 91, 255, 0.3) !important;
 }
 
-/* Disabled dates */
+/* Disabled dates - cursor only (color/opacity/text-decoration handled by Tailwind) */
 .rdp-custom button:disabled,
 .rdp-custom button[aria-disabled="true"],
 .rdp-custom .rdp-day_disabled {
-  color: var(--muted) !important;
-  opacity: 0.3 !important;
   cursor: default !important;
-  text-decoration: line-through !important;
   transform: none !important;
 }
 
