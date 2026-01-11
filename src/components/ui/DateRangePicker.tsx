@@ -90,7 +90,7 @@ export function DateRangePicker({
             : disabled
             ? 'border-border bg-bg-alt opacity-50 cursor-not-allowed'
             : isOpen
-            ? 'border-primary bg-white shadow-sm ring-2 ring-primary/20'
+            ? 'border-primary/50 bg-white'
             : 'border-border bg-white hover:border-primary/50'
         }`}
       >
