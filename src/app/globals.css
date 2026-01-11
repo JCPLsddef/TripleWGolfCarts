@@ -83,33 +83,39 @@ body {
   }
 }
 
-/* Premium Calendar Styling - Mobile-First Robust Grid */
+/* Premium Calendar Styling - ENFORCED 7-COLUMN GRID */
 .rdp-custom {
   font-family: inherit;
   width: 100%;
   max-width: 100%;
+  overflow: hidden;
+}
+
+/* Force block display, prevent flex */
+.rdp-custom * {
+  box-sizing: border-box;
 }
 
 /* Ensure proper grid layout */
 .rdp-custom .rdp-months {
-  display: block;
+  display: block !important;
   width: 100%;
 }
 
 .rdp-custom .rdp-month {
-  display: block;
+  display: block !important;
   width: 100%;
 }
 
 .rdp-custom .rdp-table {
-  width: 100%;
-  table-layout: fixed;
-  border-collapse: collapse;
+  width: 100% !important;
+  table-layout: fixed !important;
+  border-collapse: collapse !important;
 }
 
 /* Caption and navigation */
 .rdp-custom .rdp-caption {
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -126,7 +132,7 @@ body {
 .rdp-custom .rdp-nav {
   position: absolute;
   inset: 0;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: space-between;
   pointer-events: none;
@@ -136,7 +142,7 @@ body {
   pointer-events: auto;
   width: 2.25rem;
   height: 2.25rem;
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
   border-radius: 0.5rem;
@@ -153,75 +159,91 @@ body {
   cursor: not-allowed;
 }
 
-/* Weekday headers - FORCE grid */
+/* FORCE 7-COLUMN GRID - Weekday headers */
+.rdp-custom .rdp-head,
 .rdp-custom .rdp-head_row {
   display: grid !important;
-  grid-template-columns: repeat(7, 1fr) !important;
-  gap: 0;
-  margin-bottom: 0.5rem;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  gap: 0 !important;
+  width: 100% !important;
+  margin: 0 0 0.5rem 0 !important;
+  padding: 0 !important;
 }
 
 .rdp-custom .rdp-head_cell {
   display: flex !important;
-  align-items: center;
-  justify-content: center;
-  height: 2.5rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-align: center;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 2.5rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  color: var(--muted) !important;
+  text-align: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
 }
 
-/* Date rows - FORCE grid */
+/* FORCE 7-COLUMN GRID - Date rows */
 .rdp-custom .rdp-tbody {
-  display: block;
+  display: block !important;
+  width: 100% !important;
 }
 
 .rdp-custom .rdp-row {
   display: grid !important;
-  grid-template-columns: repeat(7, 1fr) !important;
-  gap: 0;
-  margin-bottom: 0;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  gap: 0 !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .rdp-custom .rdp-cell {
   display: flex !important;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 0;
-  aspect-ratio: 1;
-  min-height: 44px;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  aspect-ratio: 1 / 1 !important;
+  min-height: 44px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
 }
 
 /* Day buttons */
 .rdp-custom .rdp-day {
-  width: 100%;
-  height: 100%;
-  min-height: 44px;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 44px !important;
   display: flex !important;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text);
-  border-radius: 0.5rem;
-  transition: all 0.15s ease;
-  cursor: pointer;
-  border: none;
-  background: transparent;
-  position: relative;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  color: var(--text) !important;
+  border-radius: 0.5rem !important;
+  transition: all 0.15s ease !important;
+  cursor: pointer !important;
+  border: none !important;
+  background: transparent !important;
+  position: relative !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .rdp-custom .rdp-day:hover:not(.rdp-day_disabled):not(.rdp-day_outside) {
-  background-color: rgba(47, 91, 255, 0.1);
+  background-color: rgba(47, 91, 255, 0.1) !important;
 }
 
 .rdp-custom .rdp-day_selected {
   background-color: var(--primary) !important;
   color: white !important;
-  font-weight: 700;
+  font-weight: 700 !important;
 }
 
 .rdp-custom .rdp-day_selected:hover {
@@ -229,16 +251,16 @@ body {
 }
 
 .rdp-custom .rdp-day_today:not(.rdp-day_selected) {
-  font-weight: 700;
-  color: var(--primary);
-  box-shadow: inset 0 0 0 2px rgba(47, 91, 255, 0.3);
+  font-weight: 700 !important;
+  color: var(--primary) !important;
+  box-shadow: inset 0 0 0 2px rgba(47, 91, 255, 0.3) !important;
 }
 
 .rdp-custom .rdp-day_disabled {
-  color: var(--muted);
-  opacity: 0.3;
-  cursor: not-allowed;
-  text-decoration: line-through;
+  color: var(--muted) !important;
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+  text-decoration: line-through !important;
 }
 
 .rdp-custom .rdp-day_disabled:hover {
@@ -246,9 +268,84 @@ body {
 }
 
 .rdp-custom .rdp-day_outside {
-  color: var(--muted);
-  opacity: 0.3;
-  cursor: default;
+  color: var(--muted) !important;
+  opacity: 0.3 !important;
+  cursor: default !important;
+}
+
+.rdp-custom .rdp-day_outside:hover {
+  background-color: transparent !important;
+}
+
+/* Range styling */
+.rdp-custom .rdp-day_range_start {
+  background-color: var(--primary) !important;
+  color: white !important;
+  border-radius: 0.5rem 0 0 0.5rem !important;
+}
+
+.rdp-custom .rdp-day_range_end {
+  background-color: var(--primary) !important;
+  color: white !important;
+  border-radius: 0 0.5rem 0.5rem 0 !important;
+}
+
+.rdp-custom .rdp-day_range_middle {
+  background-color: rgba(47, 91, 255, 0.15) !important;
+  color: var(--text) !important;
+  border-radius: 0 !important;
+}
+
+.rdp-custom .rdp-day_range_middle:hover {
+  background-color: rgba(47, 91, 255, 0.25) !important;
+}
+
+.rdp-custom .rdp-day_hidden {
+  visibility: hidden !important;
+}
+
+/* Prevent ANY flex or other display modes */
+.rdp-custom .rdp-head_row > *,
+.rdp-custom .rdp-row > * {
+  flex: none !important;
+  flex-grow: 0 !important;
+  flex-shrink: 0 !important;
+  flex-basis: auto !important;
+}
+
+/* Mobile optimizations - NO grid override */
+@media (max-width: 768px) {
+  .rdp-custom .rdp-day {
+    font-size: 0.8125rem !important;
+    min-height: 44px !important;
+  }
+  
+  .rdp-custom .rdp-head_cell {
+    font-size: 0.6875rem !important;
+    height: 2.5rem !important;
+  }
+  
+  .rdp-custom .rdp-caption_label {
+    font-size: 0.9375rem !important;
+  }
+  
+  /* RECONFIRM grid on mobile */
+  .rdp-custom .rdp-head_row,
+  .rdp-custom .rdp-row {
+    display: grid !important;
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  }
+  
+  .rdp-custom .rdp-cell {
+    aspect-ratio: 1 / 1 !important;
+    min-height: 44px !important;
+  }
+}
+
+.rdp-custom .rdp-day_outside {
+  color: var(--muted) !important;
+  opacity: 0.3 !important;
+  cursor: default !important;
 }
 
 .rdp-custom .rdp-day_outside:hover {
