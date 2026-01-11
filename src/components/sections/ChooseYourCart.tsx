@@ -1,7 +1,7 @@
 'use client';
 
 import { Check, Crown } from 'lucide-react';
-import { cartTypes } from '@/content/siteContent';
+import { cartTypes, cartComparison } from '@/content/siteContent';
 
 export function ChooseYourCart() {
   const scrollToForm = () => {
@@ -31,11 +31,11 @@ export function ChooseYourCart() {
                 cart.popular ? 'border-primary ring-2 ring-primary/20' : ''
               }`}
             >
-              {cart.popular && (
+              {cart.badge && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                   <span className="inline-flex items-center gap-1 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
                     <Crown className="w-3 h-3" />
-                    Most Popular
+                    {cart.badge}
                   </span>
                 </div>
               )}
@@ -48,7 +48,10 @@ export function ChooseYourCart() {
                 />
               </div>
 
-              <h3 className="text-xl font-bold text-text mb-2">{cart.name}</h3>
+              <h3 className="text-xl font-bold text-text mb-1">{cart.name}</h3>
+              {cart.subtitle && (
+                <p className="text-primary text-sm font-semibold mb-2">{cart.subtitle}</p>
+              )}
               <p className="text-text-muted text-sm mb-3">{cart.description}</p>
 
               <div className="mb-4 pb-4 border-b border-border">
@@ -56,7 +59,7 @@ export function ChooseYourCart() {
                 <div className="text-sm text-text-muted">{cart.priceNote}</div>
               </div>
 
-              <ul className="space-y-2 mb-6">
+              <ul className="space-y-2 mb-4">
                 {cart.features.map((feature, index) => (
                   <li key={index} className="flex items-start gap-2 text-sm">
                     <Check className="w-4 h-4 text-success flex-shrink-0 mt-0.5" />
@@ -65,14 +68,46 @@ export function ChooseYourCart() {
                 ))}
               </ul>
 
+              {cart.perfectFor && (
+                <div className="mb-6 p-3 bg-primary-soft/30 rounded-lg border border-primary/20">
+                  <p className="text-xs font-semibold text-primary mb-1">Perfect if you want:</p>
+                  <p className="text-sm text-text">{cart.perfectFor}</p>
+                </div>
+              )}
+
               <button
                 onClick={scrollToForm}
                 className={`w-full ${cart.popular ? 'btn-primary' : 'btn-secondary'}`}
               >
-                Get Quote for {cart.name.replace(' 4-Seater', '')}
+                Get Your Exact Quote
               </button>
             </div>
           ))}
+        </div>
+
+        <div className="mt-12 max-w-3xl mx-auto">
+          <div className="card bg-bg-alt border-primary/20">
+            <h3 className="text-lg font-bold text-text mb-4 text-center">{cartComparison.title}</h3>
+            <div className="grid md:grid-cols-2 gap-4 mb-6">
+              <div className="flex items-start gap-3">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                <div>
+                  <p className="font-semibold text-text text-sm mb-1">Standard:</p>
+                  <p className="text-text-muted text-sm">{cartComparison.standard}</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                <div>
+                  <p className="font-semibold text-text text-sm mb-1">Premium:</p>
+                  <p className="text-text-muted text-sm">{cartComparison.premium}</p>
+                </div>
+              </div>
+            </div>
+            <div className="pt-4 border-t border-border text-center">
+              <p className="text-primary font-medium text-sm">{cartComparison.helpText}</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

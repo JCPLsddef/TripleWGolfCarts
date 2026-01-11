@@ -20,6 +20,10 @@ export function Hero() {
               {hero.headline}
             </h1>
 
+            <p className="text-base text-blue-100 mb-4 leading-relaxed">
+              {hero.subheadline}
+            </p>
+
             <p className="text-lg text-blue-100 mb-2 font-medium">
               {hero.offerLine}
             </p>

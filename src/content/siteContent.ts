@@ -12,7 +12,7 @@ export const business = {
   phone: '(972) 965-6901',
   phoneLink: 'tel:+19729656901',
   smsLink: 'sms:+19729656901',
-  serviceArea: 'Tyler, Texas and East Texas',
+  serviceArea: 'Nationwide Delivery',
   googleReviewsLink: 'https://maps.app.goo.gl/XonURzK5Pi9PX1j58',
   googleMapsLink: 'https://maps.app.goo.gl/wfrfy6869PhiRZ3PA',
   rating: 4.8,
@@ -23,31 +23,33 @@ export const business = {
 };
 
 export const hero = {
-  headline: '4-Seater Golf Cart Rentals in Tyler, TX — Delivered & Picked Up',
+  headline: 'Nationwide Golf Cart Delivery & Full Setup Included',
+  subheadline: 'We deliver anywhere in the U.S. and handle everything from drop-off to pickup. Exact details are confirmed during your quote call.',
   scarcityBadge: 'Limited fleet — weekends fill fast',
-  offerLine: 'Tyler + East Texas • Delivery + Pickup Included • 4-Seaters Only • 3-Day Minimum',
+  offerLine: 'Nationwide Delivery • Full Setup & Pickup • 4-Seaters Only • 3-Day Minimum',
   pricingAnchor: 'Standard from $300+ | Luxury from $450+ (3-day minimum)',
   benefits: [
-    'Delivery + pickup included',
+    'Nationwide delivery & full setup included',
     'Clean, fully charged carts',
     `${business.rating}★ from ${business.reviewCount} Google reviews`,
   ],
   ctaMicrocopy: 'No obligation. We confirm availability + exact total first.',
+  ctaText: 'Get Your Exact Quote',
 };
 
 export const whyChooseUs = {
   title: 'Why Choose Triple W Rentals',
   features: [
     {
-      title: 'Delivery & Pickup Included',
-      description: 'We bring the cart to you and pick it up when you\'re done. No hassle.',
+      title: 'Nationwide Delivery & Full Setup',
+      description: 'We deliver anywhere in the U.S. and handle everything from setup to pickup. No hassle.',
     },
     {
       title: 'Clean & Fully Charged',
       description: 'Every cart is inspected, cleaned, and arrives with a full battery.',
     },
     {
-      title: 'Local & Responsive',
+      title: 'Fast & Responsive',
       description: 'Real people answering your calls. Fast quotes, clear communication.',
     },
     {
@@ -60,35 +62,48 @@ export const whyChooseUs = {
 export const cartTypes = [
   {
     id: 'standard',
-    name: 'Standard 4-Seater',
-    description: 'Reliable, comfortable, and perfect for most needs.',
+    name: 'Standard Golf Cart',
+    subtitle: 'Best for smooth rides & casual use',
+    description: '4-seater classic golf cart',
     image: 'https://static.wixstatic.com/media/62f926_73745cfd9a974580b10944854a2c0275~mv2.jpeg',
     priceFrom: 'From $300+',
     priceNote: '3-day minimum',
     features: [
-      'Seats 4 passengers comfortably',
-      'Electric motor - quiet operation',
-      'Headlights and taillights',
-      'Weather canopy included',
+      'Clean, traditional golf-course style',
+      'Designed for flat terrain (golf courses, paved paths, resorts)',
+      'Lower ground clearance for a smoother, quieter ride',
+      'Simple, elegant, and practical',
     ],
+    perfectFor: 'Comfort, simplicity, and a traditional golf cart experience.',
     popular: false,
   },
   {
     id: 'luxury',
-    name: 'Luxury 4-Seater',
-    description: 'Premium features for a superior experience.',
+    name: 'Lifted / Premium Golf Cart',
+    subtitle: 'Built for luxury, comfort & versatility',
+    badge: 'Most Popular',
+    description: '4-seater lifted premium golf cart',
     image: 'https://static.wixstatic.com/media/62f926_e9d8f493c6d94bc3914ee436e5706070~mv2.jpeg',
     priceFrom: 'From $450+',
     priceNote: '3-day minimum',
     features: [
-      'Upgraded seating with armrests',
-      'Extended range battery',
-      'Premium sound system',
-      'Custom wheels and trim',
+      'Upgraded wheels & lifted suspension',
+      'Handles grass, gravel, dirt & uneven terrain with ease',
+      'Premium custom seats for maximum comfort',
+      'Higher ground clearance for better visibility & confidence',
+      'Aggressive, luxury look — stands out at any event',
     ],
+    perfectFor: 'Premium comfort, luxury style, and the ability to go anywhere.',
     popular: true,
   },
 ];
+
+export const cartComparison = {
+  title: 'Quick Comparison',
+  standard: 'Smooth, simple, perfect for flat terrain',
+  premium: 'Luxury comfort, upgraded wheels, and built for any terrain',
+  helpText: 'Not sure which one to choose? Tell us where you\'ll drive — we\'ll match you with the perfect cart.',
+};
 
 export const useCases = {
   title: 'Where Our Carts Shine',
@@ -110,24 +125,24 @@ export const howItWorks = {
   steps: [
     {
       number: 1,
-      title: 'Request a Quote',
+      title: 'Request Your Quote',
       description: 'Tell us your dates, location, and how many carts you need.',
     },
     {
       number: 2,
-      title: 'Get Your Total',
-      description: 'We confirm availability and send exact pricing — no surprises.',
+      title: 'We Confirm Availability & Logistics',
+      description: 'We confirm availability and provide exact pricing — all delivery details are explained during this call.',
     },
     {
       number: 3,
-      title: 'We Deliver & Pick Up',
-      description: 'Enjoy your rental. We handle delivery and pickup.',
+      title: 'We Deliver & Set Everything Up',
+      description: 'We handle nationwide delivery, full setup, and pickup when you\'re done.',
     },
   ],
   expectations: [
     'Clean carts',
     'Battery charged',
-    'Delivery window confirmed',
+    'Full setup included',
     'Pickup scheduled',
   ],
 };
@@ -193,22 +208,21 @@ export const deliveryAreas = {
     'Mineola',
     'Gladewater',
   ],
-  note: 'Delivery fees depend on distance. We confirm exact pricing before booking.',
 };
 
 export const pricing = {
   title: 'Transparent Pricing',
-  subtitle: 'Standard 4-seater carts from $300+ (3-day min). Luxury 4-seater carts from $450+ (3-day min). Exact total depends on dates, delivery location, and number of carts.',
-  trustMessage: 'We confirm total pricing before you commit — no hidden fees or surprises.',
+  subtitle: 'Standard 4-seater carts from $300+ (3-day min). Luxury 4-seater carts from $450+ (3-day min). Exact total depends on dates and your specific needs.',
+  trustMessage: 'We confirm total pricing before you commit — all details explained on your quote call.',
   priceFactors: [
     'Rental duration (3-day minimum)',
-    'Delivery distance from Tyler, TX',
+    'Your location (we deliver nationwide)',
     'Number of carts needed (1-6 available)',
     'Cart type: Standard or Luxury',
     'Peak season / weekend rates',
   ],
   included: [
-    'Delivery to your location',
+    'Nationwide delivery & full setup',
     'Pickup when rental ends',
     'Fully charged battery',
     'Clean, inspected cart',

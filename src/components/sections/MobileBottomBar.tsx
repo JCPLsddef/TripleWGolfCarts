@@ -17,7 +17,7 @@ export function MobileBottomBar() {
           className="flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white py-3 px-4 rounded-lg font-semibold transition-colors"
         >
           <FileText className="w-5 h-5" />
-          Get Quote
+          Get Your Exact Quote
         </button>
         <a
           href={business.phoneLink}

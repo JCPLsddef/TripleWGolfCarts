@@ -23,10 +23,10 @@ export function DeliveryArea() {
               ))}
             </div>
 
-            <div className="bg-warning-soft border border-warning/20 rounded-lg p-4 flex items-start gap-3">
-              <Info className="w-5 h-5 text-warning flex-shrink-0 mt-0.5" />
+            <div className="bg-primary-soft border border-primary/20 rounded-lg p-4 flex items-start gap-3">
+              <Info className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
               <p className="text-sm text-text">
-                {deliveryAreas.note}
+                We deliver nationwide! While we're based in East Texas, we can deliver anywhere in the U.S. All delivery details are confirmed during your quote call.
               </p>
             </div>
           </div>
@@ -45,7 +45,7 @@ export function DeliveryArea() {
               />
             </div>
             <div className="absolute top-4 right-4 bg-primary text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
-              Serving East Texas
+              Nationwide Delivery
             </div>
             <div className="mt-4 text-center">
               <a
