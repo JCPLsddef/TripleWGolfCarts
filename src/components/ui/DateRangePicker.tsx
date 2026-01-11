@@ -102,29 +102,42 @@ export function DateRangePicker({
               className="premium-calendar"
               classNames={{
                 months: "flex flex-col",
-                month: "space-y-4",
-                caption: "flex justify-center pt-1 relative items-center",
-                caption_label: "text-sm font-semibold text-text",
+                month: "space-y-4 w-full",
+                caption: "flex justify-center pt-1 relative items-center mb-4",
+                caption_label: "text-base font-bold text-text",
                 nav: "space-x-1 flex items-center",
-                nav_button: "h-7 w-7 bg-transparent hover:bg-bg-alt rounded-md transition-colors inline-flex items-center justify-center",
+                nav_button: "h-8 w-8 bg-transparent hover:bg-bg-alt rounded-md transition-colors inline-flex items-center justify-center text-primary",
                 nav_button_previous: "absolute left-1",
                 nav_button_next: "absolute right-1",
-                table: "w-full border-collapse space-y-1",
-                head_row: "flex",
-                head_cell: "text-text-muted rounded-md w-9 font-medium text-[0.8rem]",
-                row: "flex w-full mt-2",
-                cell: "text-center text-sm p-0 relative [&:has([aria-selected])]:bg-primary/10 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-                day: "h-9 w-9 p-0 font-normal hover:bg-primary/10 rounded-md transition-colors inline-flex items-center justify-center",
-                day_selected: "bg-primary text-white hover:bg-primary hover:text-white focus:bg-primary focus:text-white font-semibold",
-                day_today: "bg-bg-alt text-text font-semibold",
+                table: "w-full border-collapse",
+                head_row: "grid grid-cols-7 gap-1 mb-2",
+                head_cell: "text-text-muted font-semibold text-xs uppercase text-center w-full flex items-center justify-center",
+                row: "grid grid-cols-7 gap-1 mt-1",
+                cell: "text-center text-sm relative [&:has([aria-selected])]:bg-primary/10 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
+                day: "h-10 w-full p-0 font-medium hover:bg-primary/10 rounded-md transition-colors inline-flex items-center justify-center text-text",
+                day_selected: "bg-primary text-white hover:bg-primary hover:text-white focus:bg-primary focus:text-white font-bold",
+                day_today: "bg-bg-alt text-primary font-bold ring-1 ring-primary/30",
                 day_outside: "text-text-muted opacity-30",
                 day_disabled: "text-text-muted opacity-30 cursor-not-allowed hover:bg-transparent",
                 day_range_middle: "aria-selected:bg-primary/20 aria-selected:text-text",
                 day_hidden: "invisible",
               }}
             />
-            <div className="mt-3 pt-3 border-t border-border text-xs text-text-muted text-center">
-              Select start and end dates for your rental
+            <div className="mt-4 pt-3 border-t border-border">
+              <p className="text-xs text-text-muted text-center mb-3">
+                Select start and end dates for your rental
+              </p>
+              <label className="flex items-start gap-3 p-3 rounded-lg border-2 border-primary/20 bg-primary/5 cursor-pointer hover:border-primary/40 transition-colors">
+                <input
+                  type="checkbox"
+                  checked={true}
+                  readOnly
+                  className="w-5 h-5 mt-0.5 rounded border-primary text-primary focus:ring-primary cursor-pointer pointer-events-none"
+                />
+                <span className="text-sm text-text font-medium flex-1">
+                  I agree to the rental duration minimum of 3 days
+                </span>
+              </label>
             </div>
           </div>
         </>

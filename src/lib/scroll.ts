@@ -10,8 +10,10 @@ export const scrollToForm = (e?: React.MouseEvent) => {
   const form = document.getElementById('quote-form');
   if (!form) return;
 
-  // Use offset for both mobile and desktop to ensure form is fully visible
-  const offset = 100; // Offset to ensure form title is visible (accounts for header)
+  // Use larger offset on mobile to account for header and mobile bottom bar
+  const isMobile = window.innerWidth < 1024;
+  const offset = isMobile ? 120 : 100; // Larger offset on mobile
+  
   const elementPosition = form.getBoundingClientRect().top;
   const offsetPosition = elementPosition + window.scrollY - offset;
   
