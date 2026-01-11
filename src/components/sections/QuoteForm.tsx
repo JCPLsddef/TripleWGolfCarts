@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { Phone, CheckCircle, Loader2, Plus, Minus, ChevronRight } from 'lucide-react';
-import { format } from 'date-fns';
 import { business, whatHappensNext, cartTypes } from '@/content/siteContent';
 import { submitQuoteRequest } from '@/lib/supabase';
 import { DateRangePicker } from '@/components/ui/DateRangePicker';
@@ -12,6 +11,23 @@ interface QuoteFormProps {
 }
 
 type FormStep = 1 | 2;
+
+// Helper to parse date string in LOCAL timezone (not UTC)
+// "2026-01-10" should be Jan 10 at midnight LOCAL time, not UTC
+function parseLocalDate(dateString: string): Date | undefined {
+  if (!dateString) return undefined;
+  const [year, month, day] = dateString.split('-').map(Number);
+  // Create date at noon local time to avoid timezone edge cases
+  return new Date(year, month - 1, day, 12, 0, 0);
+}
+
+// Helper to format Date to YYYY-MM-DD in LOCAL timezone
+function formatLocalDate(date: Date): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
 
 export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
   const [step, setStep] = useState<FormStep>(1);
@@ -208,13 +224,13 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
               Rental Dates
             </label>
             <DateRangePicker
-              startDate={formData.startDate ? new Date(formData.startDate) : undefined}
-              endDate={formData.endDate ? new Date(formData.endDate) : undefined}
+              startDate={parseLocalDate(formData.startDate)}
+              endDate={parseLocalDate(formData.endDate)}
               onDateChange={(start, end) => {
                 setFormData(prev => ({
                   ...prev,
-                  startDate: start ? format(start, 'yyyy-MM-dd') : '',
-                  endDate: end ? format(end, 'yyyy-MM-dd') : '',
+                  startDate: start ? formatLocalDate(start) : '',
+                  endDate: end ? formatLocalDate(end) : '',
                 }));
                 if (validationErrors.dates) {
                   setValidationErrors(prev => {

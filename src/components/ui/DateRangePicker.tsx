@@ -38,8 +38,12 @@ export function DateRangePicker({
   const handleSelect = (selectedRange: DateRange | undefined) => {
     // PREMIUM UX: Never auto-close, stay open for visual feedback
     setRange(selectedRange);
+
+    // FIX TIMEZONE: Ensure dates stay in local timezone (not UTC)
+    // DayPicker gives us dates at midnight local time
+    // We keep them as-is without timezone conversion
     onDateChange(selectedRange?.from, selectedRange?.to);
-    
+
     // Calendar stays OPEN even when both dates selected
     // User sees the full range visual feedback
     // They can clear or adjust if needed
@@ -143,22 +147,15 @@ export function DateRangePicker({
               
               {/* Bottom Info Bar */}
               <div className="mt-4 pt-4 border-t border-border">
-                <div className="mb-3">
-                  <label className="flex items-start gap-3 p-3 rounded-lg border-2 border-primary/20 bg-primary/5 cursor-pointer hover:border-primary/40 transition-colors">
-                    <input
-                      type="checkbox"
-                      checked={true}
-                      readOnly
-                      className="w-5 h-5 mt-0.5 rounded border-primary text-primary focus:ring-primary cursor-pointer pointer-events-none flex-shrink-0"
-                    />
-                    <span className="text-sm text-text font-medium flex-1">
-                      I understand the minimum rental period is 3 days
-                    </span>
-                  </label>
+                {/* Reminder about minimum rental */}
+                <div className="mb-3 p-3 rounded-lg bg-primary/5 border border-primary/20">
+                  <p className="text-xs text-text-muted text-center">
+                    ⚠️ Minimum rental period: 3 days
+                  </p>
                 </div>
-                
+
                 {/* Dynamic helper text based on selection state */}
-                <p className="text-xs text-text-muted text-center">
+                <p className="text-xs text-text-muted text-center font-medium">
                   {!range?.from && 'Tap a date to start your rental'}
                   {range?.from && !range?.to && 'Now tap your return date'}
                   {range?.from && range?.to && 'Perfect! Your dates are selected'}
