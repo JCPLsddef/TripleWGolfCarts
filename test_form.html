@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Form Submission</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    button {
+      background: #0B5FFF;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px 5px;
+    }
+    button:hover {
+      background: #0949CC;
+    }
+    .log {
+      background: #f5f5f5;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      max-height: 400px;
+      overflow-y: auto;
+      font-family: monospace;
+      font-size: 12px;
+    }
+    .success { color: green; }
+    .error { color: red; }
+    .info { color: blue; }
+  </style>
+</head>
+<body>
+  <h1>🧪 Test Form Submission</h1>
+
+  <div>
+    <h2>Step 1: Test Database Insert (Supabase)</h2>
+    <button onclick="testDatabaseInsert()">Test Database</button>
+
+    <h2>Step 2: Test Email API</h2>
+    <button onclick="testEmailAPI()">Test Email</button>
+
+    <h2>Step 3: Test Full Flow</h2>
+    <button onclick="testFullFlow()">Test Complete Submission</button>
+
+    <button onclick="clearLog()" style="background: #666;">Clear Log</button>
+  </div>
+
+  <div class="log" id="log"></div>
+
+  <script>
+    const SUPABASE_URL = 'https://xntpcvnfijyuiitbbarg.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhudHBjdm5maWp5dWlpdGJiYXJnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc4Nzc1NjMsImV4cCI6MjA4MzQ1MzU2M30.QN_wPN-5HiJ3nxetaOx8IYJr_iLoxr_EAsmOETQ7A4o';
+
+    function log(message, type = 'info') {
+      const logDiv = document.getElementById('log');
+      const timestamp = new Date().toLocaleTimeString();
+      logDiv.innerHTML += `<div class="${type}">[${timestamp}] ${message}</div>`;
+      logDiv.scrollTop = logDiv.scrollHeight;
+    }
+
+    function clearLog() {
+      document.getElementById('log').innerHTML = '';
+    }
+
+    async function testDatabaseInsert() {
+      log('🔵 Testing database insert...', 'info');
+
+      const testData = {
+        full_name: 'Test User',
+        phone: '555-1234',
+        email: 'test@example.com',
+        rental_start_date: '2026-01-15',
+        rental_end_date: '2026-01-18',
+        delivery_location: 'Test Location',
+        number_of_carts: 2,
+        cart_type: '4-Seater Standard',
+        preferred_contact_method: 'text',
+        best_time_to_call: 'asap',
+        notes: 'Test from HTML',
+        understands_minimum: true
+      };
+
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/quote_requests`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=representation'
+          },
+          body: JSON.stringify(testData)
+        });
+
+        log(`Response status: ${response.status}`, response.ok ? 'success' : 'error');
+
+        const data = await response.text();
+        log(`Response: ${data}`, response.ok ? 'success' : 'error');
+
+        if (response.status === 201) {
+          log('✅ Database insert SUCCESS!', 'success');
+        } else if (response.status === 401) {
+          log('❌ RLS POLICY MISSING! Run the SQL fix from FIX_DATABASE.md', 'error');
+        } else {
+          log(`❌ Database insert failed: ${response.status}`, 'error');
+        }
+      } catch (error) {
+        log(`❌ Error: ${error.message}`, 'error');
+      }
+    }
+
+    async function testEmailAPI() {
+      log('📧 Testing email API...', 'info');
+
+      const testData = {
+        full_name: 'Test User',
+        email: 'test@example.com',
+        phone: '555-1234',
+        rental_start_date: '2026-01-15',
+        rental_end_date: '2026-01-18',
+        delivery_location: 'Test Location',
+        number_of_carts: 2,
+        cart_type: '4-Seater Standard',
+        notes: 'Test email'
+      };
+
+      try {
+        const response = await fetch('http://localhost:3000/api/send-lead', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(testData)
+        });
+
+        log(`Response status: ${response.status}`, response.ok ? 'success' : 'error');
+
+        const data = await response.json();
+        log(`Response: ${JSON.stringify(data, null, 2)}`, response.ok ? 'success' : 'error');
+
+        if (response.ok) {
+          log('✅ Email API SUCCESS!', 'success');
+          if (data.testMode) {
+            log('ℹ️ In TEST MODE - check terminal for email preview', 'info');
+          }
+        } else {
+          log(`❌ Email API failed`, 'error');
+        }
+      } catch (error) {
+        log(`❌ Error: ${error.message}`, 'error');
+      }
+    }
+
+    async function testFullFlow() {
+      log('🚀 Testing FULL FLOW (Database + Email)...', 'info');
+      log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'info');
+
+      // Step 1: Database
+      log('Step 1: Database Insert', 'info');
+      await testDatabaseInsert();
+
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // Step 2: Email
+      log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'info');
+      log('Step 2: Email Notification', 'info');
+      await testEmailAPI();
+
+      log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'info');
+      log('🏁 Full flow test complete!', 'info');
+    }
+  </script>
+</body>
+</html>

@@ -123,31 +123,33 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
 
   const handleFinalSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submission started');
+    console.log('========================================');
+    console.log('🚀 FORM SUBMISSION STARTED');
+    console.log('========================================');
 
     const errors = validateStep2();
     if (Object.keys(errors).length > 0) {
-      console.log('Validation errors:', errors);
+      console.log('❌ VALIDATION ERRORS:', errors);
       setValidationErrors(errors);
-      // Scroll to top of form to show errors
       document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       return;
     }
+    console.log('✅ Validation passed');
 
     if (formData.honeypot) {
-      console.log('Honeypot triggered');
+      console.log('🍯 Honeypot triggered');
       setIsSubmitted(true);
       return;
     }
 
-    console.log('Submitting quote request...');
+    console.log('📤 Submitting to database...');
     setIsSubmitting(true);
     setError(null);
 
     try {
       const cartTypeLabel = cartTypes.find(t => t.id === formData.cart_type)?.name || formData.cart_type || 'Not specified';
 
-      await submitQuoteRequest({
+      const payload = {
         full_name: formData.full_name,
         phone: formData.phone,
         email: formData.email || undefined,
@@ -160,13 +162,31 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
         best_time_to_call: 'asap',
         notes: formData.notes || (formData.datesFlexible ? 'Dates flexible/TBD' : undefined),
         understands_minimum: formData.understands_minimum,
-      });
+      };
 
-      console.log('Quote submitted successfully');
+      console.log('📦 Payload:', payload);
+
+      await submitQuoteRequest(payload);
+
+      console.log('========================================');
+      console.log('✅ QUOTE SUBMITTED SUCCESSFULLY!');
+      console.log('========================================');
       setIsSubmitted(true);
-    } catch (err) {
-      console.error('Quote submission error:', err);
-      setError('Something went wrong. Please call us directly.');
+    } catch (err: any) {
+      console.log('========================================');
+      console.error('❌ SUBMISSION FAILED');
+      console.error('Error:', err);
+      console.error('Error message:', err?.message);
+      console.error('Full error:', JSON.stringify(err, null, 2));
+      console.log('========================================');
+      console.log('💡 If you see "row-level security", check URGENT_FIX.md');
+      console.log('========================================');
+
+      if (err?.message?.includes('row-level security') || err?.message?.includes('violates')) {
+        setError('Database security error. Check URGENT_FIX.md for 2-minute fix.');
+      } else {
+        setError('Something went wrong. Please call us directly.');
+      }
     } finally {
       setIsSubmitting(false);
     }
