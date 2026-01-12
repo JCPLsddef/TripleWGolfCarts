@@ -33,6 +33,7 @@ export async function submitQuoteRequest(data: Omit<QuoteRequest, 'id' | 'create
     throw new Error('Supabase client is not configured. Please check your environment variables.');
   }
 
+  // Insert into database
   const { data: result, error } = await supabase
     .from('quote_requests')
     .insert([{
@@ -55,6 +56,31 @@ export async function submitQuoteRequest(data: Omit<QuoteRequest, 'id' | 'create
   if (error) {
     console.error('Database insert error:', error);
     throw error;
+  }
+
+  // Send confirmation email if customer provided email
+  if (data.email) {
+    try {
+      const { error: emailError } = await supabase.functions.invoke('send-quote-confirmation', {
+        body: {
+          email: data.email,
+          full_name: data.full_name,
+          rental_start_date: data.rental_start_date,
+          rental_end_date: data.rental_end_date,
+          delivery_location: data.delivery_location,
+          number_of_carts: data.number_of_carts,
+          cart_type: data.cart_type,
+        },
+      });
+
+      if (emailError) {
+        console.error('Email send error:', emailError);
+        // Don't throw - form submission still succeeds even if email fails
+      }
+    } catch (emailException) {
+      console.error('Email exception:', emailException);
+      // Don't throw - form submission still succeeds even if email fails
+    }
   }
 
   return result;

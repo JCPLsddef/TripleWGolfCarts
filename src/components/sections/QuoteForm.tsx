@@ -123,18 +123,24 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
 
   const handleFinalSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Form submission started');
 
     const errors = validateStep2();
     if (Object.keys(errors).length > 0) {
+      console.log('Validation errors:', errors);
       setValidationErrors(errors);
+      // Scroll to top of form to show errors
+      document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       return;
     }
 
     if (formData.honeypot) {
+      console.log('Honeypot triggered');
       setIsSubmitted(true);
       return;
     }
 
+    console.log('Submitting quote request...');
     setIsSubmitting(true);
     setError(null);
 
@@ -156,10 +162,11 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
         understands_minimum: formData.understands_minimum,
       });
 
+      console.log('Quote submitted successfully');
       setIsSubmitted(true);
     } catch (err) {
-      setError('Something went wrong. Please call us directly.');
       console.error('Quote submission error:', err);
+      setError('Something went wrong. Please call us directly.');
     } finally {
       setIsSubmitting(false);
     }
