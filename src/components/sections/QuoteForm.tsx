@@ -178,9 +178,9 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
         <div className="w-16 h-16 bg-success-soft rounded-full flex items-center justify-center mx-auto mb-4">
           <CheckCircle className="w-8 h-8 text-success" />
         </div>
-        <h3 className="text-xl font-bold text-text mb-2">Thanks — we'll be in touch!</h3>
+        <h3 className="text-xl font-bold text-text mb-2">Thank you — we'll contact you shortly</h3>
         <p className="text-text-muted mb-6">
-          We'll confirm availability and send your exact total. Typical response within {business.responseTime}.
+          We received your request and will call you to confirm availability and provide your exact total. Typical response within {business.responseTime}.
         </p>
         <a
           href={business.phoneLink}

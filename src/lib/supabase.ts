@@ -58,29 +58,36 @@ export async function submitQuoteRequest(data: Omit<QuoteRequest, 'id' | 'create
     throw error;
   }
 
-  // Send confirmation email if customer provided email
-  if (data.email) {
-    try {
-      const { error: emailError } = await supabase.functions.invoke('send-quote-confirmation', {
-        body: {
-          email: data.email,
-          full_name: data.full_name,
-          rental_start_date: data.rental_start_date,
-          rental_end_date: data.rental_end_date,
-          delivery_location: data.delivery_location,
-          number_of_carts: data.number_of_carts,
-          cart_type: data.cart_type,
-        },
-      });
+  // Send lead notification email to admins (NOT to customer)
+  try {
+    const emailResponse = await fetch('/api/send-lead', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        full_name: data.full_name,
+        email: data.email || null,
+        phone: data.phone,
+        rental_start_date: data.rental_start_date,
+        rental_end_date: data.rental_end_date,
+        delivery_location: data.delivery_location,
+        number_of_carts: data.number_of_carts,
+        cart_type: data.cart_type,
+        notes: data.notes || null,
+      }),
+    });
 
-      if (emailError) {
-        console.error('Email send error:', emailError);
-        // Don't throw - form submission still succeeds even if email fails
-      }
-    } catch (emailException) {
-      console.error('Email exception:', emailException);
+    if (!emailResponse.ok) {
+      console.error('Lead notification failed:', await emailResponse.text());
       // Don't throw - form submission still succeeds even if email fails
+    } else {
+      const emailResult = await emailResponse.json();
+      console.log('Lead notification sent:', emailResult);
     }
+  } catch (emailException) {
+    console.error('Lead notification exception:', emailException);
+    // Don't throw - form submission still succeeds even if email fails
   }
 
   return result;
