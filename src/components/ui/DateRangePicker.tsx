@@ -122,6 +122,16 @@ export function DateRangePicker({
           
           {/* Calendar Modal - PREMIUM UX */}
           <div className="absolute left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-border z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+            {/* Close button */}
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              className="absolute top-3 right-3 z-10 p-1.5 rounded-lg hover:bg-bg-alt transition-colors group"
+              aria-label="Close calendar"
+            >
+              <X className="w-4 h-4 text-text-muted group-hover:text-text transition-colors" />
+            </button>
+
             <div className="p-4 md:p-6">
               <DayPicker
                 mode="range"
