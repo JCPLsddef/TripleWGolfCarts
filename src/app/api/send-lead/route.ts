@@ -3,17 +3,9 @@ import { Resend } from 'resend';
 
 export async function POST(req: NextRequest) {
   try {
-    // Initialize Resend with API key at runtime
     const apiKey = process.env.RESEND_API_KEY;
-    if (!apiKey) {
-      console.error('RESEND_API_KEY is not configured');
-      return NextResponse.json(
-        { success: false, message: 'Email service not configured' },
-        { status: 500 }
-      );
-    }
+    const isTestMode = !apiKey || apiKey === 'test_mode';
 
-    const resend = new Resend(apiKey);
     const body = await req.json();
 
     const {
@@ -130,7 +122,35 @@ export async function POST(req: NextRequest) {
       </html>
     `;
 
-    // Send email to both admin addresses
+    // TEST MODE: Log email instead of sending
+    if (isTestMode) {
+      console.log('========================================');
+      console.log('📧 EMAIL TEST MODE (Resend not configured)');
+      console.log('========================================');
+      console.log('FROM: Website Leads <leads@triplewrentals.com>');
+      console.log('TO: jcpl-07@hotmail.com, Triplewrentals@gmail.com');
+      console.log(`SUBJECT: New Lead – Website (${full_name} - ${number_of_carts} carts)`);
+      console.log('REPLY-TO:', email || 'None');
+      console.log('----------------------------------------');
+      console.log('LEAD DATA:');
+      console.log('- Name:', full_name);
+      console.log('- Phone:', phone);
+      console.log('- Email:', email || 'Not provided');
+      console.log('- Dates:', `${rental_start_date} to ${rental_end_date}`);
+      console.log('- Location:', delivery_location);
+      console.log('- Carts:', number_of_carts, 'x', cart_type);
+      if (notes) console.log('- Notes:', notes);
+      console.log('========================================');
+
+      return NextResponse.json({
+        success: true,
+        message: 'Lead logged (test mode - configure RESEND_API_KEY for real emails)',
+        testMode: true
+      });
+    }
+
+    // PRODUCTION MODE: Send email via Resend
+    const resend = new Resend(apiKey);
     const { data, error } = await resend.emails.send({
       from: 'Website Leads <leads@triplewrentals.com>',
       to: ['jcpl-07@hotmail.com', 'Triplewrentals@gmail.com'],
@@ -146,6 +166,8 @@ export async function POST(req: NextRequest) {
         { status: 500 }
       );
     }
+
+    console.log('✅ Email sent successfully via Resend:', data?.id);
 
     return NextResponse.json({
       success: true,
