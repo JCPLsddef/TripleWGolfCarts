@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { Phone, CheckCircle, Loader2, Plus, Minus, ChevronRight } from 'lucide-react';
 import { business, whatHappensNext, cartTypes } from '@/content/siteContent';
-import { submitQuoteRequest } from '@/lib/supabase';
 import { DateRangePicker } from '@/components/ui/DateRangePicker';
 
 interface QuoteFormProps {
@@ -142,7 +141,7 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
       return;
     }
 
-    console.log('📤 Submitting to database...');
+    console.log('📤 Sending lead notification...');
     setIsSubmitting(true);
     setError(null);
 
@@ -152,41 +151,46 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
       const payload = {
         full_name: formData.full_name,
         phone: formData.phone,
-        email: formData.email || undefined,
+        email: formData.email || null,
         rental_start_date: formData.startDate || 'Flexible',
         rental_end_date: formData.endDate || 'Flexible',
         delivery_location: formData.delivery_location,
         number_of_carts: formData.number_of_carts,
         cart_type: cartTypeLabel,
-        preferred_contact_method: formData.preferred_contact_method,
-        best_time_to_call: 'asap',
-        notes: formData.notes || (formData.datesFlexible ? 'Dates flexible/TBD' : undefined),
-        understands_minimum: formData.understands_minimum,
+        notes: formData.notes || (formData.datesFlexible ? 'Dates flexible/TBD' : null),
       };
 
       console.log('📦 Payload:', payload);
 
-      await submitQuoteRequest(payload);
+      // Call API directly - NO DATABASE, JUST EMAIL
+      const response = await fetch('/api/send-lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
 
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Email notification failed');
+      }
+
+      const result = await response.json();
       console.log('========================================');
-      console.log('✅ QUOTE SUBMITTED SUCCESSFULLY!');
+      console.log('✅ LEAD NOTIFICATION SENT!');
+      console.log('Result:', result);
       console.log('========================================');
+
       setIsSubmitted(true);
     } catch (err: any) {
       console.log('========================================');
       console.error('❌ SUBMISSION FAILED');
       console.error('Error:', err);
       console.error('Error message:', err?.message);
-      console.error('Full error:', JSON.stringify(err, null, 2));
-      console.log('========================================');
-      console.log('💡 If you see "row-level security", check URGENT_FIX.md');
       console.log('========================================');
 
-      if (err?.message?.includes('row-level security') || err?.message?.includes('violates')) {
-        setError('Database security error. Check URGENT_FIX.md for 2-minute fix.');
-      } else {
-        setError('Something went wrong. Please call us directly.');
-      }
+      setError('Something went wrong. Please call us directly.');
     } finally {
       setIsSubmitting(false);
     }
