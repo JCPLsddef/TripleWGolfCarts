@@ -134,11 +134,11 @@ export function DateRangePicker({
           
           {/* Calendar Modal - MOBILE: position fixed on mobile, absolute on desktop */}
           <div className="fixed inset-x-4 top-20 lg:absolute lg:left-0 lg:right-0 lg:mt-2 lg:top-auto bg-white rounded-2xl shadow-2xl border border-border z-[9999] lg:z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 max-h-[calc(100vh-160px)] overflow-y-auto">
-            {/* Close button - MOBILE: top-right corner, large tap target */}
+            {/* Close button - MOBILE: top-RIGHT corner, large tap target */}
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 z-10 p-2 rounded-lg bg-bg-alt hover:bg-border transition-colors group lg:top-3 lg:right-3 lg:p-1.5 lg:bg-transparent"
+              className="absolute top-4 right-4 left-auto z-10 p-2 rounded-lg bg-bg-alt hover:bg-border transition-colors group lg:top-3 lg:right-3 lg:p-1.5 lg:bg-transparent"
               aria-label="Close calendar"
             >
               <X className="w-5 h-5 text-text group-hover:text-primary transition-colors lg:w-4 lg:h-4" />
