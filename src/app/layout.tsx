@@ -36,6 +36,19 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <LocalBusinessSchema />
+        
+        {/* Google Ads Global Tag */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10835426783"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-10835426783');
+            `,
+          }}
+        />
       </head>
       <body className="antialiased">
         {children}

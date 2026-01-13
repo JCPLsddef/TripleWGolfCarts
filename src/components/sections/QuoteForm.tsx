@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Phone, CheckCircle, Loader2, Plus, Minus, ChevronRight } from 'lucide-react';
 import { business, whatHappensNext, cartTypes } from '@/content/siteContent';
 import { DateRangePicker } from '@/components/ui/DateRangePicker';
+import { trackConversion } from '@/lib/googleAds';
 
 interface QuoteFormProps {
   preselectedCartType?: string;
@@ -183,6 +184,9 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
       console.log('========================================');
 
       setIsSubmitted(true);
+      
+      // Track Google Ads conversion on successful submission
+      trackConversion();
     } catch (err: any) {
       console.log('========================================');
       console.error('❌ SUBMISSION FAILED');
