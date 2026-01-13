@@ -26,7 +26,7 @@ export function Footer() {
               </div>
             </button>
             <p className="text-white/60 text-sm text-center md:text-left">
-              Premium golf cart rentals delivered to your door in Tyler and East Texas.
+              Premium golf cart rentals with nationwide delivery. Based in East Texas.
             </p>
           </div>
 
