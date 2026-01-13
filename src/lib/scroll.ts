@@ -1,6 +1,6 @@
 /**
- * Smoothly scrolls to the quote form with proper offset for mobile and desktop
- * Ensures the form title is fully visible after scroll
+ * Smoothly scrolls to the quote form with proper offset for header
+ * IDENTICAL behavior on mobile and desktop - no separate paths
  */
 export const scrollToForm = (e?: React.MouseEvent) => {
   if (e) {
@@ -10,20 +10,15 @@ export const scrollToForm = (e?: React.MouseEvent) => {
   const form = document.getElementById('quote-form');
   if (!form) return;
 
-  // Mobile needs much larger offset to ensure form is fully visible
-  // Account for: sticky header (64px) + breathing room (100px) = 164px minimum
-  const isMobile = window.innerWidth < 768;
-  const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+  // Calculate header height dynamically - works for both mobile and desktop
+  const header = document.querySelector('header');
+  const headerHeight = header ? header.offsetHeight : 0;
   
-  let offset;
-  if (isMobile) {
-    offset = 180; // Mobile: generous offset for full visibility
-  } else if (isTablet) {
-    offset = 140; // Tablet: moderate offset
-  } else {
-    offset = 100; // Desktop: standard offset
-  }
+  // Add consistent breathing room
+  const breathingRoom = 32;
+  const offset = headerHeight + breathingRoom;
   
+  // Use same calculation for mobile and desktop
   const elementPosition = form.getBoundingClientRect().top;
   const offsetPosition = elementPosition + window.scrollY - offset;
   
