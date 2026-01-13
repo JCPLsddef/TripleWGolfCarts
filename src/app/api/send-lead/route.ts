@@ -2,11 +2,24 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 export async function POST(req: NextRequest) {
+  console.log('========================================');
+  console.log('🔵 API ROUTE CALLED: /api/send-lead');
+  console.log('Timestamp:', new Date().toISOString());
+  console.log('========================================');
+
   try {
     const apiKey = process.env.RESEND_API_KEY;
     const isTestMode = !apiKey || apiKey === 'test_mode';
 
+    console.log('Environment check:');
+    console.log('- RESEND_API_KEY exists:', !!apiKey);
+    console.log('- RESEND_API_KEY length:', apiKey?.length || 0);
+    console.log('- RESEND_API_KEY starts with "re_":', apiKey?.startsWith('re_') || false);
+    console.log('- Test mode:', isTestMode);
+    console.log('========================================');
+
     const body = await req.json();
+    console.log('Request body received:', JSON.stringify(body, null, 2));
 
     const {
       full_name,
@@ -150,12 +163,20 @@ export async function POST(req: NextRequest) {
     }
 
     // PRODUCTION MODE: Send email via Resend
-    const resend = new Resend(apiKey);
+    console.log('🔵 Initializing Resend client...');
+    console.log('API Key preview:', apiKey?.substring(0, 10) + '...');
 
-    console.log('🔵 Attempting to send email via Resend...');
+    const resend = new Resend(apiKey);
+    console.log('✅ Resend client created');
+
+    console.log('🔵 Preparing email send...');
     console.log('FROM: onboarding@resend.dev');
     console.log('TO:', ['jcpl-07@hotmail.com', 'Triplewrentals@gmail.com']);
+    console.log('Subject:', `New Lead – Website (${full_name} - ${number_of_carts} carts)`);
+    console.log('Reply-To:', email || 'undefined');
+    console.log('HTML length:', emailHtml.length, 'characters');
 
+    console.log('🔵 Calling Resend API...');
     const { data, error } = await resend.emails.send({
       from: 'Website Leads <onboarding@resend.dev>',
       to: ['jcpl-07@hotmail.com', 'Triplewrentals@gmail.com'],
@@ -163,6 +184,10 @@ export async function POST(req: NextRequest) {
       html: emailHtml,
       replyTo: email || undefined,
     });
+
+    console.log('🔵 Resend API call completed');
+    console.log('Has data:', !!data);
+    console.log('Has error:', !!error);
 
     if (error) {
       console.error('========================================');
@@ -188,10 +213,17 @@ export async function POST(req: NextRequest) {
       emailId: data?.id
     });
 
-  } catch (error) {
-    console.error('API error:', error);
+  } catch (error: any) {
+    console.error('========================================');
+    console.error('💥 CRITICAL ERROR IN API ROUTE:');
+    console.error('Error type:', typeof error);
+    console.error('Error name:', error?.name);
+    console.error('Error message:', error?.message);
+    console.error('Error stack:', error?.stack);
+    console.error('Full error object:', JSON.stringify(error, Object.getOwnPropertyNames(error), 2));
+    console.error('========================================');
     return NextResponse.json(
-      { success: false, message: 'Internal server error' },
+      { success: false, message: 'Internal server error', details: error?.message || String(error) },
       { status: 500 }
     );
   }
