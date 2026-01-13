@@ -1,28 +1,18 @@
-import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-// CRITICAL: Force Node.js runtime (Edge Runtime breaks Resend SDK)
+// Force Node.js runtime (required for Resend SDK)
 export const runtime = 'nodejs';
 
-export async function POST(req: NextRequest) {
-  console.log('========================================');
-  console.log('🔵 API ROUTE CALLED: /api/send-lead');
-  console.log('Timestamp:', new Date().toISOString());
-  console.log('========================================');
+const resend = new Resend(process.env.RESEND_API_KEY);
 
+export async function POST(req: Request) {
   try {
-    const apiKey = process.env.RESEND_API_KEY;
-    const isTestMode = !apiKey || apiKey === 'test_mode';
-
-    console.log('Environment check:');
-    console.log('- RESEND_API_KEY exists:', !!apiKey);
-    console.log('- RESEND_API_KEY length:', apiKey?.length || 0);
-    console.log('- RESEND_API_KEY starts with "re_":', apiKey?.startsWith('re_') || false);
-    console.log('- Test mode:', isTestMode);
-    console.log('========================================');
+    console.log('🔵 API /api/send-lead called');
+    console.log('Runtime:', runtime);
+    console.log('RESEND_API_KEY exists:', !!process.env.RESEND_API_KEY);
 
     const body = await req.json();
-    console.log('Request body received:', JSON.stringify(body, null, 2));
+    console.log('Request body:', body);
 
     const {
       full_name,
@@ -38,9 +28,9 @@ export async function POST(req: NextRequest) {
 
     // Validation
     if (!full_name || !phone) {
-      return NextResponse.json(
-        { success: false, message: 'Name and phone are required' },
-        { status: 400 }
+      return new Response(
+        JSON.stringify({ success: false, message: 'Name and phone required' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
@@ -138,49 +128,9 @@ export async function POST(req: NextRequest) {
       </html>
     `;
 
-    // TEST MODE: Log email instead of sending
-    if (isTestMode) {
-      console.log('========================================');
-      console.log('📧 EMAIL TEST MODE (Resend not configured)');
-      console.log('========================================');
-      console.log('FROM: Website Leads <onboarding@resend.dev>');
-      console.log('TO: jcpl-07@hotmail.com, Triplewrentals@gmail.com');
-      console.log(`SUBJECT: New Lead – Website (${full_name} - ${number_of_carts} carts)`);
-      console.log('REPLY-TO:', email || 'None');
-      console.log('----------------------------------------');
-      console.log('LEAD DATA:');
-      console.log('- Name:', full_name);
-      console.log('- Phone:', phone);
-      console.log('- Email:', email || 'Not provided');
-      console.log('- Dates:', `${rental_start_date} to ${rental_end_date}`);
-      console.log('- Location:', delivery_location);
-      console.log('- Carts:', number_of_carts, 'x', cart_type);
-      if (notes) console.log('- Notes:', notes);
-      console.log('========================================');
-
-      return NextResponse.json({
-        success: true,
-        message: 'Lead logged (test mode - configure RESEND_API_KEY for real emails)',
-        testMode: true
-      });
-    }
-
-    // PRODUCTION MODE: Send email via Resend
-    console.log('🔵 Initializing Resend client...');
-    console.log('API Key preview:', apiKey?.substring(0, 10) + '...');
-
-    const resend = new Resend(apiKey);
-    console.log('✅ Resend client created');
-
-    console.log('🔵 Preparing email send...');
-    console.log('FROM: onboarding@resend.dev');
-    console.log('TO:', ['jcpl-07@hotmail.com', 'Triplewrentals@gmail.com']);
-    console.log('Subject:', `New Lead – Website (${full_name} - ${number_of_carts} carts)`);
-    console.log('Reply-To:', email || 'undefined');
-    console.log('HTML length:', emailHtml.length, 'characters');
-
     console.log('🔵 Calling Resend API...');
-    const { data, error } = await resend.emails.send({
+
+    const result = await resend.emails.send({
       from: 'Website Leads <onboarding@resend.dev>',
       to: ['jcpl-07@hotmail.com', 'Triplewrentals@gmail.com'],
       subject: `New Lead – Website (${full_name} - ${number_of_carts} carts)`,
@@ -188,54 +138,44 @@ export async function POST(req: NextRequest) {
       replyTo: email || undefined,
     });
 
-    console.log('🔵 Resend API call completed');
-    console.log('Has data:', !!data);
-    console.log('Has error:', !!error);
+    console.log('✅ Email sent successfully!');
+    console.log('Email ID:', result.data?.id);
 
-    if (error) {
-      console.error('========================================');
-      console.error('❌ RESEND ERROR:');
-      console.error('Error object:', JSON.stringify(error, null, 2));
-      console.error('Error message:', error.message);
-      console.error('Error name:', error.name);
-      console.error('========================================');
-      return NextResponse.json(
-        { success: false, message: 'Failed to send notification', error: error.message },
-        { status: 500 }
-      );
-    }
-
-    console.log('========================================');
-    console.log('✅ Email sent successfully via Resend!');
-    console.log('Email ID:', data?.id);
-    console.log('========================================');
-
-    return NextResponse.json({
-      success: true,
-      message: 'Lead notification sent',
-      emailId: data?.id
-    });
+    return new Response(
+      JSON.stringify({
+        success: true,
+        message: 'Lead notification sent',
+        emailId: result.data?.id
+      }),
+      {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      }
+    );
 
   } catch (error: any) {
-    console.error('========================================');
-    console.error('💥 CRITICAL ERROR IN API ROUTE:');
-    console.error('Error type:', typeof error);
-    console.error('Error name:', error?.name);
+    console.error('❌ Error in /api/send-lead:');
     console.error('Error message:', error?.message);
     console.error('Error stack:', error?.stack);
-    console.error('Full error object:', JSON.stringify(error, Object.getOwnPropertyNames(error), 2));
-    console.error('========================================');
-    return NextResponse.json(
-      { success: false, message: 'Internal server error', details: error?.message || String(error) },
-      { status: 500 }
+
+    return new Response(
+      JSON.stringify({
+        success: false,
+        message: 'Failed to send notification',
+        error: error?.message || String(error)
+      }),
+      {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      }
     );
   }
 }
 
 // Only allow POST
 export async function GET() {
-  return NextResponse.json(
-    { success: false, message: 'Method not allowed' },
-    { status: 405 }
+  return new Response(
+    JSON.stringify({ success: false, message: 'Method not allowed' }),
+    { status: 405, headers: { 'Content-Type': 'application/json' } }
   );
 }
