@@ -18,12 +18,21 @@ export const scrollToForm = (e?: React.MouseEvent) => {
   const breathingRoom = 32;
   const offset = headerHeight + breathingRoom;
   
-  // Use same calculation for mobile and desktop
-  const elementPosition = form.getBoundingClientRect().top;
-  const offsetPosition = elementPosition + window.scrollY - offset;
+  // CRITICAL FIX: Get absolute position from top of document
+  // offsetTop gives position relative to offsetParent, need to traverse up
+  let absoluteTop = 0;
+  let element = form as HTMLElement | null;
+  
+  while (element) {
+    absoluteTop += element.offsetTop;
+    element = element.offsetParent as HTMLElement | null;
+  }
+  
+  // Calculate final scroll position
+  const targetScrollPosition = absoluteTop - offset;
   
   window.scrollTo({
-    top: offsetPosition,
+    top: targetScrollPosition,
     behavior: 'smooth'
   });
 };
