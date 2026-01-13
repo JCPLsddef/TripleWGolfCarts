@@ -426,28 +426,39 @@ body {
 }
 
 /* ========================================
-   MOBILE UX FIXES
+   MOBILE UX FIXES - ULTRA AGGRESSIVE
    ======================================== */
 
-/* Mobile Form Submission Fix - CRITICAL for iOS Safari */
+/* Mobile Form Submission Fix - MAXIMUM RELIABILITY */
 @media (max-width: 768px) {
-  /* CRITICAL: Isolate form from transform contexts */
+  /* CRITICAL: Complete isolation from all stacking contexts */
   #quote-form {
-    position: relative;
-    z-index: 20;
-    isolation: isolate;
+    position: relative !important;
+    z-index: 50 !important;
+    isolation: isolate !important;
+    transform: translateZ(0) !important; /* Force hardware acceleration */
   }
 
-  /* Form buttons: Maximum touch reliability */
+  /* Form buttons: ULTRA AGGRESSIVE touch handling */
   #quote-form button[type="submit"],
   #quote-form button[type="button"] {
-    position: relative;
-    z-index: 30;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: rgba(47, 91, 255, 0.1);
-    min-height: 48px;
-    cursor: pointer;
-    /* iOS Safari fix: force clickable */
+    position: relative !important;
+    z-index: 100 !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: rgba(47, 91, 255, 0.15) !important;
+    min-height: 52px !important; /* Larger touch target */
+    cursor: pointer !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+    /* Force clickable on iOS */
+    pointer-events: auto !important;
+  }
+
+  /* Ensure button text/icons don't block click */
+  #quote-form button[type="submit"] *,
+  #quote-form button[type="button"] * {
+    pointer-events: none !important;
   }
 
   /* Ensure all form inputs are touch-friendly */
@@ -455,25 +466,28 @@ body {
   #quote-form select,
   #quote-form textarea,
   #quote-form label {
-    touch-action: manipulation;
+    touch-action: manipulation !important;
   }
 
-  /* Prevent bottom bar from blocking form */
-  .lg\\:hidden[style*="pointer-events"] {
+  /* Prevent ANY overlay from blocking form */
+  body > * {
+    pointer-events: auto;
+  }
+
+  /* Ensure form section has highest priority */
+  main > section:has(#quote-form) {
+    position: relative !important;
     z-index: 40 !important;
   }
 
-  /* AGGRESSIVE FIX: Ensure Continue and Request Quote buttons work */
-  button:is([type="submit"], [type="button"]):has(svg) {
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
+  /* Mobile bottom bar: must not interfere */
+  .lg\\:hidden {
+    pointer-events: auto !important;
   }
-
-  /* Ensure form doesn't get blocked by any positioned elements */
-  main > section:has(#quote-form) {
-    position: relative;
-    z-index: 15;
+  
+  .lg\\:hidden button,
+  .lg\\:hidden a {
+    pointer-events: auto !important;
   }
 
   /* Testimonials: Horizontal scrollable slider on mobile */
@@ -519,14 +533,84 @@ body {
     font-size: 0.65rem !important;
   }
 
+  /* How It Works: Stack vertically on mobile with clear spacing */
+  section:has(.md\\:grid-cols-3) .md\\:grid-cols-3 {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+
+  /* Ensure step numbers and content are centered */
+  section:has(.md\\:grid-cols-3) .md\\:grid-cols-3 > div {
+    text-align: center !important;
+    padding: 1.5rem 1rem !important;
+    background: var(--bg-alt) !important;
+    border-radius: 1rem !important;
+    border: 1px solid var(--border) !important;
+  }
+
+  /* What you can expect: Better mobile layout */
+  .bg-success-soft .flex.flex-wrap {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .bg-success-soft .flex.flex-wrap > div {
+    justify-content: flex-start !important;
+    padding: 0.5rem !important;
+  }
+
+  /* Quick Comparison: Stack cleanly on mobile */
+  .card.bg-bg-alt .md\\:grid-cols-2 {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+  }
+
+  .card.bg-bg-alt .md\\:grid-cols-2 > div {
+    padding: 1rem !important;
+    background: white !important;
+    border-radius: 0.75rem !important;
+    border: 1px solid var(--border) !important;
+  }
+
+  /* Cart selection: Better mobile spacing */
+  .md\\:grid-cols-2.gap-8 {
+    gap: 2rem !important;
+  }
+
+  .md\\:grid-cols-2.gap-8 .card {
+    padding: 1.5rem !important;
+  }
+
+  /* Calendar modal: Ensure it doesn't block form submission */
+  .fixed.inset-0.z-40 {
+    pointer-events: auto !important;
+  }
+
+  .fixed.inset-0.z-40 ~ div {
+    pointer-events: auto !important;
+  }
+
+  /* Date picker: Ensure close button works */
+  button:has(.lucide-x) {
+    pointer-events: auto !important;
+    z-index: 60 !important;
+  }
+
   /* Reduce vertical padding on mobile sections */
   .section-padding {
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
   }
 
   /* Mobile: ensure form spacing doesn't create layout issues */
-  .card {
-    margin-bottom: 4rem;
+  #quote-form.card {
+    margin-bottom: 6rem !important;
   }
 }
+
+/* ========================================
+   END MOBILE FIXES
+   ======================================== */
