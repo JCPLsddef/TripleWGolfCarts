@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
+// CRITICAL: Force Node.js runtime (Edge Runtime breaks Resend SDK)
+export const runtime = 'nodejs';
+
 export async function POST(req: NextRequest) {
   console.log('========================================');
   console.log('🔵 API ROUTE CALLED: /api/send-lead');
