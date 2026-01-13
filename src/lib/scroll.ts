@@ -1,14 +1,21 @@
 /**
  * Smoothly scrolls to the quote form with proper offset for header
- * IDENTICAL behavior on mobile and desktop - no separate paths
+ * MOBILE: Scrolls to #mobile-quote-section (MobileQuoteForm component)
+ * DESKTOP: Scrolls to #quote-form (inside Hero)
  */
 export const scrollToForm = (e?: React.MouseEvent) => {
   if (e) {
     e.preventDefault();
   }
   
-  const form = document.getElementById('quote-form');
-  if (!form) return;
+  // CRITICAL: Different targets for mobile vs desktop
+  // Mobile: form is in separate MobileQuoteForm section
+  // Desktop: form is inside Hero component
+  const isMobile = window.innerWidth < 1024;
+  const targetId = isMobile ? 'mobile-quote-section' : 'quote-form';
+  const target = document.getElementById(targetId);
+  
+  if (!target) return;
 
   // Calculate header height dynamically - works for both mobile and desktop
   const header = document.querySelector('header');
@@ -21,7 +28,7 @@ export const scrollToForm = (e?: React.MouseEvent) => {
   // CRITICAL FIX: Get absolute position from top of document
   // offsetTop gives position relative to offsetParent, need to traverse up
   let absoluteTop = 0;
-  let element = form as HTMLElement | null;
+  let element = target as HTMLElement | null;
   
   while (element) {
     absoluteTop += element.offsetTop;

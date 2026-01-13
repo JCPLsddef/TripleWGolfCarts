@@ -4,7 +4,7 @@ import { QuoteForm } from './QuoteForm';
 
 export function MobileQuoteForm() {
   return (
-    <section className="section-padding bg-bg-alt lg:hidden">
+    <section id="mobile-quote-section" className="section-padding bg-bg-alt lg:hidden">
       <div className="container-default">
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-text mb-2">Get Your Quote</h2>
