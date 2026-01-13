@@ -204,7 +204,7 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
         </div>
         <h3 className="text-xl font-bold text-text mb-2">Thank you — we'll contact you shortly</h3>
         <p className="text-text-muted mb-6">
-          We received your request and will call you to confirm availability and provide your exact total. Typical response within {business.responseTime}.
+          We received your request and will call you to confirm availability and provide your exact total. We usually respond the same day during business hours.
         </p>
         <a
           href={business.phoneLink}
@@ -288,7 +288,7 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
 
           <div>
             <label htmlFor="delivery_location" className="block text-sm font-medium text-text mb-2">
-              Delivery City / Venue
+              Event Location (City or Venue)
             </label>
             <input
               type="text"
@@ -297,7 +297,7 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
               value={formData.delivery_location}
               onChange={handleChange}
               className={`input-field ${validationErrors.delivery_location ? 'input-error' : ''}`}
-              placeholder="Resort, venue, or city"
+              placeholder="Where should we deliver the carts?"
             />
             {validationErrors.delivery_location && (
               <p className="text-xs text-red-600 mt-1">{validationErrors.delivery_location}</p>
