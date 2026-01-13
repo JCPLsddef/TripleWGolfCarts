@@ -1,8 +1,23 @@
-import { Star, ExternalLink } from 'lucide-react';
+'use client';
+
+import { Star, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { business, testimonials } from '@/content/siteContent';
 import { TestimonialCard } from './TestimonialCard';
+import { useRef } from 'react';
 
 export function Testimonials() {
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (sliderRef.current) {
+      const scrollAmount = sliderRef.current.offsetWidth * 0.9;
+      sliderRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <section className="section-padding bg-bg-alt">
       <div className="container-default">
@@ -23,7 +38,8 @@ export function Testimonials() {
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+        {/* Desktop: Grid layout (unchanged) */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard
               key={index}
@@ -33,6 +49,38 @@ export function Testimonials() {
               rating={testimonial.rating}
             />
           ))}
+        </div>
+
+        {/* Mobile: Horizontal slider */}
+        <div className="sm:hidden relative mb-10">
+          {/* Navigation arrows */}
+          <button
+            onClick={() => scroll('left')}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white border border-border rounded-full p-2 shadow-lg hover:bg-bg-alt transition-colors"
+            aria-label="Previous testimonial"
+          >
+            <ChevronLeft className="w-5 h-5 text-text" />
+          </button>
+          <button
+            onClick={() => scroll('right')}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white border border-border rounded-full p-2 shadow-lg hover:bg-bg-alt transition-colors"
+            aria-label="Next testimonial"
+          >
+            <ChevronRight className="w-5 h-5 text-text" />
+          </button>
+
+          {/* Slider container */}
+          <div ref={sliderRef} className="testimonials-mobile-slider px-10">
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard
+                key={index}
+                name={testimonial.name}
+                title={testimonial.title}
+                text={testimonial.text}
+                rating={testimonial.rating}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="text-center">

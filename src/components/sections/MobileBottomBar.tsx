@@ -31,10 +31,11 @@ export function MobileBottomBar() {
   }, []);
 
   return (
-    <div 
-      className={`fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-border shadow-lg lg:hidden transition-transform duration-300 ${
+    <div
+      className={`fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-border shadow-lg lg:hidden transition-transform duration-300 ${
         isVisible ? 'translate-y-0' : 'translate-y-full'
       }`}
+      style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
     >
       <div className="grid grid-cols-2 gap-2 p-2">
         <button

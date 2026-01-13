@@ -35,7 +35,7 @@ export function FirstScroll() {
 
             {/* Google Rating Block */}
             <div className="bg-white rounded-xl p-6 shadow-sm border border-border">
-              <div className="grid grid-cols-3 gap-6 text-center">
+              <div className="grid grid-cols-3 gap-6 text-center stats-mobile-row">
                 <div>
                   <div className="flex justify-center mb-2">
                     {[...Array(5)].map((_, i) => (

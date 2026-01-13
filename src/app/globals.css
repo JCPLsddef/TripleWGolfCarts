@@ -424,3 +424,81 @@ body {
     animation: none;
   }
 }
+
+/* ========================================
+   MOBILE UX FIXES
+   ======================================== */
+
+/* Mobile Form Submission Fix - Ensure buttons are always clickable */
+@media (max-width: 768px) {
+  /* Form buttons: proper z-index and touch handling */
+  #quote-form button[type="submit"],
+  #quote-form button[type="button"] {
+    position: relative;
+    z-index: 10;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 44px;
+    /* Ensure proper touch targets */
+  }
+
+  /* Ensure form container has proper stacking */
+  #quote-form {
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Testimonials: Horizontal scrollable slider on mobile */
+  .testimonials-mobile-slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    /* Hide scrollbar but keep functionality */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .testimonials-mobile-slider::-webkit-scrollbar {
+    display: none;
+  }
+
+  .testimonials-mobile-slider > div {
+    flex: 0 0 90%;
+    scroll-snap-align: center;
+    max-width: 90%;
+  }
+
+  /* Stats alignment: ensure single row on mobile */
+  .stats-mobile-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+
+  .stats-mobile-row > div {
+    font-size: 0.875rem;
+  }
+
+  .stats-mobile-row .text-2xl {
+    font-size: 1.25rem !important;
+  }
+
+  .stats-mobile-row .text-xs {
+    font-size: 0.65rem !important;
+  }
+
+  /* Reduce vertical padding on mobile sections */
+  .section-padding {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  /* Mobile: ensure form spacing doesn't create layout issues */
+  .card {
+    margin-bottom: 4rem;
+  }
+}
