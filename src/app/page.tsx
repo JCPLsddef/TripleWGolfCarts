@@ -1,5 +1,6 @@
 import { Header } from '@/components/sections/Header';
 import { Hero } from '@/components/sections/Hero';
+import { FirstScroll } from '@/components/sections/FirstScroll';
 import { HeroVisual } from '@/components/sections/HeroVisual';
 import { MobileQuoteForm } from '@/components/sections/MobileQuoteForm';
 import { WhyChooseUs } from '@/components/sections/WhyChooseUs';
@@ -21,6 +22,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <FirstScroll />
         <HeroVisual />
         <MobileQuoteForm />
         <WhyChooseUs />
