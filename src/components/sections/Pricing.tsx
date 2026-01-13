@@ -2,12 +2,9 @@
 
 import { Phone, FileText, Check, DollarSign, ShieldCheck } from 'lucide-react';
 import { business, pricing } from '@/content/siteContent';
+import { scrollToForm } from '@/lib/scroll';
 
 export function Pricing() {
-  const scrollToForm = (e: React.MouseEvent) => {
-    e.preventDefault();
-    document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <section className="section-padding bg-bg-alt">

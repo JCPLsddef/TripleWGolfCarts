@@ -10,9 +10,19 @@ export const scrollToForm = (e?: React.MouseEvent) => {
   const form = document.getElementById('quote-form');
   if (!form) return;
 
-  // Use larger offset on mobile to account for header and mobile bottom bar
-  const isMobile = window.innerWidth < 1024;
-  const offset = isMobile ? 120 : 100; // Larger offset on mobile
+  // Mobile needs much larger offset to ensure form is fully visible
+  // Account for: sticky header (64px) + breathing room (100px) = 164px minimum
+  const isMobile = window.innerWidth < 768;
+  const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+  
+  let offset;
+  if (isMobile) {
+    offset = 180; // Mobile: generous offset for full visibility
+  } else if (isTablet) {
+    offset = 140; // Tablet: moderate offset
+  } else {
+    offset = 100; // Desktop: standard offset
+  }
   
   const elementPosition = form.getBoundingClientRect().top;
   const offsetPosition = elementPosition + window.scrollY - offset;

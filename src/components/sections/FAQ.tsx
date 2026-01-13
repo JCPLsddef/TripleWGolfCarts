@@ -3,14 +3,10 @@
 import { useState } from 'react';
 import { ChevronDown, Phone, FileText } from 'lucide-react';
 import { business, faqs } from '@/content/siteContent';
+import { scrollToForm } from '@/lib/scroll';
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-
-  const scrollToForm = (e: React.MouseEvent) => {
-    e.preventDefault();
-    document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <section className="section-padding bg-white">
