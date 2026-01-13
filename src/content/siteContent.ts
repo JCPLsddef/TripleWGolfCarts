@@ -30,7 +30,7 @@ export const hero = {
   scarcityBadge: 'Limited fleet, weekends fill fast',
   socialProof: 'Used for major events like the Great Southwest Equestrian Center shows',
   offerLine: 'Nationwide Delivery • Full Setup & Pickup • 4-Seaters Only • 3-Day Minimum',
-  pricingAnchor: 'Standard from $300+ | Luxury from $450+ (3-day minimum)',
+  pricingAnchor: 'Standard $300 for 3 days | Luxury $450 for 3 days (3 cart minimum)',
   trustLine: 'Based in East Texas • Nationwide Event Delivery • Trusted by 180+ Clients',
   benefits: [
     'Nationwide delivery & full setup included',
@@ -73,8 +73,8 @@ export const cartTypes = [
     subtitle: 'Best for smooth rides & casual use',
     description: '4-seater classic golf cart',
     image: 'https://static.wixstatic.com/media/62f926_73745cfd9a974580b10944854a2c0275~mv2.jpeg',
-    priceFrom: 'From $300+',
-    priceNote: '3-day minimum',
+    priceFrom: '$300 for 3 days',
+    priceNote: '3 minimum',
     features: [
       'Clean, traditional golf-course style',
       'Designed for flat terrain (golf courses, paved paths, event grounds)',
@@ -91,8 +91,8 @@ export const cartTypes = [
     badge: 'Most Popular',
     description: '4-seater premium lifted golf cart',
     image: 'https://static.wixstatic.com/media/62f926_e9d8f493c6d94bc3914ee436e5706070~mv2.jpeg',
-    priceFrom: 'From $450+',
-    priceNote: '3-day minimum',
+    priceFrom: '$450 for 3 days',
+    priceNote: '3 minimum',
     features: [
       'Upgraded wheels and lifted suspension',
       'Handles large venues, grass, gravel, and uneven terrain with ease',
