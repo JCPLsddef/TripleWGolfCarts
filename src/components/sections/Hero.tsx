@@ -11,7 +11,16 @@ export function Hero() {
 
       <div className="container-default relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <div className="text-white">
+          {/* Left column with background image */}
+          <div className="relative">
+            {/* Background image container */}
+            <div className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-2xl overflow-hidden" style={{ backgroundImage: 'url(https://static.wixstatic.com/media/62f926_8d090e3b546644e7be2ae564fe27d402~mv2.png)' }}>
+              {/* Dark overlay for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-br from-bg-900/95 via-bg-900/90 to-bg-900/85" />
+            </div>
+
+            {/* Text content */}
+            <div className="relative z-10 text-white p-6 lg:p-8">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-warning-soft text-warning text-sm font-medium mb-6">
               {hero.scarcityBadge}
             </div>
@@ -20,8 +29,12 @@ export function Hero() {
               {hero.headline}
             </h1>
 
-            <p className="text-xl text-white mb-4 font-medium">
+            <p className="text-xl text-white mb-3 font-medium">
               {hero.subheadline}
+            </p>
+
+            <p className="text-sm text-blue-200/80 mb-4 font-medium">
+              {hero.trustLine}
             </p>
 
             <p className="text-base text-blue-100 mb-4 leading-relaxed">
@@ -81,6 +94,7 @@ export function Hero() {
                   <div className="text-white/60 text-xs">Day Minimum</div>
                 </div>
               </div>
+            </div>
             </div>
           </div>
 

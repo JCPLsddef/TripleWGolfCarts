@@ -12,28 +12,29 @@ export const business = {
   phone: '(972) 965-6901',
   phoneLink: 'tel:+19729656901',
   smsLink: 'sms:+19729656901',
-  serviceArea: 'Nationwide Delivery',
+  serviceArea: 'Nationwide delivery, based in East Texas (Tyler)',
   googleReviewsLink: 'https://maps.app.goo.gl/XonURzK5Pi9PX1j58',
   googleMapsLink: 'https://maps.app.goo.gl/wfrfy6869PhiRZ3PA',
   rating: 4.8,
   reviewCount: 188,
   minimumRental: 3,
   hours: 'Mon-Sun 8AM-6PM',
-  responseTime: '30 minutes during business hours',
+  responseTime: 'We usually respond the same day during business hours',
 };
 
 export const hero = {
   headline: 'Premium Golf Cart Rentals for Events',
   subheadline: 'Delivered, Set Up & Ready Exactly When You Need Them',
   description: 'Perfect for large venues, equestrian centers, golf courses, and events where getting from point A to point C matters.',
-  reassurance: 'We handle delivery, setup, and timing — you don\'t have to worry about a thing.',
-  scarcityBadge: 'Limited fleet — weekends fill fast',
+  reassurance: 'We handle delivery, setup, and timing. You don\'t have to worry about a thing.',
+  scarcityBadge: 'Limited fleet, weekends fill fast',
   socialProof: 'Used for major events like the Great Southwest Equestrian Center shows',
   offerLine: 'Nationwide Delivery • Full Setup & Pickup • 4-Seaters Only • 3-Day Minimum',
   pricingAnchor: 'Standard from $300+ | Luxury from $450+ (3-day minimum)',
+  trustLine: 'Based in East Texas • Nationwide Event Delivery • Trusted by 180+ Clients',
   benefits: [
     'Nationwide delivery & full setup included',
-    'Clean, fully charged carts',
+    'Clean, fueled, and ready to operate',
     `${business.rating}★ from ${business.reviewCount} Google reviews`,
   ],
   ctaMicrocopy: 'We\'ll guide you and handle everything for your event.',
@@ -42,9 +43,9 @@ export const hero = {
 
 export const whyChooseUs = {
   title: 'Delivery & Setup',
-  description: 'We deliver directly to your event location and fully set everything up. You don\'t lift a finger — we handle logistics, timing, and coordination.',
+  description: 'We deliver directly to your event location and fully set everything up. You don\'t lift a finger. We handle logistics, timing, and coordination.',
   confirmation: 'You\'ll even receive a confirmation message before your event so you can relax knowing everything is on schedule.',
-  trustLine: 'We focus on timing, comfort, and flawless setup — so your event runs smoothly.',
+  trustLine: 'We focus on timing, comfort, and flawless setup so your event runs smoothly.',
   features: [
     {
       title: 'Delivered & Set Up',
@@ -60,7 +61,7 @@ export const whyChooseUs = {
     },
     {
       title: 'Event-Ready Carts',
-      description: `Clean, fully charged, and ready exactly when you need them. ${business.reviewCount} events served.`,
+      description: `Clean, fueled, and ready exactly when you need them. ${business.reviewCount} events served.`,
     },
   ],
 };
@@ -148,7 +149,7 @@ export const howItWorks = {
     {
       number: 2,
       title: 'We Confirm Availability & Logistics',
-      description: 'We confirm availability and provide exact pricing — all delivery details are explained during this call.',
+      description: 'We confirm availability and provide exact pricing. All delivery details are explained during this call.',
     },
     {
       number: 3,
@@ -158,7 +159,7 @@ export const howItWorks = {
   ],
   expectations: [
     'Clean carts',
-    'Battery charged',
+    'Fueled and ready',
     'Full setup included',
     'Pickup scheduled',
   ],
@@ -210,7 +211,7 @@ export const testimonials: Testimonial[] = [
 ];
 
 export const deliveryAreas = {
-  title: 'We Deliver Throughout Tyler, Texas and East Texas',
+  title: 'Nationwide Delivery, Based in East Texas',
   cities: [
     'Tyler',
     'Longview',
@@ -230,7 +231,7 @@ export const deliveryAreas = {
 export const pricing = {
   title: 'Transparent Pricing',
   subtitle: 'Standard 4-seater carts from $300+ (3-day min). Luxury 4-seater carts from $450+ (3-day min). Exact total depends on dates and your specific needs.',
-  trustMessage: 'We confirm total pricing before you commit — all details explained on your quote call.',
+  trustMessage: 'We confirm total pricing before you commit. All details explained on your quote call.',
   priceFactors: [
     'Rental duration (3-day minimum)',
     'Your location (we deliver nationwide)',
@@ -241,7 +242,7 @@ export const pricing = {
   included: [
     'Nationwide delivery & full setup',
     'Pickup when rental ends',
-    'Fully charged battery',
+    'Fueled and ready to operate',
     'Clean, inspected cart',
     'Phone support during rental',
   ],
@@ -254,11 +255,11 @@ export const faqs = [
   },
   {
     question: 'Do you deliver to RV parks and resorts?',
-    answer: 'Yes! We deliver to RV parks, resorts, campgrounds, and event venues throughout Tyler and East Texas. Delivery and pickup are included.',
+    answer: 'Yes! We deliver nationwide to RV parks, resorts, campgrounds, and event venues. Based in East Texas (Tyler). Delivery and pickup are included.',
   },
   {
     question: 'Can I rent golf carts for a wedding?',
-    answer: 'Absolutely. Wedding transportation is one of our specialties. Our 4-seater carts are perfect for large venues, helping guests move between ceremony and reception areas. Book early — weddings fill our calendar fast.',
+    answer: 'Absolutely. Wedding transportation is one of our specialties. Our 4-seater carts are perfect for large venues, helping guests move between ceremony and reception areas. Book early, weddings fill our calendar fast.',
   },
   {
     question: "What's the minimum rental period?",
@@ -266,23 +267,23 @@ export const faqs = [
   },
   {
     question: 'How fast do you respond to quote requests?',
-    answer: 'Usually within 30 minutes during business hours (Mon-Sun 8AM-6PM). Text is fastest. Call (972) 965-6901 or submit a quote form.',
+    answer: 'We usually respond the same day during business hours (Mon-Sun 8AM-6PM). Text is fastest. Call (972) 965-6901 or submit a quote form.',
   },
   {
     question: 'Do you deliver and pick up the carts?',
-    answer: 'Yes. Delivery and pickup are included throughout Tyler and East Texas. We coordinate timing with you and handle all logistics.',
+    answer: 'Yes. Delivery and pickup are included nationwide. Based in East Texas (Tyler), we serve events across the country. We coordinate timing with you and handle all logistics.',
   },
   {
     question: 'What cities do you serve in East Texas?',
-    answer: 'We deliver to Tyler, Longview, Jacksonville, Henderson, Lindale, Whitehouse, Kilgore, Marshall, Canton, Athens, Mineola, Gladewater, and surrounding East Texas communities.',
+    answer: 'We deliver nationwide. Based in East Texas, we frequently serve Tyler, Longview, Jacksonville, Henderson, Lindale, Whitehouse, Kilgore, Marshall, Canton, Athens, Mineola, Gladewater, and surrounding communities.',
   },
   {
     question: 'How far in advance should I book?',
     answer: 'As early as possible. Weekends and holidays book fast. 2-4 weeks ahead is recommended, especially for events and peak summer season.',
   },
   {
-    question: 'Are your carts fully charged?',
-    answer: 'Yes. Every cart arrives fully charged and inspected. We include phone support during your rental if you have any questions.',
+    question: 'Are your carts fueled and ready?',
+    answer: 'Yes. Every cart arrives clean, inspected, fueled, and ready to operate. We include phone support during your rental if you have any questions.',
   },
   {
     question: 'What brands of golf carts do you rent?',
