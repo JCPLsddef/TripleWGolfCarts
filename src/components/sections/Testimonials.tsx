@@ -53,24 +53,8 @@ export function Testimonials() {
 
         {/* Mobile: Horizontal slider */}
         <div className="sm:hidden relative mb-10">
-          {/* Navigation arrows */}
-          <button
-            onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white border border-border rounded-full p-2 shadow-lg hover:bg-bg-alt transition-colors"
-            aria-label="Previous testimonial"
-          >
-            <ChevronLeft className="w-5 h-5 text-text" />
-          </button>
-          <button
-            onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white border border-border rounded-full p-2 shadow-lg hover:bg-bg-alt transition-colors"
-            aria-label="Next testimonial"
-          >
-            <ChevronRight className="w-5 h-5 text-text" />
-          </button>
-
           {/* Slider container */}
-          <div ref={sliderRef} className="testimonials-mobile-slider px-10">
+          <div ref={sliderRef} className="testimonials-mobile-slider px-4">
             {testimonials.map((testimonial, index) => (
               <TestimonialCard
                 key={index}

@@ -1,7 +1,15 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { business } from '@/content/siteContent';
 import { LocalBusinessSchema } from '@/components/LocalBusinessSchema';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 3,
+  minimumScale: 1,
+  userScalable: true,
+};
 
 export const metadata: Metadata = {
   title: `${business.name} | 4-Seater Golf Cart Rentals Tyler, TX | Delivery Included`,
