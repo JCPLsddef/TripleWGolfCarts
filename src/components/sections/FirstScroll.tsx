@@ -11,17 +11,17 @@ export function FirstScroll() {
             <div className="grid sm:grid-cols-2 gap-4 mb-6">
               <div className="bg-white rounded-xl p-6 shadow-sm border border-border">
                 <h3 className="text-xl font-bold text-text mb-2">Standard Carts</h3>
-                <p className="text-2xl font-bold text-primary mb-1">from $300 total</p>
-                <p className="text-sm text-text-muted">3-day minimum</p>
+                <p className="text-2xl font-bold text-primary mb-1">$300 for 3 days</p>
+                <p className="text-sm text-text-muted">3-day minimum • Can rent longer</p>
               </div>
               <div className="bg-white rounded-xl p-6 shadow-sm border border-border">
                 <h3 className="text-xl font-bold text-text mb-2">Premium Lifted Carts</h3>
-                <p className="text-2xl font-bold text-primary mb-1">from $450 total</p>
-                <p className="text-sm text-text-muted">3-day minimum</p>
+                <p className="text-2xl font-bold text-primary mb-1">$450 for 3 days</p>
+                <p className="text-sm text-text-muted">3-day minimum • Can rent longer</p>
               </div>
             </div>
             <p className="text-center text-sm text-text-muted max-w-2xl mx-auto">
-              Pricing shown is the starting total for a 3-day rental. Final pricing depends on location, duration, and number of carts.
+              3-day minimum rental. Need more days? Just let us know your dates for exact pricing. Final price depends on location, duration, and number of carts.
             </p>
           </div>
 

@@ -74,7 +74,7 @@ export const cartTypes = [
     description: '4-seater classic golf cart',
     image: 'https://static.wixstatic.com/media/62f926_73745cfd9a974580b10944854a2c0275~mv2.jpeg',
     priceFrom: '$300 for 3 days',
-    priceNote: '3 minimum',
+    priceNote: '3-day minimum • Can rent longer',
     features: [
       'Clean, traditional golf-course style',
       'Designed for flat terrain (golf courses, paved paths, event grounds)',
@@ -92,7 +92,7 @@ export const cartTypes = [
     description: '4-seater premium lifted golf cart',
     image: 'https://static.wixstatic.com/media/62f926_e9d8f493c6d94bc3914ee436e5706070~mv2.jpeg',
     priceFrom: '$450 for 3 days',
-    priceNote: '3 minimum',
+    priceNote: '3-day minimum • Can rent longer',
     features: [
       'Upgraded wheels and lifted suspension',
       'Handles large venues, grass, gravel, and uneven terrain with ease',
