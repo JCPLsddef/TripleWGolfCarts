@@ -655,6 +655,37 @@ body {
     pointer-events: auto !important;
   }
 
+  /* Calendar close button: MOBILE - top-right, highly visible */
+  [class*="z-\\[9999\\]"] button[aria-label="Close calendar"] {
+    position: absolute !important;
+    top: 12px !important;
+    right: 12px !important;
+    left: auto !important;
+    z-index: 10000 !important;
+    pointer-events: auto !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    padding: 10px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 2px solid var(--border) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+
+  [class*="z-\\[9999\\]"] button[aria-label="Close calendar"]:hover {
+    background: rgba(255, 255, 255, 1) !important;
+    border-color: var(--primary) !important;
+  }
+
+  [class*="z-\\[9999\\]"] button[aria-label="Close calendar"] svg {
+    width: 20px !important;
+    height: 20px !important;
+    color: var(--text) !important;
+    stroke-width: 2.5 !important;
+  }
+
   /* Date picker: Ensure close button works */
   button:has(.lucide-x) {
     pointer-events: auto !important;
