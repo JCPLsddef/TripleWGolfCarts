@@ -509,6 +509,29 @@ body {
     pointer-events: auto !important;
   }
 
+  /* CALENDAR OVERLAY FIX - MUST be above form buttons on mobile */
+  /* Calendar backdrop - highest priority on mobile */
+  .fixed.inset-0[class*="z-\\[9998\\]"] {
+    z-index: 9998 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Calendar modal - even higher than backdrop */
+  [class*="z-\\[9999\\]"] {
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+  }
+
+  /* When calendar is open, form buttons MUST NOT interfere */
+  body:has(.fixed.inset-0[class*="z-\\[9998\\]"]) #quote-form button {
+    pointer-events: none !important;
+  }
+
+  /* But calendar close button must remain clickable */
+  body:has(.fixed.inset-0[class*="z-\\[9998\\]"]) [class*="z-\\[9999\\]"] button {
+    pointer-events: auto !important;
+  }
+
   /* Testimonials: Horizontal scrollable slider on mobile */
   .testimonials-mobile-slider {
     display: flex;

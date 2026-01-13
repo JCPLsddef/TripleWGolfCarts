@@ -38,6 +38,18 @@ export function DateRangePicker({
   const isMinDaysMet = rentalDays >= 3;
   const hasValidRange = range?.from && range?.to;
 
+  // Lock body scroll when calendar is open on mobile
+  useEffect(() => {
+    if (isOpen && typeof window !== 'undefined' && window.innerWidth < 768) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   // Sync with parent state
   useEffect(() => {
     setRange({
@@ -114,22 +126,22 @@ export function DateRangePicker({
 
       {isOpen && !disabled && (
         <>
-          {/* Backdrop - clicking closes calendar */}
+          {/* Backdrop - clicking closes calendar - MOBILE: z-index MUST be above form buttons */}
           <div
-            className="fixed inset-0 z-40 bg-black/10"
+            className="fixed inset-0 z-[9998] bg-black/20 lg:z-40"
             onClick={() => setIsOpen(false)}
           />
           
-          {/* Calendar Modal - PREMIUM UX */}
-          <div className="absolute left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-border z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
-            {/* Close button */}
+          {/* Calendar Modal - MOBILE: position fixed on mobile, absolute on desktop */}
+          <div className="fixed inset-x-4 top-20 lg:absolute lg:left-0 lg:right-0 lg:mt-2 lg:top-auto bg-white rounded-2xl shadow-2xl border border-border z-[9999] lg:z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 max-h-[calc(100vh-160px)] overflow-y-auto">
+            {/* Close button - MOBILE: top-right corner, large tap target */}
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="absolute top-3 right-3 z-10 p-1.5 rounded-lg hover:bg-bg-alt transition-colors group"
+              className="absolute top-4 right-4 z-10 p-2 rounded-lg bg-bg-alt hover:bg-border transition-colors group lg:top-3 lg:right-3 lg:p-1.5 lg:bg-transparent"
               aria-label="Close calendar"
             >
-              <X className="w-4 h-4 text-text-muted group-hover:text-text transition-colors" />
+              <X className="w-5 h-5 text-text group-hover:text-primary transition-colors lg:w-4 lg:h-4" />
             </button>
 
             <div className="p-4 md:p-6">
