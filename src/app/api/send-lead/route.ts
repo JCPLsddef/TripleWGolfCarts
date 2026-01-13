@@ -7,12 +7,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
-    console.log('🔵 API /api/send-lead called');
-    console.log('Runtime:', runtime);
-    console.log('RESEND_API_KEY exists:', !!process.env.RESEND_API_KEY);
-
     const body = await req.json();
-    console.log('Request body:', body);
 
     const {
       full_name,
@@ -128,18 +123,15 @@ export async function POST(req: Request) {
       </html>
     `;
 
-    console.log('🔵 Calling Resend API...');
-
     const result = await resend.emails.send({
-      from: 'Website Leads <onboarding@resend.dev>',
-      to: ['jcpl-07@hotmail.com', 'Triplewrentals@gmail.com'],
+      from: 'Triple W Leads <onboarding@resend.dev>',
+      to: ['jcpl-07@hotmail.com'],
       subject: `New Lead – Website (${full_name} - ${number_of_carts} carts)`,
       html: emailHtml,
-      replyTo: email || undefined,
+      replyTo: ['jcpl-07@hotmail.com'],
     });
 
-    console.log('✅ Email sent successfully!');
-    console.log('Email ID:', result.data?.id);
+    console.log('✅ Lead email sent to Juan at jcpl-07@hotmail.com');
 
     return new Response(
       JSON.stringify({
@@ -154,9 +146,7 @@ export async function POST(req: Request) {
     );
 
   } catch (error: any) {
-    console.error('❌ Error in /api/send-lead:');
-    console.error('Error message:', error?.message);
-    console.error('Error stack:', error?.stack);
+    console.error('❌ Error sending lead email:', error?.message);
 
     return new Response(
       JSON.stringify({
@@ -172,7 +162,6 @@ export async function POST(req: Request) {
   }
 }
 
-// Only allow POST
 export async function GET() {
   return new Response(
     JSON.stringify({ success: false, message: 'Method not allowed' }),
