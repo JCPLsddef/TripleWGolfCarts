@@ -127,7 +127,7 @@ export async function POST(req: NextRequest) {
       console.log('========================================');
       console.log('📧 EMAIL TEST MODE (Resend not configured)');
       console.log('========================================');
-      console.log('FROM: Website Leads <leads@triplewrentals.com>');
+      console.log('FROM: Website Leads <onboarding@resend.dev>');
       console.log('TO: jcpl-07@hotmail.com, Triplewrentals@gmail.com');
       console.log(`SUBJECT: New Lead – Website (${full_name} - ${number_of_carts} carts)`);
       console.log('REPLY-TO:', email || 'None');
@@ -151,8 +151,13 @@ export async function POST(req: NextRequest) {
 
     // PRODUCTION MODE: Send email via Resend
     const resend = new Resend(apiKey);
+
+    console.log('🔵 Attempting to send email via Resend...');
+    console.log('FROM: onboarding@resend.dev');
+    console.log('TO:', ['jcpl-07@hotmail.com', 'Triplewrentals@gmail.com']);
+
     const { data, error } = await resend.emails.send({
-      from: 'Website Leads <leads@triplewrentals.com>',
+      from: 'Website Leads <onboarding@resend.dev>',
       to: ['jcpl-07@hotmail.com', 'Triplewrentals@gmail.com'],
       subject: `New Lead – Website (${full_name} - ${number_of_carts} carts)`,
       html: emailHtml,
@@ -160,14 +165,22 @@ export async function POST(req: NextRequest) {
     });
 
     if (error) {
-      console.error('Resend error:', error);
+      console.error('========================================');
+      console.error('❌ RESEND ERROR:');
+      console.error('Error object:', JSON.stringify(error, null, 2));
+      console.error('Error message:', error.message);
+      console.error('Error name:', error.name);
+      console.error('========================================');
       return NextResponse.json(
-        { success: false, message: 'Failed to send notification' },
+        { success: false, message: 'Failed to send notification', error: error.message },
         { status: 500 }
       );
     }
 
-    console.log('✅ Email sent successfully via Resend:', data?.id);
+    console.log('========================================');
+    console.log('✅ Email sent successfully via Resend!');
+    console.log('Email ID:', data?.id);
+    console.log('========================================');
 
     return NextResponse.json({
       success: true,
