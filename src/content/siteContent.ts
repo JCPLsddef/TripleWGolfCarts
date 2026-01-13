@@ -86,10 +86,10 @@ export const cartTypes = [
   },
   {
     id: 'luxury',
-    name: 'Premium Lifted Golf Cart',
+    name: 'Luxury Golf Cart',
     subtitle: 'Built for luxury, comfort & confidence',
     badge: 'Most Popular',
-    description: '4-seater premium lifted golf cart',
+    description: '4-seater luxury golf cart',
     image: 'https://static.wixstatic.com/media/62f926_e9d8f493c6d94bc3914ee436e5706070~mv2.jpeg',
     priceFrom: '$450 for 3 days',
     priceNote: '3-day minimum • Can rent longer',

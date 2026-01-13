@@ -15,7 +15,7 @@ export function FirstScroll() {
                 <p className="text-sm text-text-muted">3-day minimum • Can rent longer</p>
               </div>
               <div className="bg-white rounded-xl p-6 shadow-sm border border-border">
-                <h3 className="text-xl font-bold text-text mb-2">Premium Lifted Carts</h3>
+                <h3 className="text-xl font-bold text-text mb-2">Luxury Carts</h3>
                 <p className="text-2xl font-bold text-primary mb-1">$450 for 3 days</p>
                 <p className="text-sm text-text-muted">3-day minimum • Can rent longer</p>
               </div>
