@@ -537,36 +537,53 @@ body {
   .stats-mobile-row {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 1rem !important;
-    align-items: center !important;
+    gap: 0.5rem !important;
+    align-items: stretch !important; /* Changed from center to stretch */
   }
 
   .stats-mobile-row > div {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    justify-content: center !important;
-    gap: 0.25rem !important;
+    justify-content: flex-start !important; /* Changed from center to flex-start */
+    gap: 0.375rem !important;
+    min-height: 100% !important;
   }
 
-  .stats-mobile-row .text-2xl {
-    font-size: 1.5rem !important;
-    line-height: 1.2 !important;
-  }
-
-  .stats-mobile-row .text-xs {
-    font-size: 0.7rem !important;
-    line-height: 1.3 !important;
-  }
-
-  /* Ensure star icons scale properly */
+  /* Fixed height for star container to ensure alignment */
   .stats-mobile-row .flex.justify-center {
+    height: 1.25rem !important; /* Fixed height */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     gap: 0.125rem !important;
+    margin-bottom: 0.25rem !important;
   }
 
   .stats-mobile-row .w-5 {
-    width: 1rem !important;
-    height: 1rem !important;
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+  }
+
+  /* Ensure numbers are aligned */
+  .stats-mobile-row .text-2xl {
+    font-size: 1.75rem !important;
+    line-height: 1 !important;
+    font-weight: 700 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  /* Ensure labels are identical and aligned */
+  .stats-mobile-row .text-xs {
+    font-size: 0.625rem !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+    color: var(--text-muted) !important;
+    font-weight: 400 !important;
+    margin-top: 0 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.025em !important;
   }
 
   /* How It Works: Stack vertically on mobile with clear spacing */
