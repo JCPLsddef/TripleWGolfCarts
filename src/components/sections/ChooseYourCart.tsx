@@ -86,37 +86,11 @@ export function ChooseYourCart() {
           ))}
         </div>
 
-        {/* Mobile-only helper text - shown immediately after carts */}
-        <div className="mt-8 text-center lg:hidden">
-          <p className="text-primary font-medium text-sm max-w-2xl mx-auto">
+        {/* Helper text - shown on both mobile and desktop, immediately after cart cards */}
+        <div className="mt-8 text-center max-w-2xl mx-auto">
+          <p className="text-primary font-medium text-sm">
             {cartComparison.helpText}
           </p>
-        </div>
-
-        {/* Desktop comparison card - hidden on mobile */}
-        <div className="mt-12 max-w-3xl mx-auto hidden lg:block">
-          <div className="card bg-bg-alt border-primary/20">
-            <h3 className="text-lg font-bold text-text mb-4 text-center">{cartComparison.title}</h3>
-            <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <div className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <div>
-                  <p className="font-semibold text-text text-sm mb-1">Standard:</p>
-                  <p className="text-text-muted text-sm">{cartComparison.standard}</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                <div>
-                  <p className="font-semibold text-text text-sm mb-1">Premium:</p>
-                  <p className="text-text-muted text-sm">{cartComparison.premium}</p>
-                </div>
-              </div>
-            </div>
-            <div className="pt-4 border-t border-border text-center">
-              <p className="text-primary font-medium text-sm">{cartComparison.helpText}</p>
-            </div>
-          </div>
         </div>
 
         <div className="mt-12 text-center max-w-2xl mx-auto">

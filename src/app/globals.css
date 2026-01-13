@@ -637,20 +637,6 @@ body {
     padding: 0.5rem !important;
   }
 
-  /* Quick Comparison: Stack cleanly on mobile */
-  .card.bg-bg-alt .md\\:grid-cols-2 {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 1.25rem !important;
-  }
-
-  .card.bg-bg-alt .md\\:grid-cols-2 > div {
-    padding: 1rem !important;
-    background: white !important;
-    border-radius: 0.75rem !important;
-    border: 1px solid var(--border) !important;
-  }
-
   /* Cart selection: Better mobile spacing */
   .md\\:grid-cols-2.gap-8 {
     gap: 2rem !important;
