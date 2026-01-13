@@ -431,10 +431,32 @@ body {
 
 /* Mobile Form Submission Fix - MAXIMUM RELIABILITY */
 @media (max-width: 768px) {
+  /* CRITICAL: Prevent any layout shifts from causing overflow */
+  body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  html {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  /* Ensure main container doesn't overflow */
+  main {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  /* Prevent any section from overflowing */
+  section {
+    overflow-x: hidden !important;
+  }
+
   /* CRITICAL: Complete isolation from all stacking contexts */
   #quote-form {
     position: relative !important;
-    z-index: 50 !important;
+    z-index: 150 !important; /* Higher than MobileBottomBar (z-40) */
     isolation: isolate !important;
     transform: translateZ(0) !important; /* Force hardware acceleration */
   }
@@ -443,16 +465,18 @@ body {
   #quote-form button[type="submit"],
   #quote-form button[type="button"] {
     position: relative !important;
-    z-index: 100 !important;
+    z-index: 200 !important; /* Even higher */
     touch-action: manipulation !important;
     -webkit-tap-highlight-color: rgba(47, 91, 255, 0.15) !important;
-    min-height: 52px !important; /* Larger touch target */
+    min-height: 56px !important; /* Even larger touch target */
     cursor: pointer !important;
     -webkit-user-select: none !important;
     user-select: none !important;
     -webkit-touch-callout: none !important;
     /* Force clickable on iOS */
     pointer-events: auto !important;
+    /* Ensure no transforms interfere */
+    transform: translateZ(1px) !important;
   }
 
   /* Ensure button text/icons don't block click */
@@ -469,20 +493,15 @@ body {
     touch-action: manipulation !important;
   }
 
-  /* Prevent ANY overlay from blocking form */
-  body > * {
-    pointer-events: auto;
-  }
-
   /* Ensure form section has highest priority */
   main > section:has(#quote-form) {
     position: relative !important;
-    z-index: 40 !important;
+    z-index: 140 !important;
   }
 
-  /* Mobile bottom bar: must not interfere */
-  .lg\\:hidden {
-    pointer-events: auto !important;
+  /* Mobile bottom bar: MUST NOT interfere with form */
+  .lg\\:hidden.fixed.bottom-0 {
+    z-index: 30 !important; /* Lower than form */
   }
   
   .lg\\:hidden button,
@@ -514,23 +533,40 @@ body {
     max-width: 90%;
   }
 
-  /* Stats alignment: ensure single row on mobile */
+  /* Stats alignment: ensure single row on mobile with perfect spacing */
   .stats-mobile-row {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 0.75rem !important;
+    gap: 1rem !important;
+    align-items: center !important;
   }
 
   .stats-mobile-row > div {
-    font-size: 0.875rem;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.25rem !important;
   }
 
   .stats-mobile-row .text-2xl {
-    font-size: 1.25rem !important;
+    font-size: 1.5rem !important;
+    line-height: 1.2 !important;
   }
 
   .stats-mobile-row .text-xs {
-    font-size: 0.65rem !important;
+    font-size: 0.7rem !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Ensure star icons scale properly */
+  .stats-mobile-row .flex.justify-center {
+    gap: 0.125rem !important;
+  }
+
+  .stats-mobile-row .w-5 {
+    width: 1rem !important;
+    height: 1rem !important;
   }
 
   /* How It Works: Stack vertically on mobile with clear spacing */

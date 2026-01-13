@@ -6,9 +6,9 @@ import { LocalBusinessSchema } from '@/components/LocalBusinessSchema';
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 3,
+  maximumScale: 1,
   minimumScale: 1,
-  userScalable: true,
+  userScalable: false,
 };
 
 export const metadata: Metadata = {

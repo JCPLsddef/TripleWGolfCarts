@@ -355,6 +355,10 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
 
           <button
             type="submit"
+            onClick={(e) => {
+              console.log('[MOBILE DEBUG] Step 1 button clicked');
+              // Let form submission handle it naturally
+            }}
             className="btn-primary w-full"
           >
             Continue
@@ -488,6 +492,10 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
             <button
               type="submit"
               disabled={isSubmitting}
+              onClick={(e) => {
+                console.log('[MOBILE DEBUG] Step 2 submit button clicked');
+                // Let form submission handle it naturally
+              }}
               className="btn-primary flex-1"
             >
               {isSubmitting ? (

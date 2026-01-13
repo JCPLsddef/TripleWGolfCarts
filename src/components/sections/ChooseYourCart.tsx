@@ -86,7 +86,15 @@ export function ChooseYourCart() {
           ))}
         </div>
 
-        <div className="mt-12 max-w-3xl mx-auto">
+        {/* Mobile-only helper text - shown immediately after carts */}
+        <div className="mt-8 text-center lg:hidden">
+          <p className="text-primary font-medium text-sm max-w-2xl mx-auto">
+            {cartComparison.helpText}
+          </p>
+        </div>
+
+        {/* Desktop comparison card - hidden on mobile */}
+        <div className="mt-12 max-w-3xl mx-auto hidden lg:block">
           <div className="card bg-bg-alt border-primary/20">
             <h3 className="text-lg font-bold text-text mb-4 text-center">{cartComparison.title}</h3>
             <div className="grid md:grid-cols-2 gap-4 mb-6">
