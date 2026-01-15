@@ -1,7 +1,6 @@
 import { Header } from '@/components/sections/Header';
 import { Hero } from '@/components/sections/Hero';
 import { FirstScroll } from '@/components/sections/FirstScroll';
-import { HeroVisual } from '@/components/sections/HeroVisual';
 import { MobileQuoteForm } from '@/components/sections/MobileQuoteForm';
 import { WhyChooseUs } from '@/components/sections/WhyChooseUs';
 import { ChooseYourCart } from '@/components/sections/ChooseYourCart';
@@ -23,7 +22,6 @@ export default function Home() {
       <main>
         <Hero />
         <FirstScroll />
-        <HeroVisual />
         <MobileQuoteForm />
         <WhyChooseUs />
         <ChooseYourCart />
