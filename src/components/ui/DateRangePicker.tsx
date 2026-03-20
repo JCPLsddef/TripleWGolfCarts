@@ -134,17 +134,20 @@ export function DateRangePicker({
           
           {/* Calendar Modal - MOBILE: position fixed on mobile, absolute on desktop */}
           <div className="fixed inset-x-4 top-20 lg:absolute lg:left-0 lg:right-0 lg:mt-2 lg:top-auto bg-white rounded-2xl shadow-2xl border border-border z-[9999] lg:z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 max-h-[calc(100vh-160px)] overflow-y-auto">
-            {/* Close button - Mobile styling handled by CSS */}
-            <button
-              type="button"
-              onClick={() => setIsOpen(false)}
-              className="absolute top-3 right-3 z-10 p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-              aria-label="Close calendar"
-            >
-              <X className="w-5 h-5 text-gray-800" />
-            </button>
+            {/* Header row — X reliably on the right */}
+            <div className="flex items-center justify-between px-4 pt-4 pb-1">
+              <span className="text-sm font-semibold text-text-muted">Select your rental dates</span>
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                aria-label="Close calendar"
+              >
+                <X className="w-5 h-5 text-gray-800" />
+              </button>
+            </div>
 
-            <div className="p-4 md:p-6">
+            <div className="p-4 md:p-6 pt-2">
               <DayPicker
                 mode="range"
                 selected={range}
@@ -242,6 +245,16 @@ export function DateRangePicker({
                         </div>
                       </div>
                     </div>
+
+                    {isMinDaysMet && (
+                      <button
+                        type="button"
+                        onClick={() => setIsOpen(false)}
+                        className="w-full py-3 rounded-xl bg-primary text-white font-semibold text-base hover:bg-primary-hover transition-colors"
+                      >
+                        Okay 😎
+                      </button>
+                    )}
                   </div>
                 )}
               </div>
