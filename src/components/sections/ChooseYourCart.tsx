@@ -49,11 +49,6 @@ export function ChooseYourCart() {
               )}
               <p className="text-text-muted text-sm mb-3">{cart.description}</p>
 
-              <div className="mb-4 pb-4 border-b border-border">
-                <div className="text-2xl font-bold text-primary">{cart.priceFrom}</div>
-                <div className="text-sm text-text-muted">{cart.priceNote}</div>
-              </div>
-
               <ul className="space-y-2 mb-4">
                 {cart.features.map((feature, index) => (
                   <li key={index} className="flex items-start gap-2 text-sm">

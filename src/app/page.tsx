@@ -8,7 +8,6 @@ import { WhereCartsShine } from '@/components/sections/WhereCartsShine';
 import { HowItWorks } from '@/components/sections/HowItWorks';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { DeliveryArea } from '@/components/sections/DeliveryArea';
-import { Pricing } from '@/components/sections/Pricing';
 import { FAQ } from '@/components/sections/FAQ';
 import { FinalCTA } from '@/components/sections/FinalCTA';
 import { Footer } from '@/components/sections/Footer';
@@ -29,8 +28,7 @@ export default function Home() {
         <HowItWorks />
         <Testimonials />
         <DeliveryArea />
-        <Pricing />
-        <FAQ />
+<FAQ />
         <FinalCTA />
       </main>
       <Footer />

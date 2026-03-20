@@ -1,5 +1,6 @@
 'use client';
 
+import Script from 'next/script';
 import { Phone, Check, Star } from 'lucide-react';
 import { business, hero } from '@/content/siteContent';
 import { QuoteForm } from './QuoteForm';
@@ -7,7 +8,16 @@ import { QuoteForm } from './QuoteForm';
 export function Hero() {
   return (
     <section className="relative bg-gradient-to-br from-bg-900 via-bg-800 to-bg-900 pt-24 lg:pt-32 pb-16 lg:pb-24 overflow-hidden">
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.03%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-50" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div style={{width: '1440px', height: '900px'}} data-us-project="kVirbInN8Hn5Wr87IWgy"></div>
+      </div>
+      <Script
+        id="unicornstudio"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `!function(){var u=window.UnicornStudio;if(u&&u.init){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){u.init()})}else{u.init()}}else{window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.1.4/dist/unicornStudio.umd.js",i.onload=function(){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){UnicornStudio.init()})}else{UnicornStudio.init()}},(document.head||document.body).appendChild(i)}}();`
+        }}
+      />
 
       <div className="container-default relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">

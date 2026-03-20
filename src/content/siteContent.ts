@@ -251,7 +251,7 @@ export const pricing = {
 export const faqs = [
   {
     question: 'How much do golf cart rentals cost in Tyler, TX?',
-    answer: 'Standard 4-seater carts start from $300+ for a 3-day minimum. Luxury 4-seater carts start from $450+ for 3 days. Final price depends on rental duration, delivery distance, and cart type. Call (972) 965-6901 for an exact quote.',
+    answer: 'Pricing is custom-quoted based on your event, rental duration, location, and cart type. Contact us at (972) 965-6901 or submit a quote request for a personalized total.',
   },
   {
     question: 'Do you deliver to RV parks and resorts?',
