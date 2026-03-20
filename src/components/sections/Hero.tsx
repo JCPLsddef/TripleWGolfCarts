@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section className="relative bg-gradient-to-br from-bg-900 via-bg-800 to-bg-900 pt-24 lg:pt-32 pb-16 lg:pb-24 overflow-hidden">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div style={{width: '1440px', height: '900px'}} data-us-project="kVirbInN8Hn5Wr87IWgy"></div>
+        <div style={{width: '100%', height: '100%'}} data-us-project="kVirbInN8Hn5Wr87IWgy"></div>
       </div>
       <Script
         id="unicornstudio"

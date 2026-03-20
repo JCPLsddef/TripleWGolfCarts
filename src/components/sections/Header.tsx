@@ -70,12 +70,22 @@ export function Header() {
             </a>
           </div>
 
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`lg:hidden p-2 rounded-lg ${isScrolled ? 'text-text' : 'text-white'}`}
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="flex items-center gap-2 lg:hidden">
+            {!isScrolled && (
+              <button
+                onClick={handleScrollToForm}
+                className="text-sm font-semibold px-3 py-2 rounded-lg bg-white text-bg-900 hover:bg-white/90 transition-colors"
+              >
+                Get Your Cart
+              </button>
+            )}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className={`p-2 rounded-lg ${isScrolled ? 'text-text' : 'text-white'}`}
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </div>
 

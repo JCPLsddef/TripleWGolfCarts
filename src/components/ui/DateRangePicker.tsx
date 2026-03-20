@@ -138,10 +138,10 @@ export function DateRangePicker({
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="absolute top-3 right-3 z-10 p-2 rounded-lg hover:bg-bg-alt transition-colors group"
+              className="absolute top-3 right-3 z-10 p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
               aria-label="Close calendar"
             >
-              <X className="w-5 h-5 text-text group-hover:text-primary transition-colors" />
+              <X className="w-5 h-5 text-gray-800" />
             </button>
 
             <div className="p-4 md:p-6">
