@@ -6,25 +6,6 @@ export function FirstScroll() {
     <section className="py-12 lg:py-16 bg-bg-alt border-y border-border">
       <div className="container-default">
         <div className="max-w-4xl mx-auto">
-          {/* Pricing Clarity */}
-          <div className="mb-10">
-            <div className="grid sm:grid-cols-2 gap-4 mb-6">
-              <div className="bg-white rounded-xl p-6 shadow-sm border border-border">
-                <h3 className="text-xl font-bold text-text mb-2">Standard Carts</h3>
-                <p className="text-2xl font-bold text-primary mb-1">$300 for 3 days</p>
-                <p className="text-sm text-text-muted">3-day minimum • Can rent longer</p>
-              </div>
-              <div className="bg-white rounded-xl p-6 shadow-sm border border-border">
-                <h3 className="text-xl font-bold text-text mb-2">Luxury Carts</h3>
-                <p className="text-2xl font-bold text-primary mb-1">$450 for 3 days</p>
-                <p className="text-sm text-text-muted">3-day minimum • Can rent longer</p>
-              </div>
-            </div>
-            <p className="text-center text-sm text-text-muted max-w-2xl mx-auto">
-              3-day minimum rental. Need more days? Just let us know your dates for exact pricing. Final price depends on location, duration, and number of carts.
-            </p>
-          </div>
-
           {/* Social Proof */}
           <div className="border-t border-border pt-10">
             <div className="text-center mb-8">
