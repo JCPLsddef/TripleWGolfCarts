@@ -6,7 +6,7 @@ export function LocalBusinessSchema() {
     '@type': 'LocalBusiness',
     '@id': 'https://triplewrentals.com',
     name: business.name,
-    description: `${business.tagline} in ${business.serviceArea}. Lithium and gas 4-seater carts available. Delivery and pickup included. 3-day minimum.`,
+    description: `${business.tagline} in ${business.serviceArea}. Delivery and pickup included. 4-seater carts only. 3-day minimum.`,
     image: 'https://triplewrentals.com/og-image.jpg',
     telephone: business.phone,
     priceRange: '$$',
@@ -53,14 +53,6 @@ export function LocalBusinessSchema() {
             '@type': 'Product',
             name: 'Luxury 4-Seater Golf Cart',
             description: 'Premium 4-seater golf cart rental with lifted suspension, upgraded wheels, and luxurious seats. Handles grass, gravel, and uneven terrain.',
-          },
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Product',
-            name: 'Lithium 4-Seater Golf Cart',
-            description: 'Lithium-powered 4-seater golf cart rental. Quiet, fume-free, instant torque, and a full event day on one overnight charge.',
           },
         },
       ],

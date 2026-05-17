@@ -104,25 +104,6 @@ export const cartTypes = [
     perfectFor: 'Maximum comfort, premium style, and a cart that performs anywhere.',
     popular: true,
   },
-  {
-    id: 'lithium',
-    name: 'Lithium Golf Cart',
-    subtitle: 'Quiet, fume-free, instant torque',
-    powertrain: 'lithium' as const,
-    powertrainLabel: 'Lithium-Powered',
-    description: '4-seater lithium-powered golf cart',
-    image: null,
-    priceFrom: 'Custom quote',
-    priceNote: '3-day minimum, can rent longer',
-    features: [
-      'Lithium-powered, near-silent, zero fumes',
-      'Instant torque from a standstill, strong on hills',
-      'A full event day on one overnight charge',
-      'Popular for weddings, equestrian events, and venues with kids or animals',
-    ],
-    perfectFor: 'Renters who want a quiet, modern, powerful ride with no engine noise or fumes.',
-    popular: false,
-  },
 ];
 
 export const cartComparison = {

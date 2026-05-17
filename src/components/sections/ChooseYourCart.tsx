@@ -1,6 +1,6 @@
 'use client';
 
-import { Check, Crown, Zap } from 'lucide-react';
+import { Check, Crown } from 'lucide-react';
 import { cartTypes, cartComparison, perfectFor } from '@/content/siteContent';
 import { scrollToForm } from '@/lib/scroll';
 
@@ -14,14 +14,12 @@ export function ChooseYourCart() {
             Choose Your Cart
           </h2>
           <p className="text-text-muted max-w-2xl mx-auto">
-            Every option includes delivery, pickup, and our full support during your rental.
+            Both options include delivery, pickup, and our full support during your rental.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {cartTypes.map((cart) => {
-            const isLithium = cart.powertrain === 'lithium';
-            return (
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {cartTypes.map((cart) => (
             <div
               key={cart.id}
               className={`card relative ${
@@ -38,35 +36,12 @@ export function ChooseYourCart() {
               )}
 
               <div className="aspect-video bg-gradient-to-br from-bg-alt to-border rounded-lg mb-4 overflow-hidden">
-                {cart.image ? (
-                  <img
-                    src={cart.image}
-                    alt={`${cart.name} - Golf Cart Rental`}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-bg-900 via-bg-800 to-bg-900 text-white relative">
-                    <div className="absolute top-3 right-3 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-blue-200">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-300 animate-pulse" />
-                      Photo coming soon
-                    </div>
-                    <div className="w-14 h-14 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center mb-3">
-                      <Zap className="w-7 h-7 text-blue-100" />
-                    </div>
-                    <p className="text-sm font-semibold text-white">{cart.name}</p>
-                    <p className="text-xs text-blue-200 mt-1">{cart.powertrainLabel}</p>
-                  </div>
-                )}
+                <img
+                  src={cart.image ?? undefined}
+                  alt={`${cart.name} - Golf Cart Rental`}
+                  className="w-full h-full object-cover"
+                />
               </div>
-
-              {isLithium && cart.powertrainLabel && (
-                <div className="mb-2">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full bg-primary-soft text-primary">
-                    <Zap className="w-3 h-3" />
-                    {cart.powertrainLabel}
-                  </span>
-                </div>
-              )}
 
               <h3 className="text-xl font-bold text-text mb-1">{cart.name}</h3>
               {cart.subtitle && (
@@ -103,8 +78,7 @@ export function ChooseYourCart() {
                 Get Your Exact Quote
               </button>
             </div>
-            );
-          })}
+          ))}
         </div>
 
         {/* Helper text - shown on both mobile and desktop, immediately after cart cards */}

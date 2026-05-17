@@ -347,7 +347,6 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
                 const pickerLabel =
                   type.id === 'standard' ? 'Standard Golf Cart' :
                   type.id === 'luxury' ? 'Luxury Golf Cart' :
-                  type.id === 'lithium' ? 'Lithium Golf Cart' :
                   type.name;
                 return (
                   <button
