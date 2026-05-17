@@ -1,25 +1,27 @@
 'use client';
 
-import { Check, Crown } from 'lucide-react';
+import { Check, Crown, Zap, Fuel } from 'lucide-react';
 import { cartTypes, cartComparison, perfectFor } from '@/content/siteContent';
 import { scrollToForm } from '@/lib/scroll';
 
 export function ChooseYourCart() {
 
   return (
-    <section className="section-padding bg-white">
+    <section id="choose-your-cart" className="section-padding bg-white scroll-mt-24">
       <div className="container-default">
         <div className="text-center mb-12">
           <h2 className="text-2xl sm:text-3xl font-bold text-text mb-4">
             Choose Your Cart
           </h2>
           <p className="text-text-muted max-w-2xl mx-auto">
-            Both options include delivery, pickup, and our full support during your rental.
+            Every option includes delivery, pickup, and our full support during your rental.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {cartTypes.map((cart) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {cartTypes.map((cart) => {
+            const isLithium = cart.powertrain === 'lithium';
+            return (
             <div
               key={cart.id}
               className={`card relative ${
@@ -28,7 +30,7 @@ export function ChooseYourCart() {
             >
               {cart.badge && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="inline-flex items-center gap-1 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
+                  <span className="inline-flex items-center gap-1 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full whitespace-nowrap">
                     <Crown className="w-3 h-3" />
                     {cart.badge}
                   </span>
@@ -38,14 +40,25 @@ export function ChooseYourCart() {
               <div className="aspect-video bg-gradient-to-br from-bg-alt to-border rounded-lg mb-4 overflow-hidden">
                 <img
                   src={cart.image}
-                  alt={`${cart.name} - Golf Cart Rental`}
+                  alt={`${cart.name} - ${cart.powertrainLabel} Golf Cart Rental`}
                   className="w-full h-full object-cover"
                 />
               </div>
 
+              <div className="mb-2">
+                <span className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full ${
+                  isLithium
+                    ? 'bg-primary-soft text-primary'
+                    : 'bg-bg-alt text-text-muted border border-border'
+                }`}>
+                  {isLithium ? <Zap className="w-3 h-3" /> : <Fuel className="w-3 h-3" />}
+                  {cart.powertrainLabel}
+                </span>
+              </div>
+
               <h3 className="text-xl font-bold text-text mb-1">{cart.name}</h3>
               {cart.subtitle && (
-                <p className="text-primary text-sm font-semibold mb-2">{cart.subtitle}</p>
+                <p className={`text-sm font-semibold mb-2 ${isLithium ? 'text-primary' : 'text-text-muted'}`}>{cart.subtitle}</p>
               )}
               <p className="text-text-muted text-sm mb-3">{cart.description}</p>
 
@@ -78,7 +91,8 @@ export function ChooseYourCart() {
                 Get Your Exact Quote
               </button>
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Helper text - shown on both mobile and desktop, immediately after cart cards */}

@@ -32,11 +32,11 @@ export function Hero() {
               </h1>
 
               <p className="text-xl sm:text-2xl text-blue-50 font-medium leading-relaxed">
-                Delivered, set up, and ready exactly when your event needs them.
+                {hero.subheadline}
               </p>
 
               <p className="text-lg text-blue-100 leading-relaxed">
-                We handle delivery, setup, and pickup so you don't have to.
+                {hero.description}
               </p>
             </div>
           </div>

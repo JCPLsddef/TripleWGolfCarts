@@ -3,6 +3,7 @@ import { Hero } from '@/components/sections/Hero';
 import { FirstScroll } from '@/components/sections/FirstScroll';
 import { MobileQuoteForm } from '@/components/sections/MobileQuoteForm';
 import { WhyChooseUs } from '@/components/sections/WhyChooseUs';
+import { WhyLithium } from '@/components/sections/WhyLithium';
 import { ChooseYourCart } from '@/components/sections/ChooseYourCart';
 import { WhereCartsShine } from '@/components/sections/WhereCartsShine';
 import { HowItWorks } from '@/components/sections/HowItWorks';
@@ -23,6 +24,7 @@ export default function Home() {
         <FirstScroll />
         <MobileQuoteForm />
         <WhyChooseUs />
+        <WhyLithium />
         <ChooseYourCart />
         <WhereCartsShine />
         <HowItWorks />
