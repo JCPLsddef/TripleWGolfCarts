@@ -147,7 +147,10 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
     setError(null);
 
     try {
-      const cartTypeLabel = cartTypes.find(t => t.id === formData.cart_type)?.name || formData.cart_type || 'Not specified';
+      const cartTypeLabel =
+        formData.cart_type === 'unsure'
+          ? 'Not sure, recommend one for me'
+          : cartTypes.find(t => t.id === formData.cart_type)?.name || formData.cart_type || 'Not specified';
 
       const payload = {
         full_name: formData.full_name,
@@ -340,20 +343,39 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
               Cart Type <span className="text-text-muted">(optional)</span>
             </label>
             <div className="grid grid-cols-2 gap-2">
-              {cartTypes.map(type => (
-                <button
-                  key={type.id}
-                  type="button"
-                  onClick={() => setFormData(prev => ({ ...prev, cart_type: type.id }))}
-                  className={`px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
-                    formData.cart_type === type.id
-                      ? 'bg-primary text-white'
-                      : 'bg-bg-alt text-text hover:bg-border'
-                  }`}
-                >
-                  {type.name.replace(' 4-Seater', '')}
-                </button>
-              ))}
+              {cartTypes.map(type => {
+                const pickerLabel =
+                  type.id === 'lithium-standard' ? 'Lithium 4-Seater (Standard)' :
+                  type.id === 'lithium-luxury' ? 'Lithium Luxury (Lifted)' :
+                  type.id === 'gas-standard' ? 'Classic Gas 4-Seater' :
+                  type.name;
+                return (
+                  <button
+                    key={type.id}
+                    type="button"
+                    onClick={() => setFormData(prev => ({ ...prev, cart_type: type.id }))}
+                    className={`px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                      formData.cart_type === type.id
+                        ? 'bg-primary text-white'
+                        : 'bg-bg-alt text-text hover:bg-border'
+                    }`}
+                  >
+                    {pickerLabel}
+                  </button>
+                );
+              })}
+              <button
+                key="unsure"
+                type="button"
+                onClick={() => setFormData(prev => ({ ...prev, cart_type: 'unsure' }))}
+                className={`px-3 py-2.5 rounded-lg text-sm font-medium transition-all col-span-2 ${
+                  formData.cart_type === 'unsure'
+                    ? 'bg-primary text-white'
+                    : 'bg-bg-alt text-text hover:bg-border'
+                }`}
+              >
+                Not sure, recommend one for me
+              </button>
             </div>
           </div>
 

@@ -23,9 +23,9 @@ export const business = {
 };
 
 export const hero = {
-  headline: 'Premium Golf Cart Rentals for Events',
-  subheadline: 'Delivered, Set Up & Ready Exactly When You Need Them',
-  description: 'Perfect for large venues, equestrian centers, golf courses, and events where getting from point A to point C matters.',
+  headline: 'Premium Golf Cart Rentals. Now Lithium-Powered.',
+  subheadline: 'Lithium and gas options available. Delivered, set up, and ready when your event needs them.',
+  description: 'Used at the Great Southwest Equestrian Center and 188+ events.',
   reassurance: 'We handle delivery, setup, and timing. You don\'t have to worry about a thing.',
   scarcityBadge: 'Limited fleet, weekends fill fast',
   socialProof: 'Used for major events like the Great Southwest Equestrian Center shows',
@@ -34,7 +34,7 @@ export const hero = {
   trustLine: 'Based in East Texas • Nationwide Event Delivery • Trusted by 180+ Clients',
   benefits: [
     'Nationwide delivery & full setup included',
-    'Clean, fueled, and ready to operate',
+    'Clean, charged or fueled, and ready to operate',
     `${business.rating}★ from ${business.reviewCount} Google reviews`,
   ],
   ctaMicrocopy: 'We\'ll guide you and handle everything for your event.',
@@ -61,48 +61,73 @@ export const whyChooseUs = {
     },
     {
       title: 'Event-Ready Carts',
-      description: `Clean, fueled, and ready exactly when you need them. ${business.reviewCount} events served.`,
+      description: `Clean, charged or fueled (whichever you book), and ready exactly when you need them. ${business.reviewCount} events served.`,
     },
   ],
 };
 
 export const cartTypes = [
   {
-    id: 'standard',
-    name: 'Standard Golf Cart',
-    subtitle: 'Best for smooth rides & casual use',
-    description: '4-seater classic golf cart',
+    id: 'lithium-standard',
+    name: 'Govecourt Lithium 4-Seater',
+    subtitle: 'Smooth, silent, all-day power',
+    badge: 'Most Popular',
+    powertrain: 'lithium' as const,
+    powertrainLabel: 'Lithium-Powered',
+    description: '4-seater lithium-powered golf cart',
     image: 'https://static.wixstatic.com/media/62f926_73745cfd9a974580b10944854a2c0275~mv2.jpeg',
     priceFrom: '$300 for 3 days',
     priceNote: '3-day minimum • Can rent longer',
     features: [
+      'Lithium-powered for silent, fume-free rides',
+      'Designed for paved paths, flat venues, event grounds',
+      'Instant torque from a standstill',
+      'Full event day on one charge',
       'Clean, traditional golf-course style',
-      'Designed for flat terrain (golf courses, paved paths, event grounds)',
-      'Lower ground clearance for a smoother, quieter ride',
-      'Simple, elegant, and practical',
     ],
-    perfectFor: 'Comfort, simplicity, and reliable transportation for your event.',
-    popular: false,
+    perfectFor: 'Comfort and modern lithium power.',
+    popular: true,
   },
   {
-    id: 'luxury',
-    name: 'Luxury Golf Cart',
-    subtitle: 'Built for luxury, comfort & confidence',
-    badge: 'Most Popular',
-    description: '4-seater luxury golf cart',
+    id: 'lithium-luxury',
+    name: 'Govecourt Lithium Luxury',
+    subtitle: 'Premium comfort, anywhere your event takes you',
+    badge: 'Best for Long Days',
+    powertrain: 'lithium' as const,
+    powertrainLabel: 'Lithium-Powered',
+    description: '4-seater lifted lithium luxury golf cart',
     image: 'https://static.wixstatic.com/media/62f926_e9d8f493c6d94bc3914ee436e5706070~mv2.jpeg',
     priceFrom: '$450 for 3 days',
     priceNote: '3-day minimum • Can rent longer',
     features: [
-      'Upgraded wheels and lifted suspension',
-      'Handles large venues, grass, gravel, and uneven terrain with ease',
-      'Extremely luxurious and comfortable premium seats',
-      'Higher visibility and a bold, high-end look',
-      'Premium style that performs anywhere',
+      'Lifted suspension and upgraded wheels',
+      'Handles grass, gravel, uneven terrain with ease',
+      'Premium seats built for long event days',
+      'Higher visibility and bold high-end look',
+      'Lithium torque advantage on hills and rough ground',
     ],
-    emotionalLine: 'Designed for long days, large venues, and maximum comfort.',
-    perfectFor: 'Maximum comfort, premium style, and a cart that performs anywhere.',
-    popular: true,
+    emotionalLine: 'The most capable lithium ride we offer.',
+    perfectFor: 'Maximum comfort and the most capable lithium ride we offer.',
+    popular: false,
+  },
+  {
+    id: 'gas-standard',
+    name: 'Classic Gas 4-Seater',
+    subtitle: 'The traditional choice',
+    powertrain: 'gas' as const,
+    powertrainLabel: 'Gas-Powered',
+    description: '4-seater gas-powered golf cart',
+    image: 'https://static.wixstatic.com/media/62f926_73745cfd9a974580b10944854a2c0275~mv2.jpeg',
+    priceFrom: '$300 for 3 days',
+    priceNote: '3-day minimum • Can rent longer',
+    features: [
+      'Familiar gas-powered 4-seater',
+      'Proven reliability for renters who prefer gas',
+      'Same delivery, setup, and pickup service',
+      'Same cleanliness and inspection standards',
+    ],
+    perfectFor: 'Renters who specifically want a gas cart for their event.',
+    popular: false,
   },
 ];
 
@@ -159,7 +184,7 @@ export const howItWorks = {
   ],
   expectations: [
     'Clean carts',
-    'Fueled and ready',
+    'Charged or fueled to full',
     'Full setup included',
     'Pickup scheduled',
   ],
@@ -242,7 +267,7 @@ export const pricing = {
   included: [
     'Nationwide delivery & full setup',
     'Pickup when rental ends',
-    'Fueled and ready to operate',
+    'Charged or fueled to full',
     'Clean, inspected cart',
     'Phone support during rental',
   ],
@@ -282,14 +307,79 @@ export const faqs = [
     answer: 'As early as possible. Weekends and holidays book fast. 2-4 weeks ahead is recommended, especially for events and peak summer season.',
   },
   {
-    question: 'Are your carts fueled and ready?',
-    answer: 'Yes. Every cart arrives clean, inspected, fueled, and ready to operate. We include phone support during your rental if you have any questions.',
+    question: 'Are your carts charged or fueled and ready?',
+    answer: 'Yes. Every cart arrives clean, inspected, and fully charged (lithium) or fueled (gas), ready to operate the moment we set it up. We include phone support during your rental.',
   },
   {
     question: 'What brands of golf carts do you rent?',
     answer: 'We rent Club Car and EZGO golf carts. All are 4-seater models, clean, and well-maintained.',
   },
+  {
+    question: 'Are these gas or electric golf carts?',
+    answer: 'We offer both. Most renters now choose our lithium-powered Govecourt carts for the silent ride, the instant power, and the full-day battery life. We still offer gas carts for renters who prefer them. You pick what fits your event.',
+  },
+  {
+    question: 'How long does a lithium golf cart last on one charge?',
+    answer: 'One full overnight charge covers a full event day of typical event driving. We deliver every lithium cart fully charged. For multi-day rentals, plug it into a standard outlet overnight and it is ready the next morning.',
+  },
+  {
+    question: 'What happens if a lithium cart loses charge during my event?',
+    answer: 'It will not with normal event use, one charge covers a full day of typical event driving. If anything ever feels off during your rental, you have our direct line and we respond same-day during business hours.',
+  },
+  {
+    question: 'Is a lithium cart as powerful as a gas one?',
+    answer: 'Yes, and on hills, often more powerful. Lithium delivers 100% torque from a standstill, where gas needs to rev up to reach full power. That is why renters at the Great Southwest Equestrian Center and other large venues tell us they are surprised by how strong the lithium carts feel.',
+  },
+  {
+    question: 'Will I smell fumes or hear engine noise from a lithium cart?',
+    answer: 'No. Lithium carts are near-silent and produce zero fumes, which is why they are popular at weddings, equestrian events, and any venue with kids, animals, or food service.',
+  },
 ];
+
+export const whyLithium = {
+  heading: 'Why Renters Are Choosing Lithium',
+  intro: 'We still offer gas carts for anyone who prefers them. But more and more of our renters are picking lithium once they see what it does at their event. Here is what changes.',
+  ownerCredit: 'Owner Westin Wayne Walker on the lithium fleet: “They have zero issues, last forever on charge, and are the most powerful.”',
+  benefits: [
+    {
+      icon: 'Zap',
+      title: 'Most Powerful',
+      body: 'Instant torque from a standstill. Climbs hills, grass, gravel without struggle. More punch off the line than gas.',
+    },
+    {
+      icon: 'Battery',
+      title: 'Lasts All Day on One Charge',
+      body: 'Full event coverage on one overnight charge. No mid-day fuel runs. No dead-battery surprises.',
+    },
+    {
+      icon: 'CheckCircle2',
+      title: 'Zero Issues',
+      body: 'No engine to break down. No oil leaks. No fumes near your kids, your horses, or your guests.',
+    },
+  ],
+  featuredQuote: {
+    text: 'I didn’t realize how much more powerful the lithium batteries are. Really nice.',
+    attribution: 'Stacey',
+    detail: 'verified customer, Great Southwest Equestrian Center event',
+  },
+  comparison: {
+    heading: 'Lithium vs Gas: What Actually Changes',
+    columns: ['What you notice', 'Lithium', 'Gas'],
+    rows: [
+      ['Power off the line', '100% torque instantly', 'Builds with engine revs'],
+      ['Noise', 'Near-silent', 'Combustion engine sound'],
+      ['Fumes', 'None', 'Constant while running'],
+      ['Hills & uneven terrain', 'Strong from a standstill', 'Strong once revved'],
+      ['Mid-event fuel stops', 'None needed', 'May need refueling'],
+      ['Heat under the seat', 'None', 'Engine heat present'],
+      ['Maintenance', 'Minimal', 'Oil, filters, plugs'],
+      ['Conversation in cart', 'Talk normally', 'Raised voices'],
+    ],
+  },
+  closingNudge: 'Pick the powertrain that fits your event. We make both feel premium.',
+  ctaText: 'See Cart Options',
+  ctaHref: '#choose-your-cart',
+};
 
 export const finalCta = {
   preheadline: 'Planning an event with a large venue?',

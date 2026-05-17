@@ -12,14 +12,19 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: `${business.name} | 4-Seater Golf Cart Rentals Tyler, TX | Delivery Included`,
-  description: '4-seater golf cart rentals in Tyler, TX & East Texas. From $300+ (3-day min). Delivery & pickup included. Perfect for weddings, RV parks, resorts & events. Fast quotes. Call (972) 965-6901.',
-  keywords: 'golf cart rental Tyler TX, golf cart rental East Texas, Longview golf cart rental, wedding golf cart rental, RV park golf cart, resort golf cart rental, 4-seater golf cart, Club Car rental, EZGO rental, golf cart delivery Tyler',
+  title: `Lithium & Gas Golf Cart Rentals Tyler, TX | ${business.name} | Delivery Included`,
+  description: 'Lithium and gas 4-seater golf cart rentals in Tyler, TX & East Texas. From $300+ (3-day min). Delivery & pickup included. Call (972) 965-6901.',
+  keywords: 'golf cart rental Tyler TX, golf cart rental East Texas, Longview golf cart rental, wedding golf cart rental, RV park golf cart, resort golf cart rental, 4-seater golf cart, Club Car rental, EZGO rental, golf cart delivery Tyler, lithium golf cart rental Tyler TX, electric golf cart rental East Texas, silent golf cart wedding rental, battery powered golf cart rental, Govecourt lithium cart rental',
   openGraph: {
-    title: `${business.name} | 4-Seater Golf Cart Rentals Tyler, TX`,
-    description: '4-seater golf cart rentals delivered & picked up. From $300+ (3-day min). Serving Tyler & East Texas.',
+    title: `Lithium & Gas Golf Cart Rentals Tyler, TX | ${business.name}`,
+    description: 'Lithium and gas 4-seater golf cart rentals delivered & picked up. Quiet, powerful lithium fleet or classic gas. From $300+ (3-day min). Serving Tyler & East Texas.',
     type: 'website',
     locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Lithium & Gas Golf Cart Rentals Tyler, TX | ${business.name}`,
+    description: 'Lithium and gas 4-seater golf cart rentals delivered & picked up. Quiet, powerful lithium fleet or classic gas. From $300+ (3-day min).',
   },
 };
 
