@@ -1,6 +1,6 @@
 'use client';
 
-import { Check, Crown, Zap, Fuel } from 'lucide-react';
+import { Check, Crown, Zap } from 'lucide-react';
 import { cartTypes, cartComparison, perfectFor } from '@/content/siteContent';
 import { scrollToForm } from '@/lib/scroll';
 
@@ -38,27 +38,39 @@ export function ChooseYourCart() {
               )}
 
               <div className="aspect-video bg-gradient-to-br from-bg-alt to-border rounded-lg mb-4 overflow-hidden">
-                <img
-                  src={cart.image}
-                  alt={`${cart.name} - ${cart.powertrainLabel} Golf Cart Rental`}
-                  className="w-full h-full object-cover"
-                />
+                {cart.image ? (
+                  <img
+                    src={cart.image}
+                    alt={`${cart.name} - Golf Cart Rental`}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-bg-900 via-bg-800 to-bg-900 text-white relative">
+                    <div className="absolute top-3 right-3 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-blue-200">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-300 animate-pulse" />
+                      Photo coming soon
+                    </div>
+                    <div className="w-14 h-14 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center mb-3">
+                      <Zap className="w-7 h-7 text-blue-100" />
+                    </div>
+                    <p className="text-sm font-semibold text-white">{cart.name}</p>
+                    <p className="text-xs text-blue-200 mt-1">{cart.powertrainLabel}</p>
+                  </div>
+                )}
               </div>
 
-              <div className="mb-2">
-                <span className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full ${
-                  isLithium
-                    ? 'bg-primary-soft text-primary'
-                    : 'bg-bg-alt text-text-muted border border-border'
-                }`}>
-                  {isLithium ? <Zap className="w-3 h-3" /> : <Fuel className="w-3 h-3" />}
-                  {cart.powertrainLabel}
-                </span>
-              </div>
+              {isLithium && cart.powertrainLabel && (
+                <div className="mb-2">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full bg-primary-soft text-primary">
+                    <Zap className="w-3 h-3" />
+                    {cart.powertrainLabel}
+                  </span>
+                </div>
+              )}
 
               <h3 className="text-xl font-bold text-text mb-1">{cart.name}</h3>
               {cart.subtitle && (
-                <p className={`text-sm font-semibold mb-2 ${isLithium ? 'text-primary' : 'text-text-muted'}`}>{cart.subtitle}</p>
+                <p className="text-primary text-sm font-semibold mb-2">{cart.subtitle}</p>
               )}
               <p className="text-text-muted text-sm mb-3">{cart.description}</p>
 

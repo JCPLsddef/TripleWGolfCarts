@@ -43,24 +43,24 @@ export function LocalBusinessSchema() {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Product',
-            name: 'Govecourt Lithium 4-Seater Golf Cart',
-            description: 'Lithium-powered 4-seater golf cart rental. Silent, fume-free, instant torque, full event day on one overnight charge.',
+            name: 'Standard 4-Seater Golf Cart',
+            description: 'Reliable, comfortable 4-seater golf cart rental for golf courses, paved paths, and event grounds.',
           },
         },
         {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Product',
-            name: 'Govecourt Lithium Luxury 4-Seater Golf Cart',
-            description: 'Lifted lithium-powered 4-seater luxury golf cart rental with premium seats and upgraded wheels. Handles grass, gravel, and uneven terrain.',
+            name: 'Luxury 4-Seater Golf Cart',
+            description: 'Premium 4-seater golf cart rental with lifted suspension, upgraded wheels, and luxurious seats. Handles grass, gravel, and uneven terrain.',
           },
         },
         {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Product',
-            name: 'Classic Gas 4-Seater Golf Cart',
-            description: 'Traditional gas-powered 4-seater golf cart rental. Proven reliability for renters who prefer gas.',
+            name: 'Lithium 4-Seater Golf Cart',
+            description: 'Lithium-powered 4-seater golf cart rental. Quiet, fume-free, instant torque, and a full event day on one overnight charge.',
           },
         },
       ],

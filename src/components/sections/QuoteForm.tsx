@@ -149,7 +149,7 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
     try {
       const cartTypeLabel =
         formData.cart_type === 'unsure'
-          ? 'Not sure, recommend one for me'
+          ? 'Not sure, recommend one'
           : cartTypes.find(t => t.id === formData.cart_type)?.name || formData.cart_type || 'Not specified';
 
       const payload = {
@@ -209,7 +209,7 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
         <div className="w-16 h-16 bg-success-soft rounded-full flex items-center justify-center mx-auto mb-4">
           <CheckCircle className="w-8 h-8 text-success" />
         </div>
-        <h3 className="text-xl font-bold text-text mb-2">Thank you — we'll contact you shortly</h3>
+        <h3 className="text-xl font-bold text-text mb-2">Thank you, we'll contact you shortly</h3>
         <p className="text-text-muted mb-6">
           We received your request and will call you to confirm availability and provide your exact total. We usually respond the same day during business hours.
         </p>
@@ -230,7 +230,7 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
         <div>
           <h3 className="text-xl font-bold text-text">Get Your Quote</h3>
           <p className="text-sm text-text-muted">
-            {step === 1 ? 'Step 1 of 2 — Rental details' : 'Step 2 of 2 — Contact info'}
+            {step === 1 ? 'Step 1 of 2: Rental details' : 'Step 2 of 2: Contact info'}
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -345,9 +345,9 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
             <div className="grid grid-cols-2 gap-2">
               {cartTypes.map(type => {
                 const pickerLabel =
-                  type.id === 'lithium-standard' ? 'Lithium 4-Seater (Standard)' :
-                  type.id === 'lithium-luxury' ? 'Lithium Luxury (Lifted)' :
-                  type.id === 'gas-standard' ? 'Classic Gas 4-Seater' :
+                  type.id === 'standard' ? 'Standard Golf Cart' :
+                  type.id === 'luxury' ? 'Luxury Golf Cart' :
+                  type.id === 'lithium' ? 'Lithium Golf Cart' :
                   type.name;
                 return (
                   <button
@@ -374,7 +374,7 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
                     : 'bg-bg-alt text-text hover:bg-border'
                 }`}
               >
-                Not sure, recommend one for me
+                Not sure, recommend one
               </button>
             </div>
           </div>
