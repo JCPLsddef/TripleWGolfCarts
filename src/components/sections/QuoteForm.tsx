@@ -150,6 +150,8 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
       const cartTypeLabel =
         formData.cart_type === 'unsure'
           ? 'Not sure, recommend one'
+          : formData.cart_type === 'lithium'
+          ? 'Lithium Cart'
           : cartTypes.find(t => t.id === formData.cart_type)?.name || formData.cart_type || 'Not specified';
 
       const payload = {
@@ -363,6 +365,18 @@ export function QuoteForm({ preselectedCartType }: QuoteFormProps) {
                   </button>
                 );
               })}
+              <button
+                key="lithium"
+                type="button"
+                onClick={() => setFormData(prev => ({ ...prev, cart_type: 'lithium' }))}
+                className={`px-3 py-2.5 rounded-lg text-sm font-medium transition-all col-span-2 ${
+                  formData.cart_type === 'lithium'
+                    ? 'bg-primary text-white'
+                    : 'bg-bg-alt text-text hover:bg-border'
+                }`}
+              >
+                Lithium Cart
+              </button>
               <button
                 key="unsure"
                 type="button"
