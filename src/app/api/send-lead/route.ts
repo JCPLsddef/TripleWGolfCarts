@@ -86,7 +86,7 @@ export async function POST(req: Request) {
             <table style="width: 100%; border-collapse: collapse;">
               <tr>
                 <td style="padding: 8px 0; color: #666; width: 35%; font-weight: 600;">Rental Period:</td>
-                <td style="padding: 8px 0; color: #333; font-weight: 500;">${formatDate(rental_start_date)} — ${formatDate(rental_end_date)}</td>
+                <td style="padding: 8px 0; color: #333; font-weight: 500;">${formatDate(rental_start_date)} to ${formatDate(rental_end_date)}</td>
               </tr>
               <tr>
                 <td style="padding: 8px 0; color: #666; font-weight: 600;">Delivery Location:</td>

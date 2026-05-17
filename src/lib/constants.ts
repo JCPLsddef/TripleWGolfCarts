@@ -11,7 +11,7 @@ export const BUSINESS = {
   hours: 'Mon-Sun 8AM-6PM',
   responseSLA: 'usually within 30 minutes during business hours',
   offerLine: 'Nationwide Delivery • Full Setup & Pickup • 4-seaters only • 3-day minimum',
-  scarcityBadge: 'Limited fleet — weekends fill fast',
+  scarcityBadge: 'Limited fleet, weekends fill fast',
   deliveryCopy: 'We deliver anywhere in the U.S. and handle everything from drop-off to pickup. Exact details confirmed during your quote call.',
   startingPrice: '$__',
 };

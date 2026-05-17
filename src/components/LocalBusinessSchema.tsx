@@ -6,7 +6,7 @@ export function LocalBusinessSchema() {
     '@type': 'LocalBusiness',
     '@id': 'https://triplewrentals.com',
     name: business.name,
-    description: `${business.tagline} in ${business.serviceArea}. Lithium and gas 4-seater carts available. Delivery and pickup included. 3-day minimum.`,
+    description: `${business.tagline} in ${business.serviceArea}. Delivery and pickup included. 4-seater carts only. 3-day minimum.`,
     image: 'https://triplewrentals.com/og-image.jpg',
     telephone: business.phone,
     priceRange: '$$',
@@ -43,24 +43,16 @@ export function LocalBusinessSchema() {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Product',
-            name: 'Govecourt Lithium 4-Seater Golf Cart',
-            description: 'Lithium-powered 4-seater golf cart rental. Silent, fume-free, instant torque, full event day on one overnight charge.',
+            name: 'Standard 4-Seater Golf Cart',
+            description: 'Reliable, comfortable 4-seater golf cart rental for golf courses, paved paths, and event grounds.',
           },
         },
         {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Product',
-            name: 'Govecourt Lithium Luxury 4-Seater Golf Cart',
-            description: 'Lifted lithium-powered 4-seater luxury golf cart rental with premium seats and upgraded wheels. Handles grass, gravel, and uneven terrain.',
-          },
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Product',
-            name: 'Classic Gas 4-Seater Golf Cart',
-            description: 'Traditional gas-powered 4-seater golf cart rental. Proven reliability for renters who prefer gas.',
+            name: 'Luxury 4-Seater Golf Cart',
+            description: 'Premium 4-seater golf cart rental with lifted suspension, upgraded wheels, and luxurious seats. Handles grass, gravel, and uneven terrain.',
           },
         },
       ],
